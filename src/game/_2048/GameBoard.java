@@ -4,8 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Random;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+
 
 public class GameBoard extends JPanel{
 
@@ -55,7 +54,7 @@ public class GameBoard extends JPanel{
             Random rand = new Random();
             int index = rand.nextInt(empty.size());
 
-            int num = rand.nextInt(4);
+            int num = rand.nextInt(4); // Appearance probability -> 2 : 4 = 1 : 3
             if( num%3 == 1 ) num = 4;
             else num = 2;
 
@@ -92,9 +91,6 @@ public class GameBoard extends JPanel{
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         g.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_NORMALIZE);
-		//drawBackground(g);
-		//drawTitle(g);
-		//drawScoreBoard(g);
 		drawBoard(g);
 
         for( int i = 0 ; i<4 ; i++ ){
