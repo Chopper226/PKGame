@@ -12,6 +12,7 @@ public class GameBoard extends JPanel{
     private int score ;
     private Move move ; 
     private KeyBoard KB ;
+    private ScoreBoard SB ;
 
     final int gap = 14;
     final int blockSize = 120;
@@ -21,9 +22,10 @@ public class GameBoard extends JPanel{
         initBlock();
 
         this.score = 0;
+        this.SB = new ScoreBoard(this);
 
-        move = new Move(blocks , score);
-        KB = new KeyBoard(move , this ); 
+        this.move = new Move(blocks , this);
+        this.KB = new KeyBoard(move , this , SB); 
         this.addKeyListener(KB);
         this.setFocusable(true);
     }
@@ -66,6 +68,14 @@ public class GameBoard extends JPanel{
     public void createBlocks(){
         createBlock();
     }
+    
+    public int getScore(){
+        return score;
+    }
+    
+    public void setScore( int num ){
+        this.score = num;
+    }
 
     private boolean gameOver(){
         if( !(getEmptyBlock().isEmpty()) ) return false;
@@ -91,7 +101,7 @@ public class GameBoard extends JPanel{
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         g.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_NORMALIZE);
-		drawBoard(g);
+		drawGameBoard(g);
 
         for( int i = 0 ; i<4 ; i++ ){
             for( int j = 0 ; j<4 ; j++ ){
@@ -102,7 +112,7 @@ public class GameBoard extends JPanel{
         g.dispose();
 	}
 
-    private static void drawBoard(Graphics g) {
+    private static void drawGameBoard(Graphics g) {
         g.setColor(Color.decode("#BBADA0"));
         g.fillRect(0, 0, 550, 550);
 	}

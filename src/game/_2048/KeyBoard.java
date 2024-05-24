@@ -6,10 +6,12 @@ import java.awt.event.KeyListener;
 public class KeyBoard implements KeyListener {
     private Move move ;
     private GameBoard gameBoard;
+    private ScoreBoard scoreBoard;
 
-    public KeyBoard( Move move , GameBoard gameBoard){
+    public KeyBoard( Move move , GameBoard gameBoard , ScoreBoard scoreBoard){
         this.move = move;
         this.gameBoard = gameBoard;
+        this.scoreBoard = scoreBoard;
     }
 
 
@@ -43,6 +45,7 @@ public class KeyBoard implements KeyListener {
                 break;
         }
         gameBoard.repaint();
+        scoreBoard.repaint();
     }
 
 }

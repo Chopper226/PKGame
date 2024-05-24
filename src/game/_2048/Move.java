@@ -3,10 +3,12 @@ package game._2048;
 public class Move {
     private Block[][] blocks;
     private int score;
+    private GameBoard gameBoard;
 
-    public Move( Block[][] blocks , int score ){
+    public Move( Block[][] blocks , GameBoard gameBoard ){
         this.blocks = blocks;
-        this.score = score;
+        this.gameBoard = gameBoard;
+        this.score = gameBoard.getScore();
     }
 
     public void up(){
@@ -144,6 +146,7 @@ public class Move {
                 }
             }
         }
-        return tmp ;
+        gameBoard.setScore(score);
+        return tmp;
     }
 }
