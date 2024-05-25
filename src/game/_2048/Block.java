@@ -6,7 +6,7 @@ import java.awt.Color;
 public class Block{
     private int value;
     
-    public Block(){
+    Block(){
         this.value = 0;
     }
 
@@ -58,13 +58,11 @@ public class Block{
             case 256:
                 return Color.decode("#EDCC62");
             case 512:
-                return Color.decode("#EDC950");
-            /*    
+                return Color.decode("#EDC950");  
             case 1024:
-                return Color.decode("");
+                return Color.decode("#EDC53F");
             case 2048:
-                return Color.decode("");
-            */
+                return Color.BLACK;
             default:
                 return Color.decode("#BBADA0");
         }

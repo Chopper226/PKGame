@@ -19,11 +19,11 @@ public class TimeBoard extends JPanel{
 	}
 
     private static void drawTimeBoard(Graphics g) {
-        g.setColor(Color.decode("#BBADA0"));
+        g.setColor(Color.decode("#8F7A66"));
         g.fillRect(0, 0, 300, 120);
 	}
     private static void drawLine(Graphics2D g){
-        g.setColor(Color.decode("#BBADA0"));
+        g.setColor(Color.decode("#8F7A66"));
         g.setStroke(new BasicStroke(5));
         g.drawLine(150, 120, 150, 720);
     }
