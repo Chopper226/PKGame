@@ -4,6 +4,8 @@ import java.awt.*;
 import javax.swing.*;
 
 public class TimeBoard extends JPanel{
+    static Font TimeFont = new Font("Arial" , Font.BOLD , 40);
+
     public void paintComponent(Graphics g2) {
         super.paintComponent(g2);
 
@@ -14,6 +16,7 @@ public class TimeBoard extends JPanel{
         g.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_NORMALIZE);
 		
         drawTimeBoard(g);
+        drawTimeText(g);
         drawLine(g);
         g.dispose();
 	}
@@ -22,10 +25,18 @@ public class TimeBoard extends JPanel{
         g.setColor(Color.decode("#8F7A66"));
         g.fillRect(0, 0, 300, 120);
 	}
+
     private static void drawLine(Graphics2D g){
         g.setColor(Color.decode("#8F7A66"));
         g.setStroke(new BasicStroke(5));
         g.drawLine(150, 120, 150, 720);
     }
     
+    private static void drawTimeText(Graphics g){
+        String text = "T I M E" ;
+        g.setFont(TimeFont);
+        g.setColor(Color.WHITE);
+        g.drawString(text , 300/2 - (int)(g.getFontMetrics().stringWidth(text)/2) , 45 );
+    }
+
 }
