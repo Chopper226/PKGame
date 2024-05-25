@@ -27,19 +27,19 @@ public class KeyBoard implements KeyListener {
         switch (keyCode) {
             case KeyEvent.VK_UP :
                 move.up();
-                gameBoard.createBlocks();
+                if( move.getCheck() ) gameBoard.createBlocks();
                 break;
             case KeyEvent.VK_DOWN :
                 move.down();
-                gameBoard.createBlocks();
+                if( move.getCheck() ) gameBoard.createBlocks();
                 break;
             case KeyEvent.VK_LEFT :
                 move.left();
-                gameBoard.createBlocks();
+                if( move.getCheck() ) gameBoard.createBlocks();
                 break;
             case KeyEvent.VK_RIGHT :
                 move.right();
-                gameBoard.createBlocks();
+                if( move.getCheck() ) gameBoard.createBlocks();
                 break;
             default:
                 break;

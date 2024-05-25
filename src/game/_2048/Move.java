@@ -4,11 +4,13 @@ public class Move {
     private Block[][] blocks;
     private int score;
     private GameBoard gameBoard;
+    private boolean checkLine;
 
     public Move( Block[][] blocks , GameBoard gameBoard ){
         this.blocks = blocks;
         this.gameBoard = gameBoard;
         this.score = gameBoard.getScore();
+        this.checkLine = false;
     }
 
     public void up(){
@@ -27,21 +29,32 @@ public class Move {
         moveRight();
     }
 
+    public boolean getCheck(){
+        return checkLine;
+    }
+
     private void moveUp(){
+        checkLine = false;
         for( int j = 0 ; j<4 ; j++ ){
-            int tmp[] = new int[4];
+            int mergeLine[] = new int[4];
+            int originalLine[] = new int[4];
             int index = 0;
+
             for( int i = 0 ; i<4 ; i++ ){
                 if( blocks[i][j].getValue() > 0 ){
-                    tmp[index] = blocks[i][j].getValue();
+                    mergeLine[index] = blocks[i][j].getValue();
                     index ++ ;
                 }
+                originalLine[i] = blocks[i][j].getValue();
             }
-            tmp = merge(tmp);
+
+            mergeLine = merge(mergeLine);
+            checkMergeLine( mergeLine , originalLine );
+
             index = 0;
             for( int i = 0 ; i<4 ; i++ ){
-                if( tmp[i]>0 ){
-                    blocks[index][j].setValue(tmp[i]);
+                if( mergeLine[i]>0 ){
+                    blocks[index][j].setValue(mergeLine[i]);
                     index ++ ;
                 }
             }
@@ -54,20 +67,27 @@ public class Move {
     }
 
     private void moveDown(){
+        checkLine = false;
         for( int j = 0 ; j<4 ; j++ ){
-            int tmp[] = new int[4];
+            int mergeLine[] = new int[4];
+            int originalLine[] = new int[4];
             int index = 0;
+
             for( int i = 3 ; i>=0 ; i-- ){
                 if( blocks[i][j].getValue() > 0 ){
-                    tmp[index] = blocks[i][j].getValue();
+                    mergeLine[index] = blocks[i][j].getValue();
                     index ++ ;
                 }
+                originalLine[3-i] = blocks[i][j].getValue();
             }
-            tmp = merge(tmp);
+
+            mergeLine = merge(mergeLine);
+            checkMergeLine( mergeLine , originalLine );
+
             index = 3;
             for( int i = 0 ; i<4 ; i++ ){
-                if( tmp[i]>0 ){
-                    blocks[index][j].setValue(tmp[i]);
+                if( mergeLine[i]>0 ){
+                    blocks[index][j].setValue(mergeLine[i]);
                     index -- ;
                 }
             }
@@ -80,20 +100,27 @@ public class Move {
     }
 
     private void moveLeft(){
+        checkLine = false;
         for( int i = 0 ; i<4 ; i++ ){
-            int tmp[] = new int[4];
+            int mergeLine[] = new int[4];
+            int originalLine[] = new int[4];
             int index = 0;
+
             for( int j = 0 ; j<4 ; j++ ){
                 if( blocks[i][j].getValue() > 0 ){
-                    tmp[index] = blocks[i][j].getValue();
+                    mergeLine[index] = blocks[i][j].getValue();
                     index ++ ;
                 }
+                originalLine[j] = blocks[i][j].getValue();
             }
-            tmp = merge(tmp);
+            
+            mergeLine = merge(mergeLine);
+            checkMergeLine( mergeLine , originalLine );
+
             index = 0;
             for( int j = 0 ; j<4 ; j++ ){
-                if( tmp[j]>0 ){
-                    blocks[i][index].setValue(tmp[j]);
+                if( mergeLine[j]>0 ){
+                    blocks[i][index].setValue(mergeLine[j]);
                     index ++ ;
                 }
             }
@@ -106,20 +133,27 @@ public class Move {
     }
 
     private void moveRight(){
+        checkLine = false;
         for( int i = 0 ; i<4 ; i++ ){
-            int tmp[] = new int[4];
+            int mergeLine[] = new int[4];
+            int originalLine[] = new int[4];
             int index = 0;
+
             for( int j = 3 ; j>=0 ; j-- ){
                 if( blocks[i][j].getValue() > 0 ){
-                    tmp[index] = blocks[i][j].getValue();
+                    mergeLine[index] = blocks[i][j].getValue();
                     index ++ ;
                 }
+                originalLine[3-j] = blocks[i][j].getValue();
             }
-            tmp = merge(tmp);
+            
+            mergeLine = merge(mergeLine);
+            checkMergeLine( mergeLine , originalLine );
+
             index = 3;
             for( int j = 0 ; j<4 ; j++ ){
-                if( tmp[j]>0 ){
-                    blocks[i][index].setValue(tmp[j]);
+                if( mergeLine[j]>0 ){
+                    blocks[i][index].setValue(mergeLine[j]);
                     index -- ;
                 }
             }
@@ -148,5 +182,14 @@ public class Move {
         }
         gameBoard.setScore(score);
         return tmp;
+    }
+
+    private void checkMergeLine( int[] mergeLine , int[] originalLine){
+        for( int i=0 ; i<4 ; i++ ){
+            if( mergeLine[i] != originalLine[i] ){
+                checkLine = true;
+                break;
+            }
+        }
     }
 }
