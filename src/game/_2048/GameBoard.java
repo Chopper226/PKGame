@@ -17,7 +17,7 @@ public class GameBoard extends JPanel{
     final int gap = 14;
     final int blockSize = 120;
 
-    GameBoard(){
+    GameBoard(int playerNumber){
         this.blocks = new Block[4][4];
         initBlock();
 
@@ -25,9 +25,15 @@ public class GameBoard extends JPanel{
         this.SB = new ScoreBoard(this);
 
         this.move = new Move(blocks , this);
-        this.KB = new KeyBoard(move , this , SB); 
-        this.addKeyListener(KB);
-        this.setFocusable(true);
+        
+        if( playerNumber == 1 ) KB = new KeyBoard( move, this , SB );
+        else if( playerNumber == 2) KB = new Player2KeyBoard( move, this , SB );
+    
+        //this.KB = new KeyBoard( move, this , SB );
+        //this.addKeyListener(KB);
+        //this.setFocusable(true);
+        //this.requestFocusInWindow();
+
     }
 
     private void initBlock(){
@@ -39,7 +45,7 @@ public class GameBoard extends JPanel{
         createBlock();
         createBlock();
     }
-
+    
     private ArrayList<Block> getEmptyBlock(){
         ArrayList<Block> empty = new ArrayList<>();
         for( int i = 0 ; i<4 ; i++ ){
@@ -75,6 +81,10 @@ public class GameBoard extends JPanel{
     
     public void setScore( int num ){
         this.score = num;
+    }
+
+    public KeyBoard getKeyBoard(){
+        return KB;
     }
 
     private boolean gameOver(){

@@ -11,20 +11,25 @@ public class PlayerSetting extends JPanel{
     PlayerSetting( int gbx , int gby , int sbx , int sby , int playerNumber){
         this.playerNumber = playerNumber;
 
-        this.gameBoard = new GameBoard();
+        this.gameBoard = new GameBoard(playerNumber);
         gameBoard.setBounds(gbx, gby, 550 , 550 );
-
         this.scoreBoard = new ScoreBoard(gameBoard);
         scoreBoard.setBounds(sbx, sby , 250 , 120 );
+        
+        //this.addKeyListener(gameBoard.getKeyBoard());
+        //this.setFocusable(true);
+        //this.requestFocusInWindow();
     }
 
     public GameBoard getGameBoard(){
-        return this.gameBoard;
+        return gameBoard;
     }
 
     public ScoreBoard getScoreBoard(){
-        return this.scoreBoard;
+        return scoreBoard;
     }
+
+
 
 }
 
