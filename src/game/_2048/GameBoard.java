@@ -36,6 +36,31 @@ public class GameBoard extends JPanel{
 
     }
 
+
+    public void createBlocks(){
+        createBlock();
+    }
+    
+    public int getScore(){
+        return score;
+    }
+    
+    public void setScore( int num ){
+        this.score = num;
+    }
+
+    public KeyBoard getKeyBoard(){
+        return KB;
+    }
+
+    public ScoreBoard getScoreBoard(){
+        return SB;
+    }
+
+    public Block[][] getBlocks(){
+        return this.blocks;
+    }
+
     private void initBlock(){
         for( int i = 0 ; i<4 ; i++ ){
             for( int j = 0 ; j<4 ; j++){
@@ -70,27 +95,7 @@ public class GameBoard extends JPanel{
             block.setValue(num);
         }
     }
-
-    public void createBlocks(){
-        createBlock();
-    }
     
-    public int getScore(){
-        return score;
-    }
-    
-    public void setScore( int num ){
-        this.score = num;
-    }
-
-    public KeyBoard getKeyBoard(){
-        return KB;
-    }
-
-    public ScoreBoard getScoreBoard(){
-        return SB;
-    }
-
     private boolean gameOver(){
         if( !(getEmptyBlock().isEmpty()) ) return false;
         for( int i = 0 ; i<3 ; i++ ){
@@ -101,9 +106,7 @@ public class GameBoard extends JPanel{
         return true;
     }
 
-    public Block[][] getBlocks(){
-        return this.blocks;
-    }
+    
 
 
 
