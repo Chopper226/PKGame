@@ -24,7 +24,6 @@ public class KeyBoard implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
-        System.out.println("Key1 pressed: " + keyCode);
         switch (keyCode) {
             case KeyEvent.VK_UP :
                 move.up();
@@ -54,9 +53,11 @@ public class KeyBoard implements KeyListener {
 }
 
 class Player2KeyBoard extends KeyBoard {
+    
     Player2KeyBoard( Move move , GameBoard gameBoard , ScoreBoard scoreBoard ){
         super(move, gameBoard, scoreBoard);
     }
+
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
