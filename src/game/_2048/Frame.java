@@ -1,15 +1,12 @@
-/*
 package game._2048;
 
-
 import javax.swing.JFrame;
-import java.awt.Color;
 
 class Frame extends JFrame{
     Panel panel ;
 
     Frame(){
-        panel = new Panel();
+        panel = new GamePanel();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.add(panel);
         this.pack();
@@ -18,16 +15,13 @@ class Frame extends JFrame{
         this.setVisible(true);
     }
 }
-
+/*
 class GameFrame extends Frame{
-    GamePanel gamePanel;
+    Panel gamePanel;
     GameFrame(){
         super();
         gamePanel = new GamePanel();
-        this.remove(panel);
         this.add(gamePanel);
-        //this.pack();
-        this.setVisible(true);
     }
 }
 */

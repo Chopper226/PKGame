@@ -39,4 +39,5 @@ class GamePanel extends Panel{
         this.add(tb);
         
     }
+
 }
