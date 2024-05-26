@@ -28,11 +28,6 @@ public class GameBoard extends JPanel{
         
         if( playerNumber == 1 ) KB = new KeyBoard( move, this , SB );
         else if( playerNumber == 2) KB = new Player2KeyBoard( move, this , SB );
-    
-        //this.KB = new KeyBoard( move, this , SB );
-        //this.addKeyListener(KB);
-        //this.setFocusable(true);
-        //this.requestFocusInWindow();
 
     }
 
@@ -95,7 +90,7 @@ public class GameBoard extends JPanel{
             block.setValue(num);
         }
     }
-    
+
     private boolean gameOver(){
         if( !(getEmptyBlock().isEmpty()) ) return false;
         for( int i = 0 ; i<3 ; i++ ){
@@ -105,9 +100,6 @@ public class GameBoard extends JPanel{
         }
         return true;
     }
-
-    
-
 
 
     public void paintComponent(Graphics g2) {
