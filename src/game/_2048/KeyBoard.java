@@ -46,7 +46,9 @@ public class KeyBoard implements KeyListener {
                 break;
         }
         gameBoard.repaint();
+        scoreBoard.setScore(gameBoard.getScore());
         scoreBoard.repaint();
+        
     }
 
 }
@@ -58,10 +60,8 @@ class Player2KeyBoard extends KeyBoard {
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
-        System.out.println("Key2 pressed: " + keyCode);
         switch (keyCode) {
             case KeyEvent.VK_W :
-                System.out.print(123);
                 move.up();
                 if( move.getCheck() ) gameBoard.createBlocks();
                 break;

@@ -33,9 +33,11 @@ class GamePanel extends Panel{
         this.addKeyListener(player1.getGameBoard().getKeyBoard());
         this.addKeyListener(player2.getGameBoard().getKeyBoard());
         this.setFocusable(true);
-
+        //player1.getScoreBoard().setKeyBoard(player1.getGameBoard().getKeyBoard());
+        //player1.getScoreBoard().addKeyListener(player1.getGameBoard().getKeyBoard());
+        //player2.getScoreBoard().setKeyBoard(player2.getGameBoard().getKeyBoard());
         
-        /* 
+        /*
         gb1 = new GameBoard(1);
         gb1.setBounds(685, 150  , 550, 550);
         this.add(gb1);

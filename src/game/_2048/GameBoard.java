@@ -87,6 +87,10 @@ public class GameBoard extends JPanel{
         return KB;
     }
 
+    public ScoreBoard getScoreBoard(){
+        return SB;
+    }
+
     private boolean gameOver(){
         if( !(getEmptyBlock().isEmpty()) ) return false;
         for( int i = 0 ; i<3 ; i++ ){
@@ -148,6 +152,7 @@ public class GameBoard extends JPanel{
                 drawBlock(g, i, j);
             }
         }
+        SB.setScore( score );
         if( gameOver() ){
 
         }
