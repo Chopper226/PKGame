@@ -47,12 +47,10 @@ public class ScoreBoard extends JPanel{
         g.drawString(text , 250/2 - (int)(g.getFontMetrics().stringWidth(text)/2) , 45 );
     }
 
-    public void drawScore(Graphics g){
-        score = gameBoard.getScore();
+    private void drawScore(Graphics g){
         String text = String.valueOf(score);
         g.setFont(getScoreFont());
         g.setColor(Color.WHITE);
-        System.out.println(98);
         g.drawString(text , 250/2 - (int)(g.getFontMetrics().stringWidth(text)/2) , 100 );
     }
 
@@ -60,7 +58,6 @@ public class ScoreBoard extends JPanel{
     public void paint(Graphics g){
         super.paint(g);
         drawScore(g);
-        System.out.println(123);
     }
     
     private Font getScoreFont(){
