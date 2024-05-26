@@ -22,7 +22,7 @@ public class Block{
     Font font1 = new Font("Arial" , Font.BOLD , 75);
     Font font2 = new Font("Arial" , Font.BOLD , 70);
     Font font3 = new Font("Arial" , Font.BOLD , 60);
-    Font font4 = new Font("Arial" , Font.BOLD , 28);
+    Font font4 = new Font("Arial" , Font.BOLD , 48);
 
     public Color getFontColor(){
         switch (value) {
