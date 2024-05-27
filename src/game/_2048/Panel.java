@@ -15,8 +15,6 @@ public class Panel extends JPanel{
 
 
 class GamePanel extends Panel{
-    GameBoard gb1,gb2;
-    ScoreBoard sb1,sb2;
     TimeBoard tb;
     PlayerSetting player1 ,player2;
     
@@ -35,9 +33,8 @@ class GamePanel extends Panel{
         this.setFocusable(true);
 
         tb = new TimeBoard();
-        tb.setBounds(490, 10, 300, 720);
+        tb.setBounds(490, 10, 300, 120);
         this.add(tb);
         
     }
-
 }
