@@ -11,6 +11,6 @@ public class Frame extends JFrame{
         this.add(panel);
         this.pack();
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
+        this.setVisible(false);
     }
 }

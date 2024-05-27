@@ -2,10 +2,10 @@ package game._2048;
 
 import javax.swing.JFrame;
 
-class Frame extends JFrame{
+public class Frame extends JFrame{
     Panel panel ;
 
-    Frame(){
+    public Frame(){
         panel = new GamePanel();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.add(panel);
