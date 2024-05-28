@@ -26,7 +26,5 @@ public class PlayerSetting extends JPanel{
         return scoreBoard;
     }
 
-
-
 }
 

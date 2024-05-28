@@ -4,11 +4,11 @@ import java.awt.*;
 import javax.swing.*;
 
 public class ScoreBoard extends JPanel{
-    static Font ScoreFont = new Font("Arial" , Font.BOLD , 40);
-    static Font font1 = new Font("Arial" , Font.BOLD , 50);
-    static Font font2 = new Font("Arial" , Font.BOLD , 48);
-    static Font font3 = new Font("Arial" , Font.BOLD , 46);
-    static Font font4 = new Font("Arial" , Font.BOLD , 44);
+    private static Font ScoreFont = new Font("Arial" , Font.BOLD , 40);
+    private static Font font1 = new Font("Arial" , Font.BOLD , 50);
+    private static Font font2 = new Font("Arial" , Font.BOLD , 48);
+    private static Font font3 = new Font("Arial" , Font.BOLD , 46);
+    private static Font font4 = new Font("Arial" , Font.BOLD , 44);
 
 
     private GameBoard gameBoard;
@@ -19,6 +19,10 @@ public class ScoreBoard extends JPanel{
         this.score = gameBoard.getScore();
     }
 
+    public void setScore( int score ){
+        this.score = score ;
+    }
+    
     public void paintComponent(Graphics g2) {
         super.paintComponent(g2);
 
@@ -67,7 +71,4 @@ public class ScoreBoard extends JPanel{
         return font4;
     }
 
-    public void setScore( int score ){
-        this.score = score ;
-    }
 }

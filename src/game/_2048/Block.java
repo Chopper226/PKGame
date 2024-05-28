@@ -4,6 +4,11 @@ import java.awt.Font;
 import java.awt.Color;
 
 public class Block{
+    
+    private Font font1 = new Font("Arial" , Font.BOLD , 75);
+    private Font font2 = new Font("Arial" , Font.BOLD , 70);
+    private Font font3 = new Font("Arial" , Font.BOLD , 60);
+    private Font font4 = new Font("Arial" , Font.BOLD , 48);
     private int value;
     
     Block(){
@@ -18,13 +23,19 @@ public class Block{
         this.value = value;
     }
 
-
-    Font font1 = new Font("Arial" , Font.BOLD , 75);
-    Font font2 = new Font("Arial" , Font.BOLD , 70);
-    Font font3 = new Font("Arial" , Font.BOLD , 60);
-    Font font4 = new Font("Arial" , Font.BOLD , 48);
-
     public Color getFontColor(){
+        return FontColor();
+    }
+
+    public Color getBackGroundColor(){
+        return BackGroundColor();
+    }
+
+    public Font getBlockFont(){
+        return BlockFont();
+    }
+
+    private Color FontColor(){
         switch (value) {
             case 0:
                 return Color.decode("#CDC1B4");
@@ -37,7 +48,7 @@ public class Block{
         }
     }
 
-    public Color getBackGroundColor(){
+    private Color BackGroundColor(){
         switch (value) {
             case 0:
                 return Color.decode("#CDC1B4");
@@ -68,13 +79,12 @@ public class Block{
         }
     }
 
-    public Font getBlockFont(){
+    private Font BlockFont(){
         if( value < 10 ) return font1;
         else if( value < 100 ) return font2;
         else if( value < 1000 ) return font3;
         return font4;
     }
-
 
 }
 
