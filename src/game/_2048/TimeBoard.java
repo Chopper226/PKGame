@@ -20,13 +20,12 @@ public class TimeBoard extends JPanel{
                     remainingTime--;
                 } else {
                     timer.stop(); 
-                }
+                }    
                 repaint();
             }
         });
         timer.start();
     }
-
 
     public void paintComponent(Graphics g2) {
         super.paintComponent(g2);
@@ -39,7 +38,6 @@ public class TimeBoard extends JPanel{
 		
         drawTimeBoard(g);
         drawTimeText(g);
-        //drawLine(g);
         drawTime(g);
         g.dispose();
 	}
@@ -54,12 +52,6 @@ public class TimeBoard extends JPanel{
         g.setColor(Color.decode("#8F7A66"));
         g.fillRect(0, 0, 300, 120);
 	}
-
-    private static void drawLine(Graphics2D g){
-        g.setColor(Color.decode("#8F7A66"));
-        g.setStroke(new BasicStroke(5));
-        g.drawLine(150, 120, 150, 720);
-    }
     
     private static void drawTimeText(Graphics g){
         String text = "T I M E" ;
