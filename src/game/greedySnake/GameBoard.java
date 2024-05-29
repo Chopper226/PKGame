@@ -2,6 +2,8 @@ package game.greedySnake;
 
 import java.awt.*;
 import javax.swing.*;
+
+import java.util.ArrayList;
 import java.util.Random;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -44,7 +46,6 @@ public class GameBoard extends JPanel{
                     foodScore += 1;
                     for( int i = 0 ; i <3 ; i++ ){
                         addBody();
-                        repaint();
                     }
                 }
                 repaint();
@@ -88,10 +89,21 @@ public class GameBoard extends JPanel{
         start = new Node(x, y);
         return start;
     }
-    /*
+
     private boolean gameOver(){
+        int x = snake.getHead().getX();
+        int y = snake.getHead().getY();
+        if( x <= 0 || x+25 >=550 || y <= 0 || y+25 >= 550 ){
+            return true;
+        }
+        Node head = snake.getHead();
+        for( int i = 0 ; i<snake.getBody().size() ; i++ ){
+            Node body = snake.getBody().get(i);
+            if( head.getX() == body.getX() && head.getY() == body.getY() ) return true;
+        }
+        return false;
     }
-    */
+    
     private void addBody(){
         String dir ;
         int x,y;
@@ -106,15 +118,16 @@ public class GameBoard extends JPanel{
             dir = snake.getBody().get(snake.getBody().size()-1).getDirection();
         }
 
-        if( dir.equals("UP") ) snake.getBody().add( new Node( x , y-5 ) );
-        else if( dir.equals("DOWN") ) snake.getBody().add( new Node( x , y+5 ) );
-        else if( dir.equals("RIGHT") ) snake.getBody().add( new Node( x-5 , y ) );
-        else snake.getBody().add( new Node( x+5 , y ) );
+        if( dir.equals("UP") ) snake.getBody().add( new Node( x , y-20 ) );
+        else if( dir.equals("DOWN") ) snake.getBody().add( new Node( x , y+20 ) );
+        else if( dir.equals("RIGHT") ) snake.getBody().add( new Node( x-20 , y ) );
+        else snake.getBody().add( new Node( x+20 , y ) );
 
         snake.getBody().get(snake.getBody().size()-1).setDirection(dir);
         snake.setLen(snake.getLen()+1);
         snake.updateSpeed();
         updateScore();
+        repaint();
     }
 
     private void run(){
@@ -201,10 +214,9 @@ public class GameBoard extends JPanel{
         drawSnakeHead(g);
         SB.setScore( score );
         SB.repaint();
-        /*
         if( gameOver() ){
-
+            addBodyTimer.stop();
+            runTimer.stop();
         }
-        */
     }
 }

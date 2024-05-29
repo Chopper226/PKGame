@@ -12,7 +12,7 @@ public class Snake {
         this.head = node;
         this.body = new ArrayList<Node>();
         this.len = 1;
-        this.speed = 10;
+        this.speed = 200;
     }
 
     public Node getHead(){
@@ -40,10 +40,10 @@ public class Snake {
     }
 
     private void changeSpeed(){
-        if( body.size()+1 < 5 ) speed = 10;
-        else if( body.size()+1 < 10 ) speed = 7;
-        else if( body.size()+1 < 15 ) speed = 5;
-        else if( body.size()+1 < 20 ) speed = 3;
-        else speed = 1;
+        if( body.size()+1 < 5 ) speed = 200;
+        else if( body.size()+1 < 10 ) speed = 180;
+        else if( body.size()+1 < 15 ) speed = 150;
+        else if( body.size()+1 < 20 ) speed = 130;
+        else speed = 100;
     }
 }

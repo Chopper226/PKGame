@@ -25,22 +25,22 @@ public class Move {
 
     private void moveUp(){
         if( !(snake.getBody().isEmpty()) ) updateBody();
-        snake.getHead().setY(snake.getHead().getY()-1);
+        snake.getHead().setY(snake.getHead().getY()-20);
     }
 
     private void moveDown(){
         if( !(snake.getBody().isEmpty()) ) updateBody();
-        snake.getHead().setY(snake.getHead().getY()+1);
+        snake.getHead().setY(snake.getHead().getY()+20);
     }
 
     private void moveLeft(){
         if( !(snake.getBody().isEmpty()) ) updateBody();
-        snake.getHead().setX(snake.getHead().getX()-1);
+        snake.getHead().setX(snake.getHead().getX()-20);
     }
 
     private void moveRight(){
         if( !(snake.getBody().isEmpty()) ) updateBody();
-        snake.getHead().setX(snake.getHead().getX()+1);
+        snake.getHead().setX(snake.getHead().getX()+20);
     }
 
     private void updateBody(){
