@@ -3,7 +3,6 @@ package game.greedySnake;
 import java.awt.*;
 import javax.swing.*;
 
-import java.util.ArrayList;
 import java.util.Random;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,6 +21,7 @@ public class GameBoard extends JPanel{
     private Timer runTimer;
 
     GameBoard( int playerNumber ){
+
         this.snake = new Snake(randomPos());
         this.food = randomPos();
         if( eatFood() ) updateFood();
@@ -29,38 +29,17 @@ public class GameBoard extends JPanel{
         this.score = 0;
         this.foodScore = 0;
         this.SB = new ScoreBoard(this);
-
+        
         this.move = new Move(snake);
 
-        addBodyTimer = new Timer(3000, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                addBody();
-            }
-        });
-
-        runTimer = new Timer( snake.getSpeed() , new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                run();
-                if( eatFood() ){
-                    updateFood();
-                    foodScore += 1;
-                    for( int i = 0 ; i <3 ; i++ ){
-                        addBody();
-                    }
-                }
-                repaint();
-            }
-        });
-        
-        addBodyTimer.start();
-        runTimer.start();
+        addBodyTime();
+        runTime();
 
         if( playerNumber == 1 ) KB = new KeyBoard(this);
         else if( playerNumber == 2) KB = new Player2KeyBoard(this);
 
     }
 
-    
     public int getScore(){
         return score;
     }
@@ -81,6 +60,10 @@ public class GameBoard extends JPanel{
         return snake;
     }
 
+    public boolean getStatus(){
+        return gameOver();
+    };
+
     private Node randomPos(){
         Node start;
         Random rand = new Random();
@@ -90,6 +73,31 @@ public class GameBoard extends JPanel{
         return start;
     }
 
+    private void addBodyTime(){
+        addBodyTimer = new Timer(3000, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                addBody();
+            }
+        });
+        addBodyTimer.start();
+    }
+
+    private void runTime(){
+        runTimer = new Timer( snake.getSpeed() , new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                run();
+                if( eatFood() ){
+                    updateFood();
+                    foodScore += 1;
+                    for( int i = 0 ; i <3 ; i++ ){
+                        addBody();
+                    }
+                }
+                repaint();
+            }
+        });
+        runTimer.start();
+    }
     private boolean gameOver(){
         int x = snake.getHead().getX();
         int y = snake.getHead().getY();
