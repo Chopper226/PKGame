@@ -1,7 +1,12 @@
 package game.greedySnake;
 
-import java.awt.*;
-import javax.swing.*;
+import javax.swing.JPanel;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 public class ScoreBoard extends JPanel{
     private static Font ScoreFont = new Font("Arial" , Font.BOLD , 40);

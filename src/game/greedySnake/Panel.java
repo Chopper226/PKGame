@@ -1,7 +1,9 @@
 package game.greedySnake;
 
-import java.awt.*;
-import javax.swing.*;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
