@@ -39,9 +39,6 @@ public class KeyBoard implements KeyListener {
                 break;
         }
         gameBoard.repaint();
-        //scoreBoard.setScore(gameBoard.getScore());
-        //scoreBoard.repaint();
-        
     }
 
 }

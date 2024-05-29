@@ -10,7 +10,9 @@ import java.awt.event.ActionListener;
 public class GameBoard extends JPanel{
 
     private Snake snake;
+    private Node food;
     private int score ;
+    private int foodScore;
     private Move move ; 
     private KeyBoard KB ;
     private ScoreBoard SB ;
@@ -18,8 +20,12 @@ public class GameBoard extends JPanel{
     private Timer runTimer;
 
     GameBoard(){
-        this.snake = new Snake(randomStart());
+        this.snake = new Snake(randomPos());
+        this.food = randomPos();
+        if( eatFood() ) updateFood();
+
         this.score = 0;
+        this.foodScore = 0;
         this.SB = new ScoreBoard(this);
 
         this.move = new Move( snake , this );
@@ -27,15 +33,22 @@ public class GameBoard extends JPanel{
         this.addKeyListener(KB);
         this.setFocusable(true);
 
-        addBodyTimer = new Timer(1000, new ActionListener() {
+        addBodyTimer = new Timer(5000, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                addBody(snake);
+                addBody();
             }
         });
 
         runTimer = new Timer(50, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 run();
+                if( eatFood() ){
+                    updateFood();
+                    foodScore += 1;
+                    for( int i = 0 ; i<5 ; i++){
+                        addBody();
+                    }
+                }
                 repaint();
             }
         });
@@ -69,7 +82,7 @@ public class GameBoard extends JPanel{
         return snake;
     }
 
-    private Node randomStart(){
+    private Node randomPos(){
         Node start;
         Random rand = new Random();
         int x = rand.nextInt(440) + 55 ;
@@ -81,7 +94,7 @@ public class GameBoard extends JPanel{
     private boolean gameOver(){
     }
     */
-    private void addBody( Snake snake ){
+    private void addBody(){
         String dir ;
         int x,y;
         if( snake.getBody().isEmpty() ) {
@@ -97,10 +110,12 @@ public class GameBoard extends JPanel{
 
         if( dir.equals("UP") ) snake.getBody().add( new Node( x , y-5 ) );
         else if( dir.equals("DOWN") ) snake.getBody().add( new Node( x , y+5 ) );
-        else if( dir.equals("RIGHT") ) snake.getBody().add( new Node( x+5 , y ) );
-        else snake.getBody().add( new Node( x-5 , y ) );
+        else if( dir.equals("RIGHT") ) snake.getBody().add( new Node( x-5 , y ) );
+        else snake.getBody().add( new Node( x+5 , y ) );
 
         snake.getBody().get(snake.getBody().size()-1).setDirection(dir);
+        snake.setLen(snake.getLen()+1);
+        updateScore();
     }
 
     private void run(){
@@ -109,6 +124,35 @@ public class GameBoard extends JPanel{
         else if( dir.equals("DOWN") ) move.down();
         else if( dir.equals("RIGHT") ) move.right();
         else move.left();
+    }
+
+    private void updateScore(){
+        score = snake.getLen() + foodScore*5;
+    }
+
+    private boolean eatFood(){
+        if( ( Math.abs(snake.getHead().getX() - food.getX() ) <= 15 ) && ( Math.abs(snake.getHead().getY() - food.getY() ) <= 15 ) ) return true;
+        else return false;
+    }
+
+    private void updateFood(){
+        boolean check = true;
+        while( check ){
+            food = randomPos();
+            boolean tmp = false;
+            Node now = snake.getHead();
+            if( ( Math.abs(now.getX() - food.getX() ) <= 15 ) && ( Math.abs(now.getY() - food.getY() ) <= 15 ) ) tmp = true;
+            if( !tmp ){
+                for( int i = 0 ; i<snake.getBody().size() ; i++ ){
+                    now = snake.getBody().get(i);
+                    if( ( Math.abs(now.getX() - food.getX() ) <= 15 ) && ( Math.abs(now.getY() - food.getY() ) <= 15 ) ){
+                        tmp = true;
+                        break;
+                    }
+                }
+            }
+            check = tmp;
+        }
     }
 
     public void paintComponent(Graphics g2) {
@@ -122,7 +166,8 @@ public class GameBoard extends JPanel{
 		
         drawGameBoard(g);
         drawSnakeHead(g);
-		
+		drawFood(g);
+
         g.dispose();
 	}
 
@@ -141,6 +186,11 @@ public class GameBoard extends JPanel{
         g.fillOval( x , y , 20 , 20 );
     }
 
+    private void drawFood(Graphics g){
+        g.setColor(Color.BLUE);
+        g.fillRect( food.getX() , food.getY() , 15 ,15 );
+    }
+
     @Override
     public void paint(Graphics g){
         super.paint(g);
@@ -151,6 +201,7 @@ public class GameBoard extends JPanel{
         }
         drawSnakeHead(g);
         SB.setScore( score );
+        SB.repaint();
         /*
         if( gameOver() ){
 

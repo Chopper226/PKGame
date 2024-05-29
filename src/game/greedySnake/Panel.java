@@ -19,12 +19,16 @@ class GamePanel extends Panel{
     //TimeBoard tb;
    // PlayerSetting player1 ,player2;
     GameBoard gb;
+    ScoreBoard sb;
 
     GamePanel(){
         super();
         gb = new GameBoard();
         gb.setBounds(685,150,550,550);
         this.add(gb);
+        sb = gb.getScoreBoard();
+        sb.setBounds(985, 10,250,120);
+        this.add(sb);
         /* 
         player1 = new PlayerSetting(685, 150, 985, 10, 1);
         this.add( player1.getGameBoard() );
