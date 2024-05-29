@@ -33,20 +33,21 @@ public class GameBoard extends JPanel{
         this.addKeyListener(KB);
         this.setFocusable(true);
 
-        addBodyTimer = new Timer(5000, new ActionListener() {
+        addBodyTimer = new Timer(3000, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 addBody();
             }
         });
 
-        runTimer = new Timer(50, new ActionListener() {
+        runTimer = new Timer( snake.getSpeed() , new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 run();
                 if( eatFood() ){
                     updateFood();
                     foodScore += 1;
-                    for( int i = 0 ; i<5 ; i++){
+                    for( int i = 0 ; i <3 ; i++ ){
                         addBody();
+                        repaint();
                     }
                 }
                 repaint();
@@ -115,6 +116,7 @@ public class GameBoard extends JPanel{
 
         snake.getBody().get(snake.getBody().size()-1).setDirection(dir);
         snake.setLen(snake.getLen()+1);
+        snake.updateSpeed();
         updateScore();
     }
 
