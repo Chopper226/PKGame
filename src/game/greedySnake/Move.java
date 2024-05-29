@@ -2,13 +2,11 @@ package game.greedySnake;
 
 public class Move {
     private Snake snake;
-    private GameBoard gameBoard;
 
-     public Move( Snake snake , GameBoard gameBoard ){
+    public Move( Snake snake ){
         this.snake = snake;
-        this.gameBoard = gameBoard;
-        //this.score = gameBoard.getScore();
     }
+
     public void up(){
         moveUp();
     }

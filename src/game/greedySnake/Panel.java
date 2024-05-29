@@ -17,19 +17,11 @@ public class Panel extends JPanel{
 class GamePanel extends Panel{
     
     //TimeBoard tb;
-   // PlayerSetting player1 ,player2;
-    GameBoard gb;
-    ScoreBoard sb;
+    PlayerSetting player1 ,player2;
 
     GamePanel(){
         super();
-        gb = new GameBoard();
-        gb.setBounds(685,150,550,550);
-        this.add(gb);
-        sb = gb.getScoreBoard();
-        sb.setBounds(985, 10,250,120);
-        this.add(sb);
-        /* 
+       
         player1 = new PlayerSetting(685, 150, 985, 10, 1);
         this.add( player1.getGameBoard() );
         this.add( player1.getScoreBoard() );
@@ -41,7 +33,7 @@ class GamePanel extends Panel{
         this.addKeyListener(player2.getGameBoard().getKeyBoard());
         this.setFocusable(true);
         
-        
+        /* 
         tb = new TimeBoard();
         tb.setBounds(490, 10, 300, 120);
         this.add(tb);

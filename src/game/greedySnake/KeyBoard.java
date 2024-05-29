@@ -5,11 +5,9 @@ import java.awt.event.KeyListener;
 
 public class KeyBoard implements KeyListener {
     protected GameBoard gameBoard;
-    protected ScoreBoard scoreBoard;
 
-    public KeyBoard( GameBoard gameBoard , ScoreBoard scoreBoard ){
+    public KeyBoard( GameBoard gameBoard ){
         this.gameBoard = gameBoard;
-        this.scoreBoard = scoreBoard;
     }
 
 
@@ -45,8 +43,8 @@ public class KeyBoard implements KeyListener {
 
 class Player2KeyBoard extends KeyBoard {
     
-    Player2KeyBoard( GameBoard gameBoard , ScoreBoard scoreBoard ){
-        super(gameBoard, scoreBoard);
+    Player2KeyBoard( GameBoard gameBoard ){
+        super(gameBoard);
     }
 
     @Override
@@ -54,17 +52,20 @@ class Player2KeyBoard extends KeyBoard {
         int keyCode = e.getKeyCode();
         switch (keyCode) {
             case KeyEvent.VK_W :
-                
+                gameBoard.getSnake().getHead().setDirection("UP");
+                break;
             case KeyEvent.VK_S :
-                
+                gameBoard.getSnake().getHead().setDirection("DOWN");
+                break;
             case KeyEvent.VK_A :
-                
+                gameBoard.getSnake().getHead().setDirection("LEFT");
+                break;
             case KeyEvent.VK_D :
-                
+                gameBoard.getSnake().getHead().setDirection("RIGHT");
+                break;
             default:
                 break;
         }
         gameBoard.repaint();
-        scoreBoard.repaint();
     }
 }

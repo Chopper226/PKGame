@@ -19,7 +19,7 @@ public class GameBoard extends JPanel{
     private Timer addBodyTimer;
     private Timer runTimer;
 
-    GameBoard(){
+    GameBoard( int playerNumber ){
         this.snake = new Snake(randomPos());
         this.food = randomPos();
         if( eatFood() ) updateFood();
@@ -28,10 +28,7 @@ public class GameBoard extends JPanel{
         this.foodScore = 0;
         this.SB = new ScoreBoard(this);
 
-        this.move = new Move( snake , this );
-        this.KB = new KeyBoard( this , SB); 
-        this.addKeyListener(KB);
-        this.setFocusable(true);
+        this.move = new Move(snake);
 
         addBodyTimer = new Timer(3000, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -57,8 +54,8 @@ public class GameBoard extends JPanel{
         addBodyTimer.start();
         runTimer.start();
 
-        //if( playerNumber == 1 ) KB = new KeyBoard( move, this , SB );
-        //else if( playerNumber == 2) KB = new Player2KeyBoard( move, this , SB );
+        if( playerNumber == 1 ) KB = new KeyBoard(this);
+        else if( playerNumber == 2) KB = new Player2KeyBoard(this);
 
     }
 
