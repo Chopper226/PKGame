@@ -20,18 +20,20 @@ public class KeyBoard implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
+        String dir = gameBoard.getSnake().getHead().getDirection();
+
         switch (keyCode) {
             case KeyEvent.VK_UP :
-                gameBoard.getSnake().getHead().setDirection("UP");
+                if( !(dir.equals("DOWN")) ) gameBoard.getSnake().getHead().setDirection("UP");
                 break;
             case KeyEvent.VK_DOWN :
-                gameBoard.getSnake().getHead().setDirection("DOWN");
+                if( !(dir.equals("UP")) ) gameBoard.getSnake().getHead().setDirection("DOWN");
                 break; 
             case KeyEvent.VK_LEFT :
-                gameBoard.getSnake().getHead().setDirection("LEFT");
+                if( !(dir.equals("RIGHT")) ) gameBoard.getSnake().getHead().setDirection("LEFT");
                 break;
             case KeyEvent.VK_RIGHT :
-                gameBoard.getSnake().getHead().setDirection("RIGHT");
+                if( !(dir.equals("LEFT")) ) gameBoard.getSnake().getHead().setDirection("RIGHT");
                 break;
             default:
                 break;

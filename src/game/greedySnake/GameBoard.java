@@ -118,8 +118,8 @@ public class GameBoard extends JPanel{
             dir = snake.getBody().get(snake.getBody().size()-1).getDirection();
         }
 
-        if( dir.equals("UP") ) snake.getBody().add( new Node( x , y-20 ) );
-        else if( dir.equals("DOWN") ) snake.getBody().add( new Node( x , y+20 ) );
+        if( dir.equals("UP") ) snake.getBody().add( new Node( x , y+20 ) );
+        else if( dir.equals("DOWN") ) snake.getBody().add( new Node( x , y-20 ) );
         else if( dir.equals("RIGHT") ) snake.getBody().add( new Node( x-20 , y ) );
         else snake.getBody().add( new Node( x+20 , y ) );
 
