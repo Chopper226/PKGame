@@ -19,6 +19,7 @@ public class GameBoard extends JPanel{
     private ScoreBoard SB ;
     private Timer addBodyTimer;
     private Timer runTimer;
+    private boolean isGameOver;
 
     GameBoard( int playerNumber ){
 
@@ -31,6 +32,8 @@ public class GameBoard extends JPanel{
         this.SB = new ScoreBoard(this);
         
         this.move = new Move(snake);
+        
+        this.isGameOver = gameOver();
 
         addBodyTime();
         runTime();
@@ -60,9 +63,15 @@ public class GameBoard extends JPanel{
         return snake;
     }
 
-    public boolean getStatus(){
-        return gameOver();
+    public boolean getGameOver(){
+        return isGameOver;
     };
+
+    public void setGameOver( boolean gameOver ){
+        this.isGameOver = gameOver;
+        repaint();
+    }
+
 
     private Node randomPos(){
         Node start;
@@ -86,6 +95,7 @@ public class GameBoard extends JPanel{
         runTimer = new Timer( snake.getSpeed() , new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 run();
+                isGameOver = gameOver();
                 if( eatFood() ){
                     updateFood();
                     foodScore += 1;
@@ -98,6 +108,7 @@ public class GameBoard extends JPanel{
         });
         runTimer.start();
     }
+
     private boolean gameOver(){
         int x = snake.getHead().getX();
         int y = snake.getHead().getY();
@@ -223,15 +234,18 @@ public class GameBoard extends JPanel{
     @Override
     public void paint(Graphics g){
         super.paint(g);
+
         for( int i = 0 ; i<snake.getBody().size() ; i++ ){
             int x = snake.getBody().get(i).getX();
             int y = snake.getBody().get(i).getY();
             drawSnakeBody( g , x , y );
         }
         drawSnakeHead(g);
+
         SB.setScore( score );
         SB.repaint();
-        if( gameOver() ){
+
+        if( isGameOver ){
             addBodyTimer.stop();
             runTimer.stop();
             drawGameOver(g);

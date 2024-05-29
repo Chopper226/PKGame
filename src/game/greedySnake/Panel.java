@@ -43,9 +43,13 @@ class GamePanel extends Panel{
         
         checkGameOverTimer = new Timer(100,new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if( player1.getGameBoard().getStatus() && player1.getGameBoard().getStatus() ){
+                if( player1.getGameBoard().getGameOver() && player2.getGameBoard().getGameOver() ){
                     checkGameOverTimer.stop();
                     tb.getTimer().stop();
+                }
+                if( tb.getRemainingTime() == 0 ){
+                    player1.getGameBoard().setGameOver( true );
+                    player2.getGameBoard().setGameOver( true );
                 }
             }
         });

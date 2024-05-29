@@ -52,18 +52,19 @@ class Player2KeyBoard extends KeyBoard {
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
+        String dir = gameBoard.getSnake().getHead().getDirection();
         switch (keyCode) {
             case KeyEvent.VK_W :
-                gameBoard.getSnake().getHead().setDirection("UP");
+                if( !(dir.equals("DOWN")) ) gameBoard.getSnake().getHead().setDirection("UP");
                 break;
             case KeyEvent.VK_S :
-                gameBoard.getSnake().getHead().setDirection("DOWN");
+                if( !(dir.equals("UP")) ) gameBoard.getSnake().getHead().setDirection("DOWN");
                 break;
             case KeyEvent.VK_A :
-                gameBoard.getSnake().getHead().setDirection("LEFT");
+                if( !(dir.equals("RIGHT")) ) gameBoard.getSnake().getHead().setDirection("LEFT");
                 break;
             case KeyEvent.VK_D :
-                gameBoard.getSnake().getHead().setDirection("RIGHT");
+                if( !(dir.equals("LEFT")) ) gameBoard.getSnake().getHead().setDirection("RIGHT");
                 break;
             default:
                 break;

@@ -19,7 +19,8 @@ public class TimeBoard extends JPanel{
                 if (remainingTime > 0) {
                     remainingTime--;
                 } else {
-                    timer.stop(); 
+                    timer.stop();
+
                 }    
                 repaint();
             }
@@ -30,7 +31,11 @@ public class TimeBoard extends JPanel{
     public Timer getTimer(){
         return timer;
     }
-    
+
+    public int getRemainingTime(){
+        return remainingTime;
+    }
+
     public void paintComponent(Graphics g2) {
         super.paintComponent(g2);
 
