@@ -2,6 +2,8 @@ package game.greedySnake;
 
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Panel extends JPanel{
     final int PANEL_WIDTH = 1280;  
@@ -16,8 +18,9 @@ public class Panel extends JPanel{
 
 class GamePanel extends Panel{
     
-    //TimeBoard tb;
+    TimeBoard tb;
     PlayerSetting player1 ,player2;
+    Timer checkGameOverTimer;
 
     GamePanel(){
         super();
@@ -33,12 +36,20 @@ class GamePanel extends Panel{
         this.addKeyListener(player2.getGameBoard().getKeyBoard());
         this.setFocusable(true);
         
-        /* 
+        
         tb = new TimeBoard();
         tb.setBounds(490, 10, 300, 120);
         this.add(tb);
-        */
         
+        checkGameOverTimer = new Timer(100,new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if( player1.getGameBoard().getStatus() && player1.getGameBoard().getStatus() ){
+                    checkGameOverTimer.stop();
+                    tb.getTimer().stop();
+                }
+            }
+        });
+        checkGameOverTimer.start();
         
     }
 }
