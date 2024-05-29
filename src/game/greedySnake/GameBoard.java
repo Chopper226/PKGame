@@ -184,23 +184,32 @@ public class GameBoard extends JPanel{
 	}
 
     private static void drawGameBoard(Graphics g) {
-        g.setColor(Color.decode("#BBADA0"));
+        g.setColor(Color.decode("#CDC0B0"));
         g.fillRect(0, 0, 550, 550);
 	}
     
     private void drawSnakeHead(Graphics g){
-        g.setColor(Color.BLACK);
+        g.setColor(Color.decode("#363636"));
         g.fillOval( snake.getHead().getX() , snake.getHead().getY() , 20 , 20 );
     }
     
     private void drawSnakeBody(Graphics g , int x , int y){
-        g.setColor(Color.GRAY);
+        g.setColor(Color.decode("#828282"));
         g.fillOval( x , y , 20 , 20 );
     }
 
     private void drawFood(Graphics g){
-        g.setColor(Color.BLUE);
+        g.setColor(Color.decode("#4A708B"));
         g.fillRect( food.getX() , food.getY() , 15 ,15 );
+    }
+
+    private void drawGameOver(Graphics g){
+        String text = "Game Over !";
+        g.setColor( new Color( 	188 ,210 , 238	 , 120 ));  	
+        g.fillRect(0 , 0 , 550 , 550 );
+        g.setColor(Color.decode("#EE6A50"));
+        g.setFont(new Font("Arial" , Font.BOLD , 50));
+        g.drawString(text, 550/2 - (int)(g.getFontMetrics().stringWidth(text)/2) , 550/2);
     }
 
     @Override
@@ -217,6 +226,8 @@ public class GameBoard extends JPanel{
         if( gameOver() ){
             addBodyTimer.stop();
             runTimer.stop();
+            drawGameOver(g);
+            repaint();
         }
     }
 }

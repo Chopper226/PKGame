@@ -40,7 +40,7 @@ public class ScoreBoard extends JPanel{
 	}
 
     private static void drawScoreBoard(Graphics g) {
-        g.setColor(Color.decode("#BBADA0"));
+        g.setColor(Color.decode("#B3A89A"));
         g.fillRect(0, 0, 250, 200);
 	}
 
