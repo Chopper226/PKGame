@@ -6,22 +6,22 @@ public class Frame extends JFrame{
     Panel panel ;
 
     public Frame(){
-        panel = new GamePanel();
+        panel = new Panel();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.add(panel);
         this.pack();
         this.setLocationRelativeTo(null);
-        this.setLayout(null);
         this.setVisible(true);
     }
 }
-/*
 class GameFrame extends Frame{
-    Panel gamePanel;
     GameFrame(){
         super();
-        gamePanel = new GamePanel();
-        this.add(gamePanel);
+        this.remove(panel);
+        panel = new GamePanel();
+        this.add(panel);
+        this.revalidate();
+        this.repaint();
+        panel.requestFocusInWindow();
     }
 }
-*/
