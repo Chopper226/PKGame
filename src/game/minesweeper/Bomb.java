@@ -64,7 +64,7 @@ public class Bomb {
 
     private Color BackGroundColor(){
         if( visit ) return Color.decode("#ADB6D5");
-        else return Color.decode("#4E64CA");
+        else return Color.decode("#778899");
     }
 
 
