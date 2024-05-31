@@ -22,7 +22,7 @@ public class Bomb {
     public boolean getVisit(){
         return visit;
     }
-    
+
     public void setVisit( boolean visit ){
         this.visit = visit;
     }
@@ -49,14 +49,16 @@ public class Bomb {
 
     private Color FontColor(){
         switch (value) {
-            case 0:
-                return Color.decode("#CDC1B4");
+            case 1:
+                return Color.decode("#27408B");
             case 2:
-                return Color.decode("#776E65");
+                return Color.decode("#247146");
+            case 3:
+                return Color.decode("#B22222");
             case 4:
-                return Color.decode("#776E65");
+                return Color.decode("#8B1A1A");
             default:
-                return Color.WHITE;
+                return Color.decode("#711414");
         }
     }
 
@@ -67,8 +69,3 @@ public class Bomb {
 
 
 }
-
-/*
-14 * 11
-6*7 *13
-*/

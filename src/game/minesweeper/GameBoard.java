@@ -190,7 +190,7 @@ public class GameBoard extends JPanel{
         if( bomb.getValue() != 0 && bomb.getValue() != 9 && bomb.getVisit() ){
             String text = String.valueOf(bomb.getValue());
             g.setFont(bomb.getBlockFont());
-            g.setColor(Color.WHITE);
+            g.setColor(bomb.getFontColor());
             g.drawString(text , gap + ( gap + blockSize ) * j + blockSize/2 - (int)(g.getFontMetrics().stringWidth(text)/2) , gap + ( gap + blockSize ) * i + blockSize/2 + (int)g.getFontMetrics().getHeight()/3);
         }
         else if( bomb.getVisit() && bomb.getIsBomb() ){
