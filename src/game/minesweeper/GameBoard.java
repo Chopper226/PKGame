@@ -3,9 +3,7 @@ package game.minesweeper;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -19,6 +17,7 @@ public class GameBoard extends JPanel{
     private int currentPlayer;
     private Player player1;
     private Player player2;
+    private StatusBoard SB;
     private int revealBlock ;
     private int remainingBlock;
     private KeyBoard KB ;
@@ -40,6 +39,7 @@ public class GameBoard extends JPanel{
         
         this.revealBlock = 0;
         this.remainingBlock = 139;
+        this.SB = new StatusBoard(this);
 
         this.isGameOver = false;
 
@@ -54,7 +54,19 @@ public class GameBoard extends JPanel{
     public int getCurrentPlayer(){
         return currentPlayer;
     }
+
+    public int getRemaining(){
+        return remainingBlock;
+    }
     
+    public int getRevealed(){
+        return revealBlock;
+    }
+
+    public StatusBoard getStatusBoard(){
+        return SB;
+    }
+
     public KeyBoard getKeyBoard(){
         return KB;
     }
@@ -129,9 +141,12 @@ public class GameBoard extends JPanel{
         Bomb bomb = bombs[x][y];
         if( !(bomb.getVisit()) ){
             bomb.setVisit(true);
+            
             revealBlock ++ ;
             remainingBlock --;
-
+            SB.setRevealed(revealBlock);
+            SB.setRemaining(remainingBlock);
+            
             if( bomb.getValue() == 0 ){
                 for( int i = -1 ; i<2 ; i++ ){
                     for( int j = -1 ; j<2 ; j++ ){
@@ -153,6 +168,7 @@ public class GameBoard extends JPanel{
     private void changePlayer(){
         if( currentPlayer == 1 ) currentPlayer = 2;
         else currentPlayer = 1;
+        SB.setPlayer(currentPlayer);
     }
     
     public void paintComponent(Graphics g2) {
@@ -241,7 +257,7 @@ public class GameBoard extends JPanel{
             }
         }
         drawPlayer(g);
-
+        SB.repaint();
         if( isGameOver ){
             //drawGameOver(g);
             repaint();
