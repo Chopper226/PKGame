@@ -4,7 +4,7 @@ import java.awt.Font;
 import java.awt.Color;
 
 public class Bomb {
-    private Font font = new Font("Arial" , Font.BOLD , 35);
+    private Font font = new Font("Arial" , Font.BOLD , 40);
     private boolean isBomb;
     private int x;
     private int y;

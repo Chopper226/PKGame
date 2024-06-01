@@ -17,7 +17,6 @@ import java.util.Random;
 public class GameBoard extends JPanel{
 
     private Bomb[][] bombs;
-    private int bombNum;
     private ArrayList <Bomb> isBomb ;
     private int currentPlayer;
     private Player player1;
@@ -30,12 +29,14 @@ public class GameBoard extends JPanel{
     private boolean bombStart;
     private Timer timer;
     
-    final private int blockSize = 42;
-    final private int gap = 11;
+    final private int blockSize = 50;
+    final private int gap = 10;
+    final private int bombX = 9;
+    final private int bombY = 20;
+    final private int bombNum = 55;
 
     GameBoard(){
-        bombs = new Bomb[13][13];
-        bombNum = 30;
+        bombs = new Bomb[bombX][bombY];
         isBomb = new ArrayList<>();
 
         createBomb();
@@ -43,10 +44,10 @@ public class GameBoard extends JPanel{
         
         this.currentPlayer = choosePlayer();
         this.player1 = new Player(0 , 0);
-        this.player2 = new Player(12 , 12);
+        this.player2 = new Player(bombX-1 , bombY-1);
         
         this.revealBlock = 0;
-        this.remainingBlock = 139;
+        this.remainingBlock = bombX * bombY - bombNum;
         this.SB = new StatusBoard(this);
 
         this.isGameOver = false;
@@ -60,6 +61,14 @@ public class GameBoard extends JPanel{
         else return player2;
     }
 
+    public int getBombX(){
+        return bombX;
+    }
+
+    public int getBombY(){
+        return bombY;
+    }
+
     public int getCurrentPlayer(){
         return currentPlayer;
     }
@@ -70,6 +79,10 @@ public class GameBoard extends JPanel{
     
     public int getRevealed(){
         return revealBlock;
+    }
+
+    public void randomChoose(){
+        choose();
     }
 
     public StatusBoard getStatusBoard(){
@@ -100,8 +113,8 @@ public class GameBoard extends JPanel{
         while ( now < bombNum ) {
             boolean check = true;
             while( check ){
-                int x = rand.nextInt(13);
-                int y = rand.nextInt(13);
+                int x = rand.nextInt(bombX);
+                int y = rand.nextInt(bombY);
                 boolean tmp = false;
                 if( bombs[x][y] != null && bombs[x][y].getIsBomb() ) tmp = true;
                 else {
@@ -118,22 +131,22 @@ public class GameBoard extends JPanel{
     }
     
     private void initBomb(){
-        for( int i = 0 ; i<13 ; i++ ){
-            for( int j = 0; j<13 ; j++ ){
+        for( int i = 0 ; i<bombX ; i++ ){
+            for( int j = 0; j<bombY ; j++ ){
                 if( bombs[i][j] == null ){
                     bombs[i][j] = new Bomb(false);
                 }
             }
         }
 
-        for( int i = 0 ; i<13 ; i++ ){
-            for( int j = 0; j<13 ; j++ ){
+        for( int i = 0 ; i<bombX ; i++ ){
+            for( int j = 0; j<bombY ; j++ ){
                 int cnt = 0;
                 if( bombs[i][j].getIsBomb() ) continue;
                 for( int m = -1 ; m<2 ; m++ ){
                     for( int n = -1 ; n<2 ; n++ ){
                         if( m==0 && n==0 ) continue;
-                        if( i+m < 13 && j+n < 13 && i+m >= 0 && j+n >= 0) {
+                        if( i+m < bombX && j+n < bombY && i+m >= 0 && j+n >= 0) {
                             if( bombs[i+m][j+n].getIsBomb() ) cnt ++;
                         }
                     }
@@ -150,6 +163,31 @@ public class GameBoard extends JPanel{
         return player;
     }
 
+    private void choose(){
+        Random rand = new Random();
+        boolean check = true;
+        while( check ){
+            int x = rand.nextInt(bombX);
+            int y = rand.nextInt(bombY);
+            boolean tmp = false;
+            if( bombs[x][y].getVisit() ) tmp = true;
+            else {
+                if( currentPlayer == 1 ){
+                    player1.setX(x);
+                    player1.setY(y);
+                }
+                else if( currentPlayer == 2 ){
+                    player2.setX(x);
+                    player2.setY(y);
+                }
+                repaint();
+                updateBomb(x, y);
+            }
+            check = tmp;
+        }
+
+    }
+
     private void revealBomb( int x , int y ){
         Bomb bomb = bombs[x][y];
         if( !(bomb.getVisit()) ){
@@ -164,7 +202,7 @@ public class GameBoard extends JPanel{
                 for( int i = -1 ; i<2 ; i++ ){
                     for( int j = -1 ; j<2 ; j++ ){
                         if( i == 0 && j == 0 ) continue;
-                        if( x+i<13 && y+j<13 && x+i>=0 && y+j>=0 ){
+                        if( x+i<bombX && y+j<bombY && x+i>=0 && y+j>=0 ){
                             Bomb now = bombs[x+i][y+j];
                             if( now.getVisit() == false && now.getIsBomb() == false ){
                                 revealBomb( x+i , y+j );
@@ -174,7 +212,10 @@ public class GameBoard extends JPanel{
                 }
             }
 
-            if( bomb.getIsBomb() ) bombAll();
+            if( bomb.getIsBomb() ) {
+                bombAll();
+                SB.getTimer().stop();
+            }
         }
     }
 
@@ -182,11 +223,12 @@ public class GameBoard extends JPanel{
         if( currentPlayer == 1 ) currentPlayer = 2;
         else currentPlayer = 1;
         SB.setPlayer(currentPlayer);
+        SB.setRemainingTime(15);
     }
 
     private void bombAll(){
         bombStart = true;
-        timer = new Timer(150,new ActionListener() {
+        timer = new Timer(100,new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 bomb();
                 repaint();
@@ -223,8 +265,8 @@ public class GameBoard extends JPanel{
 		
         drawGameBoard(g);
         
-        for( int i = 0 ; i<13 ; i++ ){
-            for( int j = 0 ; j<13 ; j++ ){
+        for( int i = 0 ; i<bombX ; i++ ){
+            for( int j = 0 ; j<bombY ; j++ ){
                 drawBlock(g, i, j);
             }
         }
@@ -235,7 +277,7 @@ public class GameBoard extends JPanel{
 
     private static void drawGameBoard(Graphics g) {
         g.setColor(Color.BLACK);
-        g.fillRect(0, 0, 700, 700);
+        g.fillRect(0, 0, 1210, 550);
 	}
     
     
@@ -255,7 +297,7 @@ public class GameBoard extends JPanel{
 
     private void drawBomb(Graphics g , int i , int j ){
         g.setColor(Color.DARK_GRAY);
-        g.fillOval(gap + ( gap + blockSize ) * j + 6 , gap + ( gap + blockSize ) * i + 6  , 30 ,  30);
+        g.fillOval(gap + ( gap + blockSize ) * j + 10 , gap + ( gap + blockSize ) * i + 10  , 30 ,  30);
     }
 
     private void drawPlayer(Graphics g){
@@ -278,10 +320,10 @@ public class GameBoard extends JPanel{
     private void drawGameOver(Graphics g){
         String text = "Game Over !";
         g.setColor( new Color( 	245 ,245 , 245, 200 ));  		 
-        g.fillRect(0 , 0 , 700 , 700 );
+        g.fillRect(0 , 0 , 1210 , 550 );
         g.setColor(Color.decode("#CD3333"));
         g.setFont(new Font("Arial" , Font.BOLD , 80));
-        g.drawString(text, 700/2 - (int)(g.getFontMetrics().stringWidth(text)/2) , 700/2);
+        g.drawString(text, 1210/2 - (int)(g.getFontMetrics().stringWidth(text)/2) , 570/2);
     }
     
 
@@ -289,8 +331,8 @@ public class GameBoard extends JPanel{
     public void paint(Graphics g){
         super.paint(g);
 
-        for( int i = 0 ; i<13 ; i++ ){
-            for( int j = 0 ; j<13 ; j++ ){
+        for( int i = 0 ; i<bombX ; i++ ){
+            for( int j = 0 ; j<bombY ; j++ ){
                 drawBlock(g, i, j);
             }
         }

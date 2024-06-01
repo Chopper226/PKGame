@@ -22,40 +22,28 @@ class GamePanel extends Panel{
     
     GameBoard gb;
     StatusBoard sb;
-    InformationBoard ib;
-    //Timer checkGameOverTimer;
+    Timer checkGameOverTimer;
 
     GamePanel(){
         super();
 
         gb = new GameBoard();
-        gb.setBounds(290, 10, 700, 700);
+        gb.setBounds(35, 150 , 1210, 550);
         this.add(gb);
 
         this.addKeyListener(gb.getKeyBoard());
         this.setFocusable(true);
 
         sb = gb.getStatusBoard();
-        sb.setBounds(1010, 40, 250 , 640);
+        sb.setBounds(35, 15, 1210 , 120);
         this.add(sb);
-        
-        ib = new InformationBoard();
-        ib.setBounds( 20 , 0 , 250 , 720);
-        this.add(ib);
-        /*
         checkGameOverTimer = new Timer(100,new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if( player1.getGameBoard().getGameOver() && player2.getGameBoard().getGameOver() ){
-                    checkGameOverTimer.stop();
-                    tb.getTimer().stop();
-                }
-                if( tb.getRemainingTime() == 0 ){
-                    player1.getGameBoard().setGameOver( true );
-                    player2.getGameBoard().setGameOver( true );
+                if( gb.getGameOver() ) {
+                    
                 }
             }
         });
         checkGameOverTimer.start();
-        */
     }
 }
