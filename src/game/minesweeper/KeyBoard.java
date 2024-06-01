@@ -27,50 +27,51 @@ public class KeyBoard implements KeyListener {
         int keyCode = e.getKeyCode();
         int x = player.getX();
         int y = player.getY();
-
-        if( playerNumber == 1 ){
-            switch (keyCode) {
-                case KeyEvent.VK_UP :
-                    if( x-1 >= 0 ) player.setX(x-1);
-                    break;
-                case KeyEvent.VK_DOWN :
-                    if( x+1 <13 ) player.setX(x+1);
-                    break; 
-                case KeyEvent.VK_LEFT :
-                    if( y-1 >= 0 ) player.setY(y-1);
-                    break;
-                case KeyEvent.VK_RIGHT :
-                    if( y+1 < 13 ) player.setY(y+1);
-                    break;
-                case KeyEvent.VK_SPACE :
-                    if( bombs[x][y].getVisit() == false ) gameBoard.updateBomb( x , y );
-                    break;
-                default:
-                    break;
+        if( gameBoard.getBombStart() == false ){
+            if( playerNumber == 1 ){
+                switch (keyCode) {
+                    case KeyEvent.VK_UP :
+                        if( x-1 >= 0 ) player.setX(x-1);
+                        break;
+                    case KeyEvent.VK_DOWN :
+                        if( x+1 <13 ) player.setX(x+1);
+                        break; 
+                    case KeyEvent.VK_LEFT :
+                        if( y-1 >= 0 ) player.setY(y-1);
+                        break;
+                    case KeyEvent.VK_RIGHT :
+                        if( y+1 < 13 ) player.setY(y+1);
+                        break;
+                    case KeyEvent.VK_SPACE :
+                        if( bombs[x][y].getVisit() == false ) gameBoard.updateBomb( x , y );
+                        break;
+                    default:
+                        break;
+                }
             }
-        }
-        else if( playerNumber == 2 ){
-            switch (keyCode) {
-                case KeyEvent.VK_W :
-                    if( x-1 >= 0 ) player.setX(x-1);
-                    break;
-                case KeyEvent.VK_S :
-                    if( x+1 <13 ) player.setX(x+1);
-                    break; 
-                case KeyEvent.VK_A :
-                    if( y-1 >= 0 ) player.setY(y-1);
-                    break;
-                case KeyEvent.VK_D :
-                    if( y+1 < 13 ) player.setY(y+1);
-                    break;
-                case KeyEvent.VK_E :
-                    if( bombs[x][y].getVisit() == false ) gameBoard.updateBomb( x , y );
-                    break;
-                default:
-                    break;
+            else if( playerNumber == 2 ){
+                switch (keyCode) {
+                    case KeyEvent.VK_W :
+                        if( x-1 >= 0 ) player.setX(x-1);
+                        break;
+                    case KeyEvent.VK_S :
+                        if( x+1 <13 ) player.setX(x+1);
+                        break; 
+                    case KeyEvent.VK_A :
+                        if( y-1 >= 0 ) player.setY(y-1);
+                        break;
+                    case KeyEvent.VK_D :
+                        if( y+1 < 13 ) player.setY(y+1);
+                        break;
+                    case KeyEvent.VK_E :
+                        if( bombs[x][y].getVisit() == false ) gameBoard.updateBomb( x , y );
+                        break;
+                    default:
+                        break;
+                }
             }
+            gameBoard.repaint();
         }
-        gameBoard.repaint();
     }
 
     private void resetPlayer(){

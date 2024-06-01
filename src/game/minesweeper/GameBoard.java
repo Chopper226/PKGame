@@ -3,17 +3,22 @@ package game.minesweeper;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import java.awt.Font;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.util.Random;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import java.util.ArrayList;
+import java.util.Random;
 
 public class GameBoard extends JPanel{
 
     private Bomb[][] bombs;
     private int bombNum;
+    private ArrayList <Bomb> isBomb ;
     private int currentPlayer;
     private Player player1;
     private Player player2;
@@ -22,6 +27,8 @@ public class GameBoard extends JPanel{
     private int remainingBlock;
     private KeyBoard KB ;
     private boolean isGameOver;
+    private boolean bombStart;
+    private Timer timer;
     
     final private int blockSize = 42;
     final private int gap = 11;
@@ -29,7 +36,8 @@ public class GameBoard extends JPanel{
     GameBoard(){
         bombs = new Bomb[13][13];
         bombNum = 30;
-        
+        isBomb = new ArrayList<>();
+
         createBomb();
         initBomb();
         
@@ -42,6 +50,7 @@ public class GameBoard extends JPanel{
         this.SB = new StatusBoard(this);
 
         this.isGameOver = false;
+        this.bombStart = false;
 
         this.KB = new KeyBoard( this , bombs ); 
     }
@@ -73,16 +82,15 @@ public class GameBoard extends JPanel{
 
     public void updateBomb( int x ,int y ){
         revealBomb( x , y );
-        changePlayer();
+        if( bombStart == false ) changePlayer();
     }
 
     public boolean getGameOver(){
         return isGameOver;
     }
 
-    public void setGameOver( boolean gameOver ){
-        this.isGameOver = gameOver;
-        repaint();
+    public boolean getBombStart(){
+        return bombStart;
     }
     
     private void createBomb(){
@@ -92,11 +100,16 @@ public class GameBoard extends JPanel{
         while ( now < bombNum ) {
             boolean check = true;
             while( check ){
-                int x = rand.nextInt(13) % 13;
-                int y = rand.nextInt(13) % 13 ;
+                int x = rand.nextInt(13);
+                int y = rand.nextInt(13);
                 boolean tmp = false;
                 if( bombs[x][y] != null && bombs[x][y].getIsBomb() ) tmp = true;
-                else bombs[x][y] = new Bomb(true);
+                else {
+                    bombs[x][y] = new Bomb(true);
+                    isBomb.add(bombs[x][y]);
+                    bombs[x][y].setX(x);
+                    bombs[x][y].setY(y);
+                }
                 check = tmp;
             }
             now ++ ;
@@ -161,7 +174,7 @@ public class GameBoard extends JPanel{
                 }
             }
 
-            if( bomb.getIsBomb() ) isGameOver = true;
+            if( bomb.getIsBomb() ) bombAll();
         }
     }
 
@@ -169,6 +182,34 @@ public class GameBoard extends JPanel{
         if( currentPlayer == 1 ) currentPlayer = 2;
         else currentPlayer = 1;
         SB.setPlayer(currentPlayer);
+    }
+
+    private void bombAll(){
+        bombStart = true;
+        timer = new Timer(150,new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                bomb();
+                repaint();
+            }
+        });
+        timer.start();
+    }
+
+    private void bomb(){
+        if( isBomb.size() == 1 ){
+            timer.stop();
+            isGameOver = true;
+        }
+        for( int i = 0 ; i<isBomb.size() ; i++ ){
+            if( isBomb.get(i).getVisit() ) isBomb.remove(i);
+            else{
+                int x = isBomb.get(i).getX();
+                int y = isBomb.get(i).getY();
+                bombs[x][y].setVisit(true);
+                isBomb.remove(i);
+                break;
+            }
+        }
     }
     
     public void paintComponent(Graphics g2) {
@@ -209,10 +250,7 @@ public class GameBoard extends JPanel{
             g.setColor(bomb.getFontColor());
             g.drawString(text , gap + ( gap + blockSize ) * j + blockSize/2 - (int)(g.getFontMetrics().stringWidth(text)/2) , gap + ( gap + blockSize ) * i + blockSize/2 + (int)g.getFontMetrics().getHeight()/3);
         }
-        else if( bomb.getVisit() && bomb.getIsBomb() ){
-            drawBomb(g, i, j);
-            isGameOver = true;
-        }
+        else if( bomb.getVisit() && bomb.getIsBomb() ) drawBomb(g, i, j);
     }
 
     private void drawBomb(Graphics g , int i , int j ){
@@ -236,16 +274,16 @@ public class GameBoard extends JPanel{
         g.fillRoundRect(gap + ( gap + blockSize ) * y -5 , gap + ( gap + blockSize ) * x -5 , blockSize+10 , blockSize+10 , 5 , 5);
     }
 
-    /*
+    
     private void drawGameOver(Graphics g){
         String text = "Game Over !";
-        g.setColor( new Color( 	205 ,201 , 201, 120 ));  	
+        g.setColor( new Color( 	245 ,245 , 245, 200 ));  		 
         g.fillRect(0 , 0 , 700 , 700 );
-        g.setColor(Color.decode("#EE6A50"));
-        g.setFont(new Font("Arial" , Font.BOLD , 50));
+        g.setColor(Color.decode("#CD3333"));
+        g.setFont(new Font("Arial" , Font.BOLD , 80));
         g.drawString(text, 700/2 - (int)(g.getFontMetrics().stringWidth(text)/2) , 700/2);
     }
-    */
+    
 
     @Override
     public void paint(Graphics g){
@@ -259,7 +297,7 @@ public class GameBoard extends JPanel{
         drawPlayer(g);
         SB.repaint();
         if( isGameOver ){
-            //drawGameOver(g);
+            drawGameOver(g);
             repaint();
         }
     }
