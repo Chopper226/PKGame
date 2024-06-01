@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 public class TimeBoard extends JPanel{
     static Font TimeFont = new Font("Arial" , Font.BOLD , 35);
     private GameBoard gameBoard ;
-    private int remainingTime = 5;
+    private int remainingTime = 30;
     private Timer timer;
 
     TimeBoard( GameBoard gameBoard ) {
