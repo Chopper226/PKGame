@@ -43,7 +43,7 @@ public class GameBoard extends JPanel{
         this.isGameOver = false;
 
         if( playerNumber == 1 ) KB = new KeyBoard(this);
-        //else if( playerNumber == 2) KB = new Player2KeyBoard(this);
+        else if( playerNumber == 2) KB = new Player2KeyBoard(this);
 
     }
     

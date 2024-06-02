@@ -21,7 +21,7 @@ public class Panel extends JPanel{
 class GamePanel extends Panel{
 
     PlayerSetting player1 ,player2;
-    //Timer checkGameOverTimer;
+    Timer checkGameOverTimer;
     
     GamePanel(){
 
@@ -42,20 +42,16 @@ class GamePanel extends Panel{
         this.addKeyListener(player2.getGameBoard().getKeyBoard());
         this.setFocusable(true);
         
-        /*
+        
         checkGameOverTimer = new Timer(100,new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if( player1.getGameBoard().getGameOver() && player2.getGameBoard().getGameOver() ){
                     checkGameOverTimer.stop();
-                    tb.getTimer().stop();
-                }
-                if( tb.getRemainingTime() == 0 ){
-                    player1.getGameBoard().setGameOver( true );
-                    player2.getGameBoard().setGameOver( true );
+                    
                 }
             }
         });
         checkGameOverTimer.start();
-        */
+        
     }
 }
