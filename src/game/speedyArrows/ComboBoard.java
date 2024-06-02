@@ -59,7 +59,7 @@ public class ComboBoard extends JPanel{
         String text = String.valueOf(combo);
         g.setFont(getScoreFont());
         g.setColor(Color.WHITE);
-        g.drawString(text , 200/2 - (int)(g.getFontMetrics().stringWidth(text)/2) , 100 );
+        g.drawString(text , 200/2 - (int)(g.getFontMetrics().stringWidth(text)/2) , 105 );
     }
 
     @Override

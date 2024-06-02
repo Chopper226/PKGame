@@ -12,7 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TimeBoard extends JPanel{
-    static Font TimeFont = new Font("Arial" , Font.BOLD , 35);
+    static private Font TimeFont = new Font("Arial" , Font.BOLD , 35);
+    static private Font font = new Font("Arial" , Font.BOLD , 45);
     private GameBoard gameBoard ;
     private int remainingTime = 30;
     private Timer timer;
@@ -85,7 +86,7 @@ public class TimeBoard extends JPanel{
 
     private void drawTime( Graphics g ){
         String text = formatTime();
-        g.setFont(TimeFont);
+        g.setFont(font);
         g.setColor(Color.WHITE);
         g.drawString(text , 190/2 - (int)(g.getFontMetrics().stringWidth(text)/2) , 100 );
     }
