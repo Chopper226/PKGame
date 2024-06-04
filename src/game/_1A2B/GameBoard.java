@@ -23,7 +23,7 @@ public class GameBoard extends JPanel{
     private int currentPlayer;
     private Player player1;
     private Player player2;
-    private int remaining;
+    private int index;
     private KeyBoard KB ;
     private boolean isGameOver;
     private boolean isJudge;
@@ -72,6 +72,10 @@ public class GameBoard extends JPanel{
 
     public boolean getGameOver(){
         return isGameOver;
+    }
+
+    public boolean getJudge(){
+        return isJudge;
     }
 
     private void initAns(){
@@ -148,14 +152,21 @@ public class GameBoard extends JPanel{
             updatePlayerInfo();
             if(!(isGameOver)) input = new ArrayList<>();
             isJudge = true;
-            remaining = 10;
-            timer = new Timer(1,new ActionListener() {
+            index = 0;
+            timer = new Timer(500,new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    if( remaining >=0 ) remaining -- ;
+                    if( index <4 ) {
+                        index ++;
+                    }
                     else{
                         timer.stop();
                         isJudge = false;
+                        if( !(isGameOver) ){
+                            if( currentPlayer == 1 ) currentPlayer = 2;
+                            else currentPlayer = 1;
+                        }
                     }
+                    repaint();
                 }
             });
             timer.start();
@@ -176,7 +187,6 @@ public class GameBoard extends JPanel{
             }
             player1.addGuess(tmp);
             player1.addJudge(text);
-            if( !(isGameOver) ) currentPlayer = 2;
         }
         else if( currentPlayer == 2 ){
             if( 45 + 40*player2.getGuess().size() >720 ){
@@ -185,7 +195,6 @@ public class GameBoard extends JPanel{
             }
             player2.addGuess(tmp);
             player2.addJudge(text);
-            if( !(isGameOver) ) currentPlayer = 1;
         }
 
     }
@@ -209,7 +218,7 @@ public class GameBoard extends JPanel{
         }
 
         if( isJudge && !(isGameOver) ){
-            for( int i = 0 ; i<4 ; i++ ){
+            for( int i = 0 ; i<index ; i++ ){
                 drawText(g, i, judge.get(i) );
             }
         }
@@ -290,7 +299,7 @@ public class GameBoard extends JPanel{
         super.paint(g);
         drawCurrentPlayerText(g);
         if( isJudge && !(isGameOver) && !(isGameOver)){
-            for( int i = 0 ; i<4 ; i++ ){
+            for( int i = 0 ; i<index ; i++ ){
                 drawText(g, i, judge.get(i) );
             }
         }

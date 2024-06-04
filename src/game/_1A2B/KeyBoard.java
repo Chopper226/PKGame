@@ -19,7 +19,7 @@ public class KeyBoard implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if( gameBoard.getGameOver() == false ){
+        if( gameBoard.getGameOver() == false && gameBoard.getJudge() == false ){
             int keyCode = e.getKeyCode();
             if( keyCode >= KeyEvent.VK_1 && keyCode <= KeyEvent.VK_9 ){
                 gameBoard.addNum(String.valueOf(keyCode-48));
