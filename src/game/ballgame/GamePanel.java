@@ -1,15 +1,18 @@
+package game.ballgame;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GamePanel extends JPanel implements ActionListener {
-    private final int WIDTH = 1280,HEIGHT = 720;
+    static final int WIDTH = 1280,HEIGHT = 720;
     private final Paddle player1,player2;
     private final Ball ball;
     private final Timer timer;
     private final InputHandler inputHandler;
     private final ScoreBoard scoreBoard;
+    private boolean gameRunning = true;
 
     public GamePanel (){
         setPreferredSize(new Dimension(WIDTH,HEIGHT));
@@ -38,8 +41,8 @@ public class GamePanel extends JPanel implements ActionListener {
         player2.draw(g2d);
         ball.draw(g2d);
 
-        g2d.setColor(Color.GRAY);
-        g2d.setStroke(new BasicStroke(3));
+        g2d.setColor(Color.WHITE);
+        g2d.setStroke(new BasicStroke(6));
         g2d.drawLine(WIDTH / 2, 0, WIDTH / 2, HEIGHT);
 
         scoreBoard.draw(g2d,100,100);
@@ -47,9 +50,11 @@ public class GamePanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ball.update();
-        checkCollisions();
-        repaint();
+        if (gameRunning) {
+            ball.update();
+            checkCollisions();
+            repaint();
+        }
     }
 
     private void checkCollisions() {
@@ -59,10 +64,12 @@ public class GamePanel extends JPanel implements ActionListener {
 
         if (ball.getX() <= 0) {
             scoreBoard.increaseScorePlayer2();
-            ball.reset(WIDTH / 2 - ball.getWidth() / 2, HEIGHT / 2 - ball.getHeight() / 2);
-        } else if (ball.getX() >= WIDTH - ball.getWidth()) {
+            checkGameOver();
+            ball.reset(WIDTH/2-ball.getWidth()/2,HEIGHT/2-ball.getHeight()/2);
+        } else if (ball.getX()>=WIDTH-ball.getWidth()) {
             scoreBoard.increaseScorePlayer1();
-            ball.reset(WIDTH / 2 - ball.getWidth() / 2, HEIGHT / 2 - ball.getHeight() / 2);
+            checkGameOver();
+            ball.reset(WIDTH/2-ball.getWidth()/2,HEIGHT/2-ball.getHeight()/2);
         }
 
         Rectangle ballBounds = ball.getBounds();
@@ -71,6 +78,14 @@ public class GamePanel extends JPanel implements ActionListener {
 
         if (ballBounds.intersects(player1Bounds) || ballBounds.intersects(player2Bounds)) {
             ball.reverseX();
+        }
+    }
+
+    private void checkGameOver() {
+        if (scoreBoard.getScorePlayer1() >= 5 || scoreBoard.getScorePlayer2() >= 5) {
+            gameRunning = false;
+            String winner = (scoreBoard.getScorePlayer1() >= 10) ? "Player1" : "Player2";
+            JOptionPane.showMessageDialog(this, winner + " WIN¡I", "Game Over", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 }

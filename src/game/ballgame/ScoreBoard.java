@@ -1,3 +1,5 @@
+package game.ballgame;
+
 import java.awt.*;
 
 public class ScoreBoard {
@@ -17,11 +19,14 @@ public class ScoreBoard {
         scorePlayer2 = 0;
     }
 
+    public int getScorePlayer1(){ return scorePlayer1; }
+    public int getScorePlayer2(){ return scorePlayer2; }
+
     public void draw(Graphics2D g2d, int width, int height) {
-        g2d.setColor(Color.WHITE); // 將文字顏色設置為黑色
+        g2d.setColor(Color.WHITE); 
         g2d.setFont(new Font("Arial", Font.BOLD, 30));
-        g2d.drawString("Player 1: " + scorePlayer1, width / 4, 100); // 調整 Y 座標
-        g2d.drawString("Player 2: " + scorePlayer2, width * 3 / 4, 100); // 調整 Y 座標
+        g2d.drawString("Player 1 : " + scorePlayer1,100,100); 
+        g2d.drawString("Player 2 : " + scorePlayer2,GamePanel.WIDTH-250, 100); 
     }
     
 }

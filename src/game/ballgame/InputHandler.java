@@ -1,3 +1,4 @@
+package game.ballgame;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -52,16 +53,16 @@ class InputHandler extends KeyAdapter {
     }
 
     private void updatePaddles() {
-        if (up1) {
+        if (up1 && player1.getY() > 0) {
             player1.moveUp();
         }
-        if (down1) {
+        if (down1 && player1.getY() < GamePanel.HEIGHT-player1.getHeight()) {
             player1.moveDown();
         }
-        if (up2) {
+        if (up2 && player2.getY() > 0) {
             player2.moveUp();
         }
-        if (down2) {
+        if (down2 && player2.getY() < GamePanel.HEIGHT-player2.getHeight()) {
             player2.moveDown();
         }
     }

@@ -1,7 +1,9 @@
+package game.ballgame;
+
 import java.awt.*;
 
 class Ball extends GameObject {
-    private int dx = 6,dy = 6;
+    private int dx = 5,dy = 5;
 
     public Ball(int x,int y,int size) {
         super(x,y,size,size);
@@ -41,9 +43,4 @@ class Ball extends GameObject {
         g.fillOval(x,y,width,height);
     }
 
-    public void adjustVerticalSpeed(int deltaY) {
-        // 根据 deltaY ?整球的垂直速度
-        // 例如，根据 deltaY 的正?值??定反?或保持不?
-        dy = -dy; // ?只是一?示例，根据您的游??????
-    }
 }
