@@ -67,10 +67,4 @@ public class KeyBoard implements KeyListener {
             gameBoard.repaint();
         }
     }
-    /*
-    private void resetPlayer(){
-        this.playerNumber = gameBoard.getCurrentPlayer();
-        this.player = gameBoard.getPlayer();
-    }
-    */
 }
