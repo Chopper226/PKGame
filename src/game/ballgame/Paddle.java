@@ -1,3 +1,5 @@
+package game.ballgame;
+
 import java.awt.*;
 
 class Paddle extends GameObject {

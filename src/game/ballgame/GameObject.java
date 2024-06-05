@@ -1,3 +1,4 @@
+package game.ballgame;
 
 import java.awt.*;
 

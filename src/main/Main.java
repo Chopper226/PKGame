@@ -1,12 +1,15 @@
 package main;
 
-import game.ballgame.*;
-import game._2048.*;
+
+import javax.swing.SwingUtilities;
+
 
 public class Main{
-    public static void main(String[] args) {
-        Frame frame = new Frame();
-        game.ballgame.Frame ballframe = new game.ballgame.Frame();
-        game._2048.Frame frame2048 = new game._2048.Frame();
+     public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            Frame frame = new Frame();
+            frame.pack();
+            frame.setVisible(true);
+        });
     }
 }
