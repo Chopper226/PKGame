@@ -1,5 +1,3 @@
-package game.ballgame;
-
 import java.awt.*;
 
 class Paddle extends GameObject {
@@ -17,11 +15,6 @@ class Paddle extends GameObject {
         y += speed;
     }
 
-    public int getX() { return x; }
-    public int getY() { return y; }
-    public int getWidth() { return width; }
-    public int getHeight() { return height; }
-    
     @Override
     public void update() {
     }
