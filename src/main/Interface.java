@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Interface extends JPanel {
-    public Interface() {
+    public Interface(Frame frame) {
         setPreferredSize(new Dimension(1280, 720));
 
         // Create button on Interface panel
@@ -15,6 +15,7 @@ public class Interface extends JPanel {
         switchButton.addActionListener(e -> {
             CardLayout cardLayout = (CardLayout) getParent().getLayout();
             cardLayout.show(getParent(), "panel2");
+            frame.switchToPanel2();
         });
     }
 }

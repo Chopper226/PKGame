@@ -6,15 +6,15 @@ import java.awt.*;
 
 public class Frame extends JFrame {
     private Interface panel1;
-    private game.ballgame.GamePanel panel2;
+    private game._1A2B.GamePanel panel2;
     private CardLayout cardLayout;
 
     public Frame() {
         setTitle("Panel Switching Example");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        panel1 = new Interface();
-        panel2 = new game.ballgame.GamePanel();
+        panel1 = new Interface(this);
+        panel2 = new game._1A2B.GamePanel();
 
         cardLayout = new CardLayout();
         getContentPane().setLayout(cardLayout);
@@ -25,8 +25,12 @@ public class Frame extends JFrame {
 
         panel1.setBackground(Color.WHITE);
         panel2.setBackground(Color.BLACK);
+    }
 
-
+    public void switchToPanel2() {
+        cardLayout.show(getContentPane(), "panel2");
+        panel2.setFocusable(true);
+        panel2.requestFocusInWindow();
     }
 
 }
