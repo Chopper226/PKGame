@@ -46,6 +46,9 @@ public class GameBoard extends JPanel{
                 updateDiglett();
                 addDiglett();
                 repaint();
+                if( SB.getRemainingTime() == 0 ){
+                    timer.stop();
+                }
             }
         });
         timer.start();
