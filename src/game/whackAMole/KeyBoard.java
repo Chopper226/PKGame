@@ -8,7 +8,7 @@ public class KeyBoard implements KeyListener {
     private Player player1;
     private Player player2;
 
-    public KeyBoard( GameBoard gameBoard  ){
+    KeyBoard( GameBoard gameBoard  ){
         this.gameBoard = gameBoard;
         player1 = gameBoard.getPlayer1();
         player2 = gameBoard.getPlayer2();
@@ -43,7 +43,7 @@ public class KeyBoard implements KeyListener {
                 case KeyEvent.VK_D :
                     if( y1+1 < gameBoard.getBlockY() ) player1.setY(y1+1);
                     break;
-                case KeyEvent.VK_E :
+                case KeyEvent.VK_SLASH :
                     gameBoard.judge(keyCode);
                     break;
                 case KeyEvent.VK_UP :

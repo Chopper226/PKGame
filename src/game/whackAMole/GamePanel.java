@@ -1,30 +1,19 @@
-package game.minesweeper;
+package game.whackAMole;
 
-import javax.swing.JPanel;
+import main.Panel;
+
 import javax.swing.Timer;
 
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Panel extends JPanel{
-    final int PANEL_WIDTH = 1280;  
-    final int PANEL_HEIGHT = 720;
-
-    Panel(){
-        this.setPreferredSize(new Dimension( PANEL_WIDTH , PANEL_HEIGHT ));
-        this.setLayout(null);
-    }
-}
-
-
-class GamePanel extends Panel{
+public class GamePanel extends Panel{
     
     GameBoard gb;
     StatusBoard sb;
     Timer checkGameOverTimer;
 
-    GamePanel(){
+    public GamePanel(){
         super();
 
         gb = new GameBoard();
@@ -37,6 +26,7 @@ class GamePanel extends Panel{
         sb = gb.getStatusBoard();
         sb.setBounds(35, 15, 1210 , 120);
         this.add(sb);
+        
         checkGameOverTimer = new Timer(100,new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if( gb.getGameOver() ) {

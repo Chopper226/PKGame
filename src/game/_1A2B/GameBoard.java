@@ -31,7 +31,7 @@ public class GameBoard extends JPanel{
     private int b;
     private Timer timer;
 
-    public GameBoard(){
+    GameBoard(){
         ans = new String[4];
         input = new ArrayList<>();
         judge = new ArrayList<>();

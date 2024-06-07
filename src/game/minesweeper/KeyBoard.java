@@ -9,7 +9,7 @@ public class KeyBoard implements KeyListener {
     private int playerNumber;
     private Player player;
 
-    public KeyBoard( GameBoard gameBoard , Bomb bombs[][] ){
+    KeyBoard( GameBoard gameBoard , Bomb bombs[][] ){
         this.gameBoard = gameBoard;
         this.bombs = bombs;
     }

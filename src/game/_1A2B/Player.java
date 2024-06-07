@@ -6,7 +6,7 @@ public class Player {
     private ArrayList<String> guess;
     private ArrayList<String> judge;
 
-    public Player(){
+    Player(){
         guess = new ArrayList<>();
         judge = new ArrayList<>();
     }    

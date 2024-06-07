@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 public class KeyBoard implements KeyListener {
     protected GameBoard gameBoard;
 
-    public KeyBoard( GameBoard gameBoard ){
+    KeyBoard( GameBoard gameBoard ){
         this.gameBoard = gameBoard;
     }
 

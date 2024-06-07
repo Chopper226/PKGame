@@ -3,7 +3,7 @@ package game.greedySnake;
 public class Move {
     private Snake snake;
 
-    public Move( Snake snake ){
+    Move( Snake snake ){
         this.snake = snake;
     }
 

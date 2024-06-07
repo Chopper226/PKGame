@@ -7,7 +7,7 @@ public class KeyBoard implements KeyListener {
     protected GameBoard gameBoard;
     protected Node node;
 
-    public KeyBoard( GameBoard gameBoard ){
+    KeyBoard( GameBoard gameBoard ){
         this.gameBoard = gameBoard;
     }
 
