@@ -1,20 +1,36 @@
 package main;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Font;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Setting extends JPanel {
-    public Setting() {
-        setPreferredSize(new Dimension(400, 300));
+public class Setting extends Panel {
+    private JButton backButton;
 
-        // Create button on Setting panel
-        JButton switchButton = new JButton("Switch to Interface Panel");
-        add(switchButton);
-        
-        // Add ActionListener to button
-        switchButton.addActionListener(e -> {
-            CardLayout cardLayout = (CardLayout) getParent().getLayout();
-            cardLayout.show(getParent(), "panel1");
+    public Setting( Frame frame){
+        super();
+        initBackButton(frame);
+    }
+
+    private void initBackButton(Frame frame){
+        backButton = new JButton("Back");
+        backButton.setFont( new Font("Arial" , Font.BOLD , 25) );
+        backButton.setForeground(Color.WHITE);
+        backButton.setBackground(Color.GRAY);
+        backButton.setBounds(540, 500, 200, 100);
+        backButton.setFocusPainted(false);
+        backButton.setBorder(BorderFactory.createEmptyBorder());
+        backButton.setOpaque(true);
+        this.add(backButton);
+
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.switchToGameInterface();
+            }
         });
     }
+
 }
