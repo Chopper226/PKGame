@@ -1,5 +1,6 @@
 package game.whackAMole;
 
+import main.GameOverListener;
 import main.Panel;
 
 import javax.swing.Timer;
@@ -9,13 +10,29 @@ import java.awt.event.ActionListener;
 
 public class GamePanel extends Panel{
     
-    GameBoard gb;
-    StatusBoard sb;
-    Timer checkGameOverTimer;
+    private GameBoard gb;
+    private StatusBoard sb;
+    private Timer checkGameOverTimer;
+    private GameOverListener gameOverListener;
+    private String winner;
+    private boolean start;
 
     public GamePanel(){
         super();
+        
+        this.start = false;
+    }
 
+    public void setStart( boolean start ){
+        this.start = start;
+        if( start ) init();
+    }
+
+    public void setGameOverListener(GameOverListener listener) {
+        this.gameOverListener = listener;
+    }
+
+    private void init(){
         gb = new GameBoard();
         gb.setBounds(35, 150 , 1210, 550);
         this.add(gb);
@@ -30,7 +47,9 @@ public class GamePanel extends Panel{
         checkGameOverTimer = new Timer(100,new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if( gb.getGameOver() ) {
-                    
+                    winner = "Player2";
+                    gameOverListener.GameOver(winner);
+                    checkGameOverTimer.stop();
                 }
             }
         });

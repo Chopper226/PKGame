@@ -1,5 +1,6 @@
 package game._2048;
 
+import main.GameOverListener;
 import main.Panel;
 
 import javax.swing.Timer;
@@ -9,13 +10,28 @@ import java.awt.event.ActionListener;
 
 
 public class GamePanel extends Panel{
-    TimeBoard tb;
-    PlayerSetting player1 ,player2;
-    Timer checkGameOverTimer;
+    private TimeBoard tb;
+    private PlayerSetting player1 ,player2;
+    private Timer checkGameOverTimer;
+    private GameOverListener gameOverListener;
+    private boolean start;
 
     public GamePanel(){
         super();
         
+        this.start = false;
+    }
+
+    public void setStart( boolean start ){
+        this.start = start;
+        if( start ) init();
+    }
+
+    public void setGameOverListener(GameOverListener listener) {
+        this.gameOverListener = listener;
+    }
+
+    private void init(){
         player1 = new PlayerSetting(685, 150, 985, 10, 1);
         this.add( player1.getGameBoard() );
         this.add( player1.getScoreBoard() );
@@ -39,6 +55,5 @@ public class GamePanel extends Panel{
             }
         });
         checkGameOverTimer.start();
-        
     }
 }
