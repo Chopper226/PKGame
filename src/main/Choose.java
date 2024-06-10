@@ -49,7 +49,7 @@ public class Choose extends Panel {
 
     public void startGame(){
         frame.setLevel( level );
-        frame.switchToStart();
+        frame.switchToInstruction();
     }
 
     private void reset(){
@@ -86,7 +86,7 @@ public class Choose extends Panel {
         if( level.size() <version ) {
             boolean check = true;
             for( int i = 0 ; i<level.size() ; i++ ){
-                //if( level.get(i).equals(n) ) check = false;
+                if( level.get(i).equals(n) ) check = false;
             }
             if( check ) level.add(n);
         }

@@ -35,8 +35,8 @@ public class ScoreBoard extends Panel{
     }
 
     private void update( String winner ){
-        if( winner.equals("player2") ) player2 ++ ;
-        else player1 ++;
+        if( winner.equals("Player1") ) player1 ++ ;
+        else player2 ++;
         repaint();
     }
 
@@ -55,7 +55,7 @@ public class ScoreBoard extends Panel{
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.switchToStart();
+                frame.switchToInstruction();
             }
         });
     }

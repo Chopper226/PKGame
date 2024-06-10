@@ -28,6 +28,8 @@ public class Frame extends JFrame implements GameOverListener{
     private main.countdown.CountDown2 countPanel_2;
     private main.countdown.CountDown3 countPanel_3;
 
+    private main.instructions.Instruction instruction ;
+
     private game._1A2B.GamePanel gamePanel_1A2B;
     private game._2048.GamePanel gamePanel_2048;
     private game.greedySnake.GamePanel gamePanel_greedySnake;
@@ -55,6 +57,8 @@ public class Frame extends JFrame implements GameOverListener{
         countPanel_2 = new main.countdown.CountDown2();
         countPanel_3 = new main.countdown.CountDown3();
         
+        instruction = new main.instructions.Instruction(this);
+
         gamePanel_1A2B = new game._1A2B.GamePanel();
         gamePanel_2048 = new game._2048.GamePanel();
         gamePanel_greedySnake = new game.greedySnake.GamePanel();
@@ -68,6 +72,7 @@ public class Frame extends JFrame implements GameOverListener{
         getContentPane().add(modePanel , "mode");
         getContentPane().add(settingPanel, "setting");
         getContentPane().add(choosePanel , "level");
+        getContentPane().add(instruction , "instruction");
         getContentPane().add(scoreBoard , "score");
         getContentPane().add(countPanel_1 , "1");
         getContentPane().add(countPanel_2 , "2");
@@ -134,6 +139,10 @@ public class Frame extends JFrame implements GameOverListener{
         chooseLevel();
     }
 
+    public void switchToInstruction(){
+        gameInstruction();
+    }
+
     public void switchToStart(){
         start();
     }
@@ -163,6 +172,13 @@ public class Frame extends JFrame implements GameOverListener{
         choosePanel.requestFocusInWindow();
     }
 
+    private void gameInstruction(){
+        instruction.instruction(level.get(currentGameIndex));
+        cardLayout.show(getContentPane(), "instruction");
+        instruction.setFocusable(true);
+        instruction.requestFocusInWindow();
+    }
+
     private void score() {
         cardLayout.show(getContentPane(), "score");
         scoreBoard.setFocusable(true);
@@ -178,8 +194,8 @@ public class Frame extends JFrame implements GameOverListener{
                     countDown -- ;
                 }
                 else{
-                    game();
                     timer.stop();
+                    game();
                 }
             }
         });
