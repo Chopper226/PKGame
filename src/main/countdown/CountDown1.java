@@ -1,6 +1,6 @@
 package main.countdown;
 
-import javax.swing.JPanel;
+import main.Panel;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -8,7 +8,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
-public class CountDown1 extends JPanel{
+public class CountDown1 extends Panel{
 
     private static Font font = new Font("Arial" , Font.BOLD , 100);
 
