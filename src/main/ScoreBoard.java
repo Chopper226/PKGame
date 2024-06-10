@@ -36,7 +36,11 @@ public class ScoreBoard extends Panel{
 
     private void update( String winner ){
         if( winner.equals("Player1") ) player1 ++ ;
-        else player2 ++;
+        else if ( winner.equals("Player2") ) player2 ++;
+        else{
+            player1 ++ ;
+            player2 ++ ;
+        }
         repaint();
     }
 
