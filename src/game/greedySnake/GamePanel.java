@@ -33,10 +33,11 @@ public class GamePanel extends Panel{
     }
 
     private void init(){
-        player1 = new PlayerSetting(685, 150, 985, 10, 1);
+        
+        player1 = new PlayerSetting(45, 150, 45, 10, 1);
         this.add( player1.getGameBoard() );
         this.add( player1.getScoreBoard() );
-        player2 = new PlayerSetting(45, 150, 45, 10, 2);
+        player2 = new PlayerSetting(685, 150, 985, 10, 2);
         this.add( player2.getGameBoard() );
         this.add( player2.getScoreBoard() );
         
@@ -54,7 +55,10 @@ public class GamePanel extends Panel{
                 if( player1.getGameBoard().getGameOver() && player2.getGameBoard().getGameOver() ){
                     checkGameOverTimer.stop();
                     tb.getTimer().stop();
-                    winner = "Player2";
+                    start = false;
+                    if( player1.getGameBoard().getScore() > player2.getGameBoard().getScore() ) winner = "Player1";
+                    else if( player1.getGameBoard().getScore() < player2.getGameBoard().getScore() ) winner = "Player2";
+                    else winner = "Tie";
                     gameOverListener.GameOver(winner);
                 }
                 if( tb.getRemainingTime() == 0 ){

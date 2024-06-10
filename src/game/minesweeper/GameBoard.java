@@ -216,6 +216,10 @@ public class GameBoard extends JPanel{
                 bombAll();
                 SB.getTimer().stop();
             }
+            else if( remainingBlock == 0 ){
+                isGameOver = true;
+                SB.getTimer().stop();
+            }
         }
     }
 

@@ -46,8 +46,6 @@ public class StatusBoard extends JPanel{
                     remainingTime--;
                 } else {
                     gameBoard.randomChoose();
-                    //timer.stop();
-
                 }    
                 repaint();
             }

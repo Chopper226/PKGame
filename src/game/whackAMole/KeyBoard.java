@@ -43,7 +43,7 @@ public class KeyBoard implements KeyListener {
                 case KeyEvent.VK_D :
                     if( y1+1 < gameBoard.getBlockY() ) player1.setY(y1+1);
                     break;
-                case KeyEvent.VK_SLASH :
+                case KeyEvent.VK_COMMA :
                     gameBoard.judge(keyCode);
                     break;
                 case KeyEvent.VK_UP :

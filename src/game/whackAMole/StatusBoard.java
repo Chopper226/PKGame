@@ -27,7 +27,7 @@ public class StatusBoard extends JPanel{
 
     StatusBoard( GameBoard gameBoard ){
         this.gameBoard = gameBoard;
-        this.remainingTime = 180;
+        this.remainingTime = 90;
         initTimer();
     }
 

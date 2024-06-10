@@ -43,9 +43,9 @@ public class KeyBoard implements KeyListener {
 
 }
 
-class Player2KeyBoard extends KeyBoard {
+class Player1KeyBoard extends KeyBoard {
     
-    Player2KeyBoard( GameBoard gameBoard ){
+    Player1KeyBoard( GameBoard gameBoard ){
         super(gameBoard);
     }
 

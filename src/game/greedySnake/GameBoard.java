@@ -44,8 +44,8 @@ public class GameBoard extends JPanel{
         addBodyTime();
         runTime();
 
-        if( playerNumber == 1 ) KB = new KeyBoard(this);
-        else if( playerNumber == 2) KB = new Player2KeyBoard(this);
+        if( playerNumber == 1 ) KB = new Player1KeyBoard(this);
+        else if( playerNumber == 2) KB = new KeyBoard(this); 
 
     }
 

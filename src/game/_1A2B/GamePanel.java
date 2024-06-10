@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class GamePanel extends Panel{
     
-    private GameBoard gb;
+    private GameBoard gameBoard;
     private Timer checkGameOverTimer;
     private GameOverListener gameOverListener;
     private String winner;
@@ -32,18 +32,19 @@ public class GamePanel extends Panel{
     }
 
     private void init(){
-        gb = new GameBoard();
-        gb.setBounds(0, 0 , 1280, 720);
-        this.add(gb);
+        gameBoard = new GameBoard();
+        gameBoard.setBounds(0, 0 , 1280, 720);
+        this.add(gameBoard);
 
-        this.addKeyListener(gb.getKeyBoard());
+        this.addKeyListener(gameBoard.getKeyBoard());
         this.setFocusable(true);
 
         checkGameOverTimer = new Timer(100,new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if( gb.getGameOver() ) {
+                if( gameBoard.getGameOver() ) {
+                    checkGameOverTimer.stop();
                     start = false;
-                    if( gb.getCurrentPlayer() == 1 ) winner = "Player1";
+                    if( gameBoard.getCurrentPlayer() == 1 ) winner = "Player1";
                     else winner = "Player2";
                     gameOverListener.GameOver(winner);
                 }

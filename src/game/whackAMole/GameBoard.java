@@ -133,7 +133,7 @@ public class GameBoard extends JPanel{
                 }
             }
         }
-        else if( keyCode == KeyEvent.VK_E ){
+        else if( keyCode == KeyEvent.VK_COMMA ){
             int x = player2.getX();
             int y = player2.getY();
             for( int i = 0 ; i<diglett.size() ; i++ ){

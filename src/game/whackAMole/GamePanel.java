@@ -10,8 +10,8 @@ import java.awt.event.ActionListener;
 
 public class GamePanel extends Panel{
     
-    private GameBoard gb;
-    private StatusBoard sb;
+    private GameBoard gameBoard;
+    private StatusBoard statusBoard;
     private Timer checkGameOverTimer;
     private GameOverListener gameOverListener;
     private String winner;
@@ -33,23 +33,26 @@ public class GamePanel extends Panel{
     }
 
     private void init(){
-        gb = new GameBoard();
-        gb.setBounds(35, 150 , 1210, 550);
-        this.add(gb);
+        gameBoard = new GameBoard();
+        gameBoard.setBounds(35, 150 , 1210, 550);
+        this.add(gameBoard);
 
-        this.addKeyListener(gb.getKeyBoard());
+        this.addKeyListener(gameBoard.getKeyBoard());
         this.setFocusable(true);
 
-        sb = gb.getStatusBoard();
-        sb.setBounds(35, 15, 1210 , 120);
-        this.add(sb);
+        statusBoard = gameBoard.getStatusBoard();
+        statusBoard.setBounds(35, 15, 1210 , 120);
+        this.add(statusBoard);
         
         checkGameOverTimer = new Timer(100,new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if( gb.getGameOver() ) {
-                    winner = "Player2";
-                    gameOverListener.GameOver(winner);
+                if( gameBoard.getGameOver() ) {
                     checkGameOverTimer.stop();
+                    start = false;
+                    if( gameBoard.getPlayer1().getScore() > gameBoard.getPlayer2().getScore() ) winner = "Player1";
+                    else if( gameBoard.getPlayer1().getScore() < gameBoard.getPlayer2().getScore() ) winner = "Player2";
+                    else winner = "Tie";
+                    gameOverListener.GameOver(winner);
                 }
             }
         });

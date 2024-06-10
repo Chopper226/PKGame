@@ -32,12 +32,12 @@ public class GamePanel extends Panel{
     }
 
     private void init(){
-        player1 = new PlayerSetting(655, 140, 655, 855, 1065, 10, 1);
+        player1 = new PlayerSetting(15, 140, 15 , 215 ,  425 , 10, 1);
         this.add( player1.getGameBoard() );
         this.add( player1.getScoreBoard() );
         this.add( player1.getTimeBoard() );
         this.add( player1.getComboBoard() );
-        player2 = new PlayerSetting(15, 140, 15 , 215 ,  425 , 10, 2);
+        player2 = new PlayerSetting(655, 140, 655, 855, 1065, 10, 2);
         this.add( player2.getGameBoard() );
         this.add( player2.getScoreBoard() );
         this.add( player2.getTimeBoard() );
@@ -52,9 +52,11 @@ public class GamePanel extends Panel{
             public void actionPerformed(ActionEvent e) {
                 if( player1.getGameBoard().getGameOver() && player2.getGameBoard().getGameOver() ){
                     checkGameOverTimer.stop();
-                    winner = "Player2";
+                    start = false;
+                    if( player1.getGameBoard().getScore() > player2.getGameBoard().getScore() ) winner = "Player1";
+                    else if( player1.getGameBoard().getScore() < player2.getGameBoard().getScore() ) winner = "Player2";
+                    else winner = "Tie";
                     gameOverListener.GameOver(winner);
-                    checkGameOverTimer.stop();
                 }
             }
         });

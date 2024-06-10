@@ -1,6 +1,5 @@
 package game.speedyArrows;
 
-import javax.management.MBeanAttributeInfo;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -42,8 +41,8 @@ public class GameBoard extends JPanel{
         this.CB = new ComboBoard(this);
         this.isGameOver = false;
 
-        if( playerNumber == 1 ) KB = new KeyBoard(this);
-        else if( playerNumber == 2) KB = new Player2KeyBoard(this);
+        if( playerNumber == 1 ) KB = new Player1KeyBoard(this);
+        else if( playerNumber == 2) KB = new KeyBoard(this);
 
     }
     
@@ -205,7 +204,7 @@ public class GameBoard extends JPanel{
         g.setColor( new Color( 	240 ,255 , 255 , 150 ));  	
         g.fillRect(0 , 0 , 610 , 570 );
         g.setColor(Color.decode("#CD3700"));
-        g.setFont(new Font("Arial" , Font.BOLD , 95));
+        g.setFont(new Font("Arial" , Font.BOLD , 80));
         g.drawString(text, 610/2 - (int)(g.getFontMetrics().stringWidth(text)/2) , 570/2);
     }
 
