@@ -9,6 +9,7 @@ public class Main{
         SwingUtilities.invokeLater(() -> {
             Frame frame = new Frame();
             frame.pack();
+            frame.setLocationRelativeTo(null);
             frame.setVisible(true);
         });
     }
