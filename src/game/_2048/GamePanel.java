@@ -10,11 +10,12 @@ import java.awt.event.ActionListener;
 
 
 public class GamePanel extends Panel{
-    private TimeBoard tb;
+    private TimeBoard timeBoard;
     private PlayerSetting player1 ,player2;
     private Timer checkGameOverTimer;
     private GameOverListener gameOverListener;
     private boolean start;
+    private String winner;
 
     public GamePanel(){
         super();
@@ -32,10 +33,11 @@ public class GamePanel extends Panel{
     }
 
     private void init(){
-        player1 = new PlayerSetting(685, 150, 985, 10, 1);
+        
+        player1 = new PlayerSetting(45, 150, 45, 10, 1);
         this.add( player1.getGameBoard() );
         this.add( player1.getScoreBoard() );
-        player2 = new PlayerSetting(45, 150, 45, 10, 2);
+        player2 = new PlayerSetting(685, 150, 985, 10, 2);
         this.add( player2.getGameBoard() );
         this.add( player2.getScoreBoard() );
         
@@ -43,14 +45,24 @@ public class GamePanel extends Panel{
         this.addKeyListener(player2.getGameBoard().getKeyBoard());
         this.setFocusable(true);
 
-        tb = new TimeBoard();
-        tb.setBounds(490, 10, 300, 120);
-        this.add(tb);
+        timeBoard = new TimeBoard();
+        timeBoard.setBounds(490, 10, 300, 120);
+        this.add(timeBoard);
 
         checkGameOverTimer = new Timer(100,new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if( player1.getGameBoard().getGameOver() || player2.getGameBoard().getGameOver() ) {
-                    
+                if( player1.getGameBoard().getGameOver() && player2.getGameBoard().getGameOver() ) {
+                    timeBoard.getTimer().stop();
+                    checkGameOverTimer.stop();
+                    start = false;
+                    if( player1.getGameBoard().getScore() > player2.getGameBoard().getScore() ) winner = "Player1";
+                    else if( player1.getGameBoard().getScore() < player2.getGameBoard().getScore() ) winner = "Player2";
+                    else winner = "Tie";
+                    gameOverListener.GameOver(winner);
+                }
+                else if( timeBoard.getRemainingTime() == 0 ){
+                    player1.getGameBoard().setGameOver(true);
+                    player2.getGameBoard().setGameOver(true);
                 }
             }
         });

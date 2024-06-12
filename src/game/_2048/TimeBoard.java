@@ -13,6 +13,14 @@ public class TimeBoard extends JPanel{
         initTimer();
     }
 
+    public Timer getTimer(){
+        return timer;
+    }
+
+    public int getRemainingTime(){
+        return remainingTime;
+    }
+    
     private void initTimer() {
         timer = new Timer(1000, new ActionListener() {
             public void actionPerformed(ActionEvent e) {

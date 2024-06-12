@@ -52,9 +52,9 @@ public class KeyBoard implements KeyListener {
 
 }
 
-class Player2KeyBoard extends KeyBoard {
+class Player1KeyBoard extends KeyBoard {
     
-    Player2KeyBoard( Move move , GameBoard gameBoard , ScoreBoard scoreBoard ){
+    Player1KeyBoard( Move move , GameBoard gameBoard , ScoreBoard scoreBoard ){
         super(move, gameBoard, scoreBoard);
     }
 

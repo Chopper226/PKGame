@@ -15,6 +15,7 @@ public class Instruction extends Panel{
     private JButton startButton;
 
     private Instruction_1A2B _1A2B;
+    private Instruction_2048 _2048;
     private Instruction_greedySnake greedySnake;
     private Instruction_minesweeper minesweeper;
     private Instruction_speedyArrows speedyArrows;
@@ -27,12 +28,14 @@ public class Instruction extends Panel{
         initStartButton();
 
         _1A2B = new Instruction_1A2B();
+        _2048 = new Instruction_2048();
         greedySnake = new Instruction_greedySnake();
         minesweeper = new Instruction_minesweeper();
         speedyArrows = new Instruction_speedyArrows();
         whackAMole = new Instruction_whackAMole();
 
         _1A2B.setBounds(0, 0 , 1280, 720);
+        _2048.setBounds(0, 0 , 1280, 720);
         greedySnake.setBounds(0, 0 , 1280, 720);
         minesweeper.setBounds(0, 0 , 1280, 720);
         speedyArrows.setBounds(0, 0 , 1280, 720);
@@ -71,7 +74,7 @@ public class Instruction extends Panel{
                 this.add(_1A2B);
                 break;
             case "2":
-                //this.add(_2048);
+                this.add(_2048);
                 break;
             case "3":
                 this.add(greedySnake);

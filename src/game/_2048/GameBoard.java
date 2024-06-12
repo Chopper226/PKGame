@@ -13,6 +13,7 @@ public class GameBoard extends JPanel{
     private Move move ; 
     private KeyBoard KB ;
     private ScoreBoard SB ;
+    private boolean isGameOver;
 
     final int gap = 14;
     final int blockSize = 120;
@@ -26,8 +27,10 @@ public class GameBoard extends JPanel{
 
         this.move = new Move(blocks , this);
         
-        if( playerNumber == 1 ) KB = new KeyBoard( move, this , SB );
-        else if( playerNumber == 2) KB = new Player2KeyBoard( move, this , SB );
+        this.isGameOver = false;
+
+        if( playerNumber == 1 ) KB = new Player1KeyBoard( move, this , SB ); 
+        else if( playerNumber == 2) KB = new KeyBoard( move, this , SB );
 
     }
 
@@ -56,6 +59,14 @@ public class GameBoard extends JPanel{
         return this.blocks;
     }
 
+    public boolean getGameOver(){
+        return isGameOver;
+    }
+
+    public void setGameOver( boolean isGameOver ){
+        this.isGameOver = isGameOver;
+    }
+    
     private void initBlock(){
         for( int i = 0 ; i<4 ; i++ ){
             for( int j = 0 ; j<4 ; j++){
@@ -82,7 +93,7 @@ public class GameBoard extends JPanel{
             Random rand = new Random();
             int index = rand.nextInt(empty.size());
 
-            int num = rand.nextInt(4); // Appearance probability -> 2 : 4 = 1 : 3
+            int num = rand.nextInt(4); // Appearance probability -> 2 : 4 = 3 : 1
             if( num%3 == 1 ) num = 4;
             else num = 2;
 
@@ -139,6 +150,15 @@ public class GameBoard extends JPanel{
         }
     }
 
+    private void drawGameOver( Graphics g ){
+        String text = "Game Over !";
+        g.setColor( new Color( 	188 ,210 , 238	 , 120 ));  	
+        g.fillRect(0 , 0 , 550 , 550 );
+        g.setColor(Color.decode("#EE6A50"));
+        g.setFont(new Font("Arial" , Font.BOLD , 50));
+        g.drawString(text, 550/2 - (int)(g.getFontMetrics().stringWidth(text)/2) , 550/2);
+    }
+
     @Override
     public void paint(Graphics g){
         super.paint(g);
@@ -149,7 +169,9 @@ public class GameBoard extends JPanel{
         }
         SB.setScore( score );
         if( gameOver() ){
-
+            isGameOver = gameOver();
+            drawGameOver(g);
+            repaint();
         }
     }
 }
