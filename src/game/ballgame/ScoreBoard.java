@@ -26,7 +26,7 @@ public class ScoreBoard {
         g2d.setColor(Color.WHITE); 
         g2d.setFont(new Font("Arial", Font.BOLD, 30));
         g2d.drawString("S C O R E :  " + scorePlayer1,100,100); 
-        g2d.drawString("S C O R E :  " + scorePlayer2,GamePanel.WIDTH-300, 100); 
+        g2d.drawString("S C O R E :  " + scorePlayer2,1280-300, 100); 
     }
     
 }

@@ -4,20 +4,41 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import main.GameOverListener;
+import main.Panel;
 
-public class GamePanel extends JPanel implements ActionListener {
-    static final int WIDTH = 1280, HEIGHT = 720;
-    private final Paddle player1, player2;
-    private final Ball ball;
-    private final Timer timer;
-    private final InputHandler inputHandler;
-    private final ScoreBoard scoreBoard;
-    private boolean gameRunning = true;
+public class GamePanel extends Panel implements ActionListener {
+    private int WIDTH = 1280, HEIGHT = 720;
+    private Paddle player1, player2;
+    private Ball ball;
+    private Timer timer;
+    private InputHandler inputHandler;
+    private ScoreBoard scoreBoard;
+    private boolean gameRunning;
+    private GameOverListener gameOverListener;
+    private boolean start;
+    private String winner;
 
     private long lastReverseXTime = 0;
 
     public GamePanel() {
-        setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        super();
+        
+        this.start = false;
+    }
+
+    public void setStart( boolean start ){
+        this.start = start;
+        if( start ) init();
+    }
+
+    public void setGameOverListener(GameOverListener listener) {
+        this.gameOverListener = listener;
+    }
+
+    private void init(){
+        gameRunning=true;
+
         setBackground(new Color(226, 209, 212));
         setFocusable(true);
 
@@ -104,8 +125,17 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     private void checkGameOver() {
-        if (scoreBoard.getScorePlayer1() >= 7 || scoreBoard.getScorePlayer2() >= 7) {
+        if (scoreBoard.getScorePlayer1() >= 7) {
             gameRunning = false;
+            winner="Player1";
+
+        }else if(scoreBoard.getScorePlayer2() >= 7){
+            gameRunning = false;
+            winner="Player2";
+        }
+        
+        if(gameRunning==false){
+            gameOverListener.GameOver(winner);
         }
     }
 }
