@@ -4,25 +4,47 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import main.GameOverListener;
+import main.Panel;
 import java.io.IOException;
 
 
-public class GamePanel extends JPanel implements ActionListener {
-    static final int WIDTH = 1280, HEIGHT = 720;
+public class GamePanel extends Panel implements ActionListener {
+    private int WIDTH = 1280, HEIGHT = 720;
     private static boolean isGameOver = false;
     private Knot knot;
     private Timer timer;
     private InputHandler inputHandler;
     private TimeBoard timeboard;
+    private GameOverListener gameOverListener;
+    private boolean start;
+    private String winner;
+
 
     public GamePanel() {
+        super();
+        
+        this.start = false;
+    }
+
+    public void setStart( boolean start ){
+        this.start = start;
+        if( start ) init();
+    }
+
+    public void setGameOverListener(GameOverListener listener) {
+        this.gameOverListener = listener;
+    }
+    public static boolean isGameOver() {
+        return isGameOver;
+    }
+    private void init(){
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(Color.WHITE);
         setFocusable(true);
 
         try {
-            knot = new Knot("game\\tug_of_war\\knot.png", 640, 280);
+            knot = new Knot("res\\tug_of_war\\knot.png", 640, 280);
             int knotWidth = knot.getImage().getWidth(null);
             int knotHeight = knot.getImage().getHeight(null);
             int initialX = (WIDTH - knotWidth) / 2;
@@ -43,10 +65,6 @@ public class GamePanel extends JPanel implements ActionListener {
         timer.start();
 
         timeboard = new TimeBoard(this);
-    }
-
-    public static boolean isGameOver() {
-        return isGameOver;
     }
 
     public static void endGame() {
@@ -97,22 +115,30 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     @Override
-public void actionPerformed(ActionEvent e) {
-    if (!timeboard.getTimer().isRunning() || (timeboard.getRemainingTime() == 0)) {
-        int knotCenterX = knot.getX() + Knot.WIDTH / 2;
-        if (knotCenterX < 640) {
-            endGame();
-        } else if (knotCenterX > 640) {
-            endGame();
+    public void actionPerformed(ActionEvent e) {
+        if (!timeboard.getTimer().isRunning() || (timeboard.getRemainingTime() == 0)) {
+            int knotCenterX = knot.getX() + Knot.WIDTH / 2;
+            if (knotCenterX < 640) {
+                winner="Player1";
+                endGame();
+            } else if (knotCenterX > 640) {
+                endGame();
+                winner="Player2";
+            }
+        } else {
+            if (knot.getX() <= 0) {
+                endGame();
+                winner="Player1";
+            }else if(knot.getX() >= getWidth() - Knot.WIDTH){
+                endGame();
+                winner="Player2";
+            }
         }
-    } else {
-        if (knot.getX() <= 0 || knot.getX() >= getWidth() - Knot.WIDTH) {
-            endGame();
+        System.out.println("333");
+        repaint();
+        if(isGameOver == true){
+            System.out.println("111");
+            gameOverListener.GameOver(winner);
         }
     }
-    repaint();
-}
-
-
-
 }
