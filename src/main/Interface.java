@@ -2,6 +2,8 @@ package main;
 
 import javax.swing.*;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,15 +13,27 @@ public class Interface extends Panel {
     private JButton switch2v3Button;
     private JButton switch3v5Button;
     private JButton settingButton;
+    private Image backgroundImage;
 
     public Interface(Frame frame) {
         super();
 
+        this.backgroundImage = new ImageIcon("res/interface/PK Game.png").getImage();
         this.frame = frame;
+
+        setLayout(null);
+
         init2v3Button();
         init3v5Button();
         initSettingButton();  
 
+    }
+
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this); 
+        }
     }
 
     private void init2v3Button(){
