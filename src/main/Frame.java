@@ -36,6 +36,7 @@ public class Frame extends JFrame implements GameOverListener{
     private game.ballgame.GamePanel gamePanel_ballGame;
     private game.greedySnake.GamePanel gamePanel_greedySnake;
     private game.minesweeper.GamePanel gamePanel_minesweeper;
+    private game.paper_scissors_stone.GamePanel gamePanel_paper_scissors_stone;
     private game.speedyArrows.GamePanel gamePanel_speedyArrows;
     private game.tug_of_war.GamePanel gamePanel_tug_of_war;
     private game.whackAMole.GamePanel gamePanel_whackAMole;
@@ -67,6 +68,7 @@ public class Frame extends JFrame implements GameOverListener{
         gamePanel_ballGame = new game.ballgame.GamePanel();
         gamePanel_greedySnake = new game.greedySnake.GamePanel();
         gamePanel_minesweeper = new game.minesweeper.GamePanel();
+        gamePanel_paper_scissors_stone = new game.paper_scissors_stone.GamePanel();
         gamePanel_speedyArrows = new game.speedyArrows.GamePanel();
         gamePanel_tug_of_war = new game.tug_of_war.GamePanel();
         gamePanel_whackAMole = new game.whackAMole.GamePanel();
@@ -87,6 +89,7 @@ public class Frame extends JFrame implements GameOverListener{
         getContentPane().add(gamePanel_ballGame , "ballGame");
         getContentPane().add(gamePanel_greedySnake , "greedySnake");
         getContentPane().add(gamePanel_minesweeper , "minesweeper");
+        getContentPane().add(gamePanel_paper_scissors_stone , "paper_scissors_stone");
         getContentPane().add(gamePanel_speedyArrows , "speedyArrows");
         getContentPane().add(gamePanel_tug_of_war , "tug_of_war");
         getContentPane().add(gamePanel_whackAMole , "whackAMole");
