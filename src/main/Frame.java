@@ -37,6 +37,7 @@ public class Frame extends JFrame implements GameOverListener{
     private game.greedySnake.GamePanel gamePanel_greedySnake;
     private game.minesweeper.GamePanel gamePanel_minesweeper;
     private game.speedyArrows.GamePanel gamePanel_speedyArrows;
+    private game.tug_of_war.GamePanel gamePanel_tug_of_war;
     private game.whackAMole.GamePanel gamePanel_whackAMole;
 
 
@@ -67,6 +68,7 @@ public class Frame extends JFrame implements GameOverListener{
         gamePanel_greedySnake = new game.greedySnake.GamePanel();
         gamePanel_minesweeper = new game.minesweeper.GamePanel();
         gamePanel_speedyArrows = new game.speedyArrows.GamePanel();
+        gamePanel_tug_of_war = new game.tug_of_war.GamePanel();
         gamePanel_whackAMole = new game.whackAMole.GamePanel();
         
         cardLayout = new CardLayout();
@@ -86,6 +88,7 @@ public class Frame extends JFrame implements GameOverListener{
         getContentPane().add(gamePanel_greedySnake , "greedySnake");
         getContentPane().add(gamePanel_minesweeper , "minesweeper");
         getContentPane().add(gamePanel_speedyArrows , "speedyArrows");
+        getContentPane().add(gamePanel_tug_of_war , "tug_of_war");
         getContentPane().add(gamePanel_whackAMole , "whackAMole");
     }
 
@@ -227,8 +230,11 @@ public class Frame extends JFrame implements GameOverListener{
                 speedyArrows();
                 break;
             case "7":
+                tug_of_war();
+                break; 
+            case "8":
                 whackAMole();
-                break;   
+                break;  
             default:
                 break;
         }
@@ -280,6 +286,14 @@ public class Frame extends JFrame implements GameOverListener{
         gamePanel_speedyArrows.setGameOverListener(this);
         gamePanel_speedyArrows.setFocusable(true);
         gamePanel_speedyArrows.requestFocusInWindow();
+    }
+
+    private void tug_of_war() {
+        gamePanel_tug_of_war.setStart(true);
+        cardLayout.show(getContentPane(), "tug_of_war");
+        gamePanel_tug_of_war.setGameOverListener(this);
+        gamePanel_tug_of_war.setFocusable(true);
+        gamePanel_tug_of_war.requestFocusInWindow();
     }
 
     private void whackAMole() {

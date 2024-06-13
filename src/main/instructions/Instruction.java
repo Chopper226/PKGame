@@ -20,6 +20,7 @@ public class Instruction extends Panel{
     private Instruction_greedySnake greedySnake;
     private Instruction_minesweeper minesweeper;
     private Instruction_speedyArrows speedyArrows;
+    private Instruction_tug_of_war tug_of_war;
     private Instruction_whackAMole whackAMole;
     
     
@@ -34,6 +35,7 @@ public class Instruction extends Panel{
         greedySnake = new Instruction_greedySnake();
         minesweeper = new Instruction_minesweeper();
         speedyArrows = new Instruction_speedyArrows();
+        tug_of_war = new Instruction_tug_of_war();
         whackAMole = new Instruction_whackAMole();
 
         _1A2B.setBounds(0, 0 , 1280, 720);
@@ -42,6 +44,7 @@ public class Instruction extends Panel{
         greedySnake.setBounds(0, 0 , 1280, 720);
         minesweeper.setBounds(0, 0 , 1280, 720);
         speedyArrows.setBounds(0, 0 , 1280, 720);
+        tug_of_war.setBounds(0,0, 1280, 720);
         whackAMole.setBounds(0, 0 , 1280, 720);
 
     }
@@ -92,6 +95,9 @@ public class Instruction extends Panel{
                 this.add(speedyArrows);
                 break;
             case "7":
+                this.add(tug_of_war);
+                break;
+            case "8":
                 this.add(whackAMole);
                 break;   
             default:
