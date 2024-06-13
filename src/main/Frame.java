@@ -230,12 +230,15 @@ public class Frame extends JFrame implements GameOverListener{
                 minesweeper();
                 break;
             case "6":
-                speedyArrows();
+                paper_scissors_stone();
                 break;
             case "7":
+                speedyArrows();
+                break;
+            case "8":
                 tug_of_war();
                 break; 
-            case "8":
+            case "9":
                 whackAMole();
                 break;  
             default:
@@ -281,6 +284,14 @@ public class Frame extends JFrame implements GameOverListener{
         gamePanel_minesweeper.setGameOverListener(this);
         gamePanel_minesweeper.setFocusable(true);
         gamePanel_minesweeper.requestFocusInWindow();
+    }
+
+    private void paper_scissors_stone() {
+        //gamePanel_paper_scissors_stone.setStart(true);
+        cardLayout.show(getContentPane(), "paper_scissors_stone");
+        //gamePanel_paper_scissors_stone.setGameOverListener(this);
+        gamePanel_paper_scissors_stone.setFocusable(true);
+        gamePanel_paper_scissors_stone.requestFocusInWindow();
     }
 
     private void speedyArrows() {
