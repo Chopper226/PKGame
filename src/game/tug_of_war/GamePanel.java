@@ -22,7 +22,7 @@ public class GamePanel extends JPanel implements ActionListener {
         setFocusable(true);
 
         try {
-            knot = new Knot("src\\game\\tug_of_war\\knot.png", 640, 280);
+            knot = new Knot("game\\tug_of_war\\knot.png", 640, 280);
             int knotWidth = knot.getImage().getWidth(null);
             int knotHeight = knot.getImage().getHeight(null);
             int initialX = (WIDTH - knotWidth) / 2;
