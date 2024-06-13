@@ -31,5 +31,4 @@ class Paddle extends GameObject {
         g.setColor(new Color(193, 162, 168));
         g.fillRect(x,y,width,height);
     }
-
 }
