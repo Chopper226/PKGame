@@ -96,7 +96,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
     private void drawGameOver(Graphics g) {
         String text = "Game Over!";
-        g.setColor(new Color(188, 210, 238, 120));
+        g.setColor(new Color(255, 255, 255,120));
         g.fillRect(0, 0, WIDTH, HEIGHT);
         g.setColor(Color.decode("#EE6A50"));
         g.setFont(new Font("Arial", Font.BOLD, 50));
