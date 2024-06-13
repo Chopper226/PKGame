@@ -73,7 +73,7 @@ class InputHandler extends KeyAdapter {
         if (up2 && player2.getY() > 0) {
             player2.moveUp();
         }
-        if (down2 && player2.getY() <1280-player2.getHeight()) {
+        if (down2 && player2.getY() < 1280-player2.getHeight()) {
             player2.moveDown();
         }
     }
