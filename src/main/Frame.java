@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class Frame extends JFrame implements GameOverListener{
     private String mode;
     private int version;
+    private Timer startimer;
     private Timer timer;
     private ArrayList<String> level;
     private int currentGameIndex;
@@ -32,6 +33,7 @@ public class Frame extends JFrame implements GameOverListener{
 
     private game._1A2B.GamePanel gamePanel_1A2B;
     private game._2048.GamePanel gamePanel_2048;
+    private game.ballgame.GamePanel gamePanel_ballGame;
     private game.greedySnake.GamePanel gamePanel_greedySnake;
     private game.minesweeper.GamePanel gamePanel_minesweeper;
     private game.speedyArrows.GamePanel gamePanel_speedyArrows;
@@ -61,6 +63,7 @@ public class Frame extends JFrame implements GameOverListener{
 
         gamePanel_1A2B = new game._1A2B.GamePanel();
         gamePanel_2048 = new game._2048.GamePanel();
+        gamePanel_ballGame = new game.ballgame.GamePanel();
         gamePanel_greedySnake = new game.greedySnake.GamePanel();
         gamePanel_minesweeper = new game.minesweeper.GamePanel();
         gamePanel_speedyArrows = new game.speedyArrows.GamePanel();
@@ -79,6 +82,7 @@ public class Frame extends JFrame implements GameOverListener{
         getContentPane().add(countPanel_3 , "3");
         getContentPane().add(gamePanel_1A2B , "1A2B");
         getContentPane().add(gamePanel_2048 , "2048");
+        getContentPane().add(gamePanel_ballGame , "ballGame");
         getContentPane().add(gamePanel_greedySnake , "greedySnake");
         getContentPane().add(gamePanel_minesweeper , "minesweeper");
         getContentPane().add(gamePanel_speedyArrows , "speedyArrows");
@@ -187,19 +191,19 @@ public class Frame extends JFrame implements GameOverListener{
 
     private void start(){
         countDown = 3;
-        timer = new Timer(1000,new ActionListener() {
+        startimer = new Timer(1000,new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if( countDown > 0 ){
                     cardLayout.show(getContentPane(), String.valueOf(countDown));
                     countDown -- ;
                 }
                 else{
-                    timer.stop();
+                    startimer.stop();
                     game();
                 }
             }
         });
-        timer.start();
+        startimer.start();
     }
 
     private void game(){
@@ -211,15 +215,18 @@ public class Frame extends JFrame implements GameOverListener{
                 _2048();
                 break;
             case "3":
-                greedySnake();
+                ballGame();
                 break;
             case "4":
-                minesweeper();
+                greedySnake();
                 break;
             case "5":
-                speedyArrows();
+                minesweeper();
                 break;
             case "6":
+                speedyArrows();
+                break;
+            case "7":
                 whackAMole();
                 break;   
             default:
@@ -241,6 +248,14 @@ public class Frame extends JFrame implements GameOverListener{
         gamePanel_2048.setGameOverListener(this);
         gamePanel_2048.setFocusable(true);
         gamePanel_2048.requestFocusInWindow();
+    }
+
+    private void ballGame() {
+        gamePanel_ballGame.setStart(true);
+        cardLayout.show(getContentPane(), "ballGame");
+        gamePanel_ballGame.setGameOverListener(this);
+        gamePanel_ballGame.setFocusable(true);
+        gamePanel_ballGame.requestFocusInWindow();
     }
 
     private void greedySnake() {
