@@ -86,13 +86,13 @@ public class Setting extends Panel {
 
 
     private void initVolumeSlider() {
-        volumeSlider = new JSlider(JSlider.HORIZONTAL, 0, 100, 50); // 初始音量?50%
+        volumeSlider = new JSlider(JSlider.HORIZONTAL, 0, 100, 50);
         volumeSlider.setBounds(350, 300, 580, 60);
         volumeSlider.setMajorTickSpacing(10);
         volumeSlider.setMinorTickSpacing(1);
         volumeSlider.setPaintTicks(true);
         volumeSlider.setPaintLabels(true);
-        volumeSlider.setFont(new Font("Arial", Font.PLAIN, 15)); // ?置字形
+        volumeSlider.setFont(new Font("Arial", Font.PLAIN, 15));
         volumeSlider.setForeground(Color.BLACK); 
         volumeSlider.setBackground(new Color(225, 213, 253));
         this.add(volumeSlider);
