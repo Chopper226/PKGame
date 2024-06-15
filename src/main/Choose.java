@@ -1,5 +1,7 @@
 package main;
 
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.Timer;
 
 import java.awt.Font;
@@ -22,6 +24,7 @@ public class Choose extends Panel {
     private Timer timer;
     private int index;
     private KeyBoard keyBoard;
+    private JButton backButton;
 
     Choose( Frame frame ){
         super();
@@ -29,6 +32,7 @@ public class Choose extends Panel {
         this.keyBoard = new KeyBoard(this);
         this.addKeyListener(keyBoard);
         this.setFocusable(true);
+        initBackButton(frame);
     }
 
     public void resetSetting(){
@@ -49,6 +53,26 @@ public class Choose extends Panel {
             frame.switchToInstruction();
         }
     }
+
+    private void initBackButton(Frame frame){
+        backButton = new JButton("Back");
+        backButton.setFont( new Font("Arial" , Font.BOLD , 25) );
+        backButton.setForeground(Color.WHITE);
+        backButton.setBackground(Color.GRAY);
+        backButton.setBounds(20, 500, 200, 100);
+        backButton.setFocusPainted(false);
+        backButton.setBorder(BorderFactory.createEmptyBorder());
+        backButton.setOpaque(true);
+        this.add(backButton);
+
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.switchToMode();
+            }
+        });
+    }
+
 
     private void reset(){
         mode = frame.getMode();
@@ -140,6 +164,8 @@ public class Choose extends Panel {
         for( int i = 0 ; i<level.size() ; i++ ){
             drawText(g, i, level.get(i) );
         }
+
+        backButton.repaint();
     }
     
 }
