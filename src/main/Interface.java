@@ -18,7 +18,7 @@ public class Interface extends Panel {
     public Interface(Frame frame) {
         super();
 
-        this.backgroundImage = new ImageIcon("res/interface/PK Game.png").getImage();
+        this.backgroundImage = new ImageIcon("res\\interface\\StartBackground.png").getImage();
         this.frame = frame;
 
         setLayout(null);
@@ -37,11 +37,9 @@ public class Interface extends Panel {
     }
 
     private void init2v3Button(){
-        switch2v3Button = new JButton("best two out of three");
-        switch2v3Button.setFont( new Font("Arial" , Font.BOLD , 25) );
-        switch2v3Button.setForeground(Color.WHITE);
-        switch2v3Button.setBackground(Color.GRAY);
-        switch2v3Button.setBounds(490, 300, 300, 120);
+        ImageIcon icon2v3 = new ImageIcon("res\\interface\\JButton_BestTwoOutOfThree.png");
+        switch2v3Button = new JButton(icon2v3);
+        switch2v3Button.setBounds(400, 310, 480, 91);
         switch2v3Button.setFocusPainted(false);
         switch2v3Button.setBorder(BorderFactory.createEmptyBorder());
         switch2v3Button.setOpaque(true);
@@ -57,11 +55,9 @@ public class Interface extends Panel {
     }
 
     private void init3v5Button(){
-        switch3v5Button = new JButton("best three out of five");
-        switch3v5Button.setFont( new Font("Arial" , Font.BOLD , 25) );
-        switch3v5Button.setForeground(Color.WHITE);
-        switch3v5Button.setBackground(Color.GRAY);
-        switch3v5Button.setBounds(490, 500, 300, 120);
+        ImageIcon icon3v5 = new ImageIcon("res\\interface\\JButton_BestTwoOutOfThree.png");
+        switch3v5Button = new JButton(icon3v5);
+        switch3v5Button.setBounds(409, 410, 462, 81);
         switch3v5Button.setFocusPainted(false);
         switch3v5Button.setBorder(BorderFactory.createEmptyBorder());
         switch3v5Button.setOpaque(true);
@@ -77,11 +73,9 @@ public class Interface extends Panel {
     }
 
     private void initSettingButton(){
-        settingButton = new JButton("Setting");
-        settingButton.setFont( new Font("Arial" , Font.BOLD , 25) );
-        settingButton.setForeground(Color.WHITE);
-        settingButton.setBackground(Color.GRAY);
-        settingButton.setBounds(20, 600, 100, 100);
+        ImageIcon settingIcon = new ImageIcon("res\\interface\\JButton_Setting.png");
+        settingButton = new JButton(settingIcon);
+        settingButton.setBounds(400, 510, 472, 78);
         settingButton.setFocusPainted(false);
         settingButton.setBorder(BorderFactory.createEmptyBorder());
         settingButton.setOpaque(true);
