@@ -49,6 +49,7 @@ public class GamePanel extends Panel{
                 if( gameBoard.getGameOver() ) {
                     checkGameOverTimer.stop();
                     start = false;
+                    removeAll();
                     if( gameBoard.getPlayer1().getScore() > gameBoard.getPlayer2().getScore() ) winner = "Player1";
                     else if( gameBoard.getPlayer1().getScore() < gameBoard.getPlayer2().getScore() ) winner = "Player2";
                     else winner = "Tie";

@@ -135,6 +135,9 @@ public class GamePanel extends Panel implements ActionListener {
         }
         
         if(gameRunning==false){
+            timer.stop();
+            start = false;
+            removeAll();
             gameOverListener.GameOver(winner);
         }
     }

@@ -93,6 +93,8 @@ public class GamePanel extends Panel {
                 repaint();
                 if(isGameOver == true){
                     timer.stop();
+                    start = false;
+                    removeAll();
                     gameOverListener.GameOver(winner);
                 }
             }
