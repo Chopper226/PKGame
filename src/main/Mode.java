@@ -1,8 +1,11 @@
 package main;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,22 +14,29 @@ public class Mode extends Panel {
     private JButton randomButton;
     private JButton chooseButton;
     private JButton backButton;
+    private Image backgroundImage;
 
     Mode( Frame frame ){
         super();
+
+        this.backgroundImage = new ImageIcon("res\\mode\\ModeBackground.png").getImage();
+        setLayout(null);
 
         initRandomButton(frame);
         initChooseButton(frame);
         initBackButton(frame);  
 
     }
+    
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+    }
 
     private void initRandomButton(Frame frame){
-        randomButton = new JButton("Random");
-        randomButton.setFont( new Font("Arial" , Font.BOLD , 25) );
-        randomButton.setForeground(Color.WHITE);
-        randomButton.setBackground(Color.GRAY);
-        randomButton.setBounds(490, 300, 300, 120);
+        ImageIcon randomIcon = new ImageIcon("res\\mode\\JButton_Random.png");
+        randomButton= new JButton(randomIcon);
+        randomButton.setBounds(450, 380, 200, 83);
         randomButton.setFocusPainted(false);
         randomButton.setBorder(BorderFactory.createEmptyBorder());
         randomButton.setOpaque(true);
@@ -42,11 +52,9 @@ public class Mode extends Panel {
     }
 
     private void initChooseButton(Frame frame){
-        chooseButton = new JButton("Customize");
-        chooseButton.setFont( new Font("Arial" , Font.BOLD , 25) );
-        chooseButton.setForeground(Color.WHITE);
-        chooseButton.setBackground(Color.GRAY);
-        chooseButton.setBounds(490, 500, 300, 120);
+        ImageIcon customizeIcon = new ImageIcon("res\\mode\\JButton_Customize.png");
+        chooseButton= new JButton(customizeIcon);
+        chooseButton.setBounds(640, 380, 190, 83);
         chooseButton.setFocusPainted(false);
         chooseButton.setBorder(BorderFactory.createEmptyBorder());
         chooseButton.setOpaque(true);
@@ -62,11 +70,9 @@ public class Mode extends Panel {
     }
 
     private void initBackButton(Frame frame){
-        backButton = new JButton("Back");
-        backButton.setFont( new Font("Arial" , Font.BOLD , 25) );
-        backButton.setForeground(Color.WHITE);
-        backButton.setBackground(Color.GRAY);
-        backButton.setBounds(30, 500, 200, 100);
+        ImageIcon backIcon = new ImageIcon("res\\mode\\JButton_Back.png");
+        backButton= new JButton(backIcon);
+        backButton.setBounds(10, 416, 221, 216);
         backButton.setFocusPainted(false);
         backButton.setBorder(BorderFactory.createEmptyBorder());
         backButton.setOpaque(true);
