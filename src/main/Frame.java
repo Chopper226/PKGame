@@ -42,11 +42,15 @@ public class Frame extends JFrame implements GameOverListener{
     private game.tug_of_war.GamePanel gamePanel_tug_of_war;
     private game.whackAMole.GamePanel gamePanel_whackAMole;
 
+    private Music backgroundMusic;
 
 
     public Frame() {
         setTitle("PKGame");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        backgroundMusic = new Music("res\\music\\POL-chubby-cat-short.wav"); 
+        backgroundMusic.play();
 
         interfacePanel = new Interface(this);
         modePanel = new Mode(this);
