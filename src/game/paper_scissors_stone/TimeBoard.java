@@ -11,24 +11,33 @@ public class TimeBoard extends JPanel {
     public boolean playerInputAllowed = false;
     private Timer timer;
     private Timer inputTimer;
+    public boolean inputTimesUp = false;
+    private GamePanel gamePanel;
 
-    public TimeBoard() {
+    public TimeBoard(GamePanel gamePanel) {
+        this.gamePanel = gamePanel;
         setPreferredSize(new Dimension(360, 150));
-        setBackground(Color.BLACK);
-        startCountdown();
+        setBackground(new Color(187, 167, 145));
     }
 
-    private void startCountdown() {
+    public void startCountdown() {
+        circlesRemaining = 3;
+        playerInputAllowed = false;
+        inputTimesUp = false;
+        countdownFinished = false;
+
         timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (circlesRemaining > 0) {
                     circlesRemaining--;
                     repaint();
-                } else {
-                    timer.stop();
-                    countdownFinished = true;
-                    playerInputAllowed = true;
+                    if (circlesRemaining == 0) {
+                        playerInputAllowed = true;
+                        startInputTimer();
+                        timer.stop();
+                        countdownFinished = true;
+                    }
                 }
             }
         });
@@ -36,12 +45,13 @@ public class TimeBoard extends JPanel {
     }
 
     private void startInputTimer() {
-        inputTimer = new Timer(1000, new ActionListener() {
+        inputTimer = new Timer(500, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 inputTimer.stop();
                 playerInputAllowed = false;
-                repaint(); // Ensure repaint after setting playerInputAllowed to false
+                inputTimesUp = true;
+                gamePanel.repaint();
             }
         });
         inputTimer.setRepeats(false);
@@ -64,20 +74,12 @@ public class TimeBoard extends JPanel {
 
         for (int i = 0; i < 3; i++) {
             if (i < circlesRemaining) {
-                g2d.setColor(Color.RED);
+                g2d.setColor(new Color(111, 94, 75));
                 g2d.fillOval(x, y, diameter, diameter);
-            } else {
-                g2d.setColor(Color.RED);
-                g2d.drawOval(x, y, diameter, diameter);
             }
             x += diameter + gap;
         }
 
         g2d.dispose();
-
-        if (circlesRemaining == 0 && !playerInputAllowed) {
-            playerInputAllowed = true;
-            startInputTimer();
-        }
     }
 }
