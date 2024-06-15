@@ -23,6 +23,7 @@ public class Frame extends JFrame implements GameOverListener{
     private Setting settingPanel;
     private Choose choosePanel;
     private ScoreBoard scoreBoard;
+    private GameOver gameOverPanel;
     private CardLayout cardLayout;
 
     private main.countdown.CountDown1 countPanel_1;
@@ -47,15 +48,12 @@ public class Frame extends JFrame implements GameOverListener{
         setTitle("PKGame");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        this.mode = "";
-        this.version = 0;
-        this.countDown = 0;
-
         interfacePanel = new Interface(this);
         modePanel = new Mode(this);
         settingPanel = new Setting(this);
         choosePanel = new Choose(this);
         scoreBoard = new ScoreBoard(this);
+        gameOverPanel = new GameOver(this);
 
         countPanel_1 = new main.countdown.CountDown1();
         countPanel_2 = new main.countdown.CountDown2();
@@ -81,6 +79,7 @@ public class Frame extends JFrame implements GameOverListener{
         getContentPane().add(choosePanel , "level");
         getContentPane().add(instruction , "instruction");
         getContentPane().add(scoreBoard , "score");
+        getContentPane().add(gameOverPanel , "gameover");
         getContentPane().add(countPanel_1 , "1");
         getContentPane().add(countPanel_2 , "2");
         getContentPane().add(countPanel_3 , "3");
@@ -93,6 +92,8 @@ public class Frame extends JFrame implements GameOverListener{
         getContentPane().add(gamePanel_speedyArrows , "speedyArrows");
         getContentPane().add(gamePanel_tug_of_war , "tug_of_war");
         getContentPane().add(gamePanel_whackAMole , "whackAMole");
+
+        init();
     }
 
     public void GameOver(String winner) {
@@ -119,6 +120,10 @@ public class Frame extends JFrame implements GameOverListener{
 
     public int getVersion(){
         return version;
+    }
+
+    public int getCurrentGameIndex(){
+        return currentGameIndex;
     }
 
     public void setMode( String mode ){
@@ -155,6 +160,14 @@ public class Frame extends JFrame implements GameOverListener{
 
     public void switchToStart(){
         start();
+    }
+
+    public void switchToGameOver( String winner ){
+        gameover(winner);
+    }
+
+    public void restart(){
+        init();
     }
 
     private void gameInterface(){
@@ -195,6 +208,13 @@ public class Frame extends JFrame implements GameOverListener{
         scoreBoard.requestFocusInWindow();
     }
 
+    private void gameover( String winner ){
+        gameOverPanel.setWinner(winner);
+        cardLayout.show(getContentPane(), "gameover");
+        gameOverPanel.setFocusable(true);
+        gameOverPanel.requestFocusInWindow();
+    }
+
     private void start(){
         countDown = 3;
         startimer = new Timer(1000,new ActionListener() {
@@ -210,6 +230,19 @@ public class Frame extends JFrame implements GameOverListener{
             }
         });
         startimer.start();
+    }
+
+    private void init(){
+        this.mode = "";
+        this.version = 0;
+        this.countDown = 0;
+        this.currentGameIndex = 0;
+
+        scoreBoard.setPlayer1(0);
+        scoreBoard.setPlayer2(0);
+
+        gameInterface();
+
     }
 
     private void game(){

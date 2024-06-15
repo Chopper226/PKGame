@@ -92,12 +92,15 @@ public class Instruction extends Panel{
                 this.add(minesweeper);
                 break;
             case "6":
-                this.add(speedyArrows);
+                //this.add(speedyArrows);
                 break;
             case "7":
-                this.add(tug_of_war);
+                this.add(speedyArrows);
                 break;
             case "8":
+                this.add(tug_of_war);
+                break;
+            case "9":
                 this.add(whackAMole);
                 break;   
             default:

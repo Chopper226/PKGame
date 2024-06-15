@@ -44,6 +44,7 @@ public class GamePanel extends Panel{
                 if( gameBoard.getGameOver() ) {
                     checkGameOverTimer.stop();
                     start = false;
+                    removeAll();
                     if( gameBoard.getCurrentPlayer() == 1 ) winner = "Player1";
                     else winner = "Player2";
                     gameOverListener.GameOver(winner);

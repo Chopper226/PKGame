@@ -26,10 +26,6 @@ public class Choose extends Panel {
     Choose( Frame frame ){
         super();
         this.frame = frame;
-        this.mode = frame.getMode();
-        this.version = frame.getVersion();
-        this.level = new ArrayList<>();
-        this.index = 0;
         this.keyBoard = new KeyBoard(this);
         this.addKeyListener(keyBoard);
         this.setFocusable(true);
@@ -48,13 +44,17 @@ public class Choose extends Panel {
     }
 
     public void startGame(){
-        frame.setLevel( level );
-        frame.switchToInstruction();
+        if( level.size() == version ){
+            frame.setLevel( level );
+            frame.switchToInstruction();
+        }
     }
 
     private void reset(){
         mode = frame.getMode();
         version = frame.getVersion();
+        this.level = new ArrayList<>();
+        this.index = 0;
         if( mode.equals("Random") ) {
             timer = new Timer(400,new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -105,7 +105,6 @@ public class Choose extends Panel {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         g.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_NORMALIZE);
-		;
 
         for( int i = 0 ; i<version ; i++ ){
             drawLine(g, i);

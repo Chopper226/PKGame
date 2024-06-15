@@ -25,9 +25,15 @@ public class ScoreBoard extends Panel{
     ScoreBoard(Frame frame){
         super();
         this.frame = frame;
-        this.player1 = 0;
-        this.player2 = 0;
         initNextButton();
+    }
+
+    public void setPlayer1( int player1 ){
+        this.player1 = player1;
+    }
+
+    public void setPlayer2( int player2 ){
+        this.player2 = player2;
     }
 
     public void updateScore( String winner ){
@@ -59,7 +65,14 @@ public class ScoreBoard extends Panel{
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.switchToInstruction();
+                if( frame.getCurrentGameIndex() < frame.getVersion() ) frame.switchToInstruction();
+                else {
+                    String winner = "";
+                    if( player1 > player2 ) winner = "Player1";
+                    else if( player1 < player2 ) winner = "Player2";
+                    else winner = "Tie";
+                    frame.switchToGameOver( winner );
+                }
             }
         });
     }
