@@ -54,7 +54,7 @@ public class Frame extends JFrame implements GameOverListener{
 
         interfacePanel = new Interface(this);
         modePanel = new Mode(this);
-        settingPanel = new Setting(this);
+         settingPanel = new Setting(this, backgroundMusic);
         choosePanel = new Choose(this);
         scoreBoard = new ScoreBoard(this);
         gameOverPanel = new GameOver(this);
