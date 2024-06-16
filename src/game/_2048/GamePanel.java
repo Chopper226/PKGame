@@ -49,6 +49,7 @@ public class GamePanel extends Panel{
         timeBoard.setBounds(490, 10, 300, 120);
         this.add(timeBoard);
 
+        this.winner = "";
         checkGameOverTimer = new Timer(100,new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if( player1.getGameBoard().getGameOver() && player2.getGameBoard().getGameOver() ) {
@@ -56,10 +57,20 @@ public class GamePanel extends Panel{
                     checkGameOverTimer.stop();
                     start = false;
                     removeAll();
-                    if( player1.getGameBoard().getScore() > player2.getGameBoard().getScore() ) winner = "Player1";
-                    else if( player1.getGameBoard().getScore() < player2.getGameBoard().getScore() ) winner = "Player2";
-                    else winner = "Tie";
+                    if( winner.length() == 0 ){
+                        if( player1.getGameBoard().getScore() > player2.getGameBoard().getScore() ) winner = "Player1";
+                        else if( player1.getGameBoard().getScore() < player2.getGameBoard().getScore() ) winner = "Player2";
+                        else winner = "Tie";
+                    }
                     gameOverListener.GameOver(winner);
+                }
+                else if( player1.getGameBoard().getReach() && player2.getGameBoard().getReach() == false ){
+                    winner = "Player1";
+                    player2.getGameBoard().setGameOver(true);
+                }
+                else if( player2.getGameBoard().getReach() && player1.getGameBoard().getReach() == false){
+                    winner = "Player2";
+                    player1.getGameBoard().setGameOver(true);
                 }
                 else if( timeBoard.getRemainingTime() == 0 ){
                     player1.getGameBoard().setGameOver(true);

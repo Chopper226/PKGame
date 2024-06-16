@@ -14,6 +14,7 @@ public class GameBoard extends JPanel{
     private KeyBoard KB ;
     private ScoreBoard SB ;
     private boolean isGameOver;
+    private boolean reach; // reach to 2048
 
     final int gap = 14;
     final int blockSize = 120;
@@ -28,9 +29,10 @@ public class GameBoard extends JPanel{
         this.move = new Move(blocks , this);
         
         this.isGameOver = false;
+        this.reach = false;
 
-        if( playerNumber == 1 ) KB = new Player1KeyBoard( move, this , SB ); 
-        else if( playerNumber == 2) KB = new KeyBoard( move, this , SB );
+        if( playerNumber == 1 ) KB = new Player1KeyBoard( move, this ); 
+        else if( playerNumber == 2) KB = new KeyBoard( move, this );
 
     }
 
@@ -67,6 +69,10 @@ public class GameBoard extends JPanel{
         this.isGameOver = isGameOver;
     }
     
+    public boolean getReach(){
+        return reach;
+    }
+
     private void initBlock(){
         for( int i = 0 ; i<4 ; i++ ){
             for( int j = 0 ; j<4 ; j++){
@@ -103,6 +109,14 @@ public class GameBoard extends JPanel{
     }
 
     private boolean gameOver(){
+        for( int i = 0 ; i<4 ; i++ ){
+            for( int j = 0 ; j<4 ; j++ ){
+                if( blocks[i][j].getValue() == 2048 ){
+                    reach = true;
+                    return true;
+                }
+            }
+        }
         if( !(getEmptyBlock().isEmpty()) ) return false;
         for( int i = 0 ; i<3 ; i++ ){
             for( int j = 0 ; j<3 ; j++ ){
@@ -168,6 +182,7 @@ public class GameBoard extends JPanel{
             }
         }
         SB.setScore( score );
+        SB.repaint();
         if( gameOver() ){
             isGameOver = gameOver();
             drawGameOver(g);

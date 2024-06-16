@@ -6,12 +6,10 @@ import java.awt.event.KeyListener;
 public class KeyBoard implements KeyListener {
     protected Move move ;
     protected GameBoard gameBoard;
-    protected ScoreBoard scoreBoard;
 
-    public KeyBoard( Move move , GameBoard gameBoard , ScoreBoard scoreBoard ){
+    public KeyBoard( Move move , GameBoard gameBoard  ){
         this.move = move;
         this.gameBoard = gameBoard;
-        this.scoreBoard = scoreBoard;
     }
 
 
@@ -24,64 +22,64 @@ public class KeyBoard implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
-        switch (keyCode) {
-            case KeyEvent.VK_UP :
-                move.up();
-                if( move.getCheck() ) gameBoard.createBlocks();
-                break;
-            case KeyEvent.VK_DOWN :
-                move.down();
-                if( move.getCheck() ) gameBoard.createBlocks();
-                break;
-            case KeyEvent.VK_LEFT :
-                move.left();
-                if( move.getCheck() ) gameBoard.createBlocks();
-                break;
-            case KeyEvent.VK_RIGHT :
-                move.right();
-                if( move.getCheck() ) gameBoard.createBlocks();
-                break;
-            default:
-                break;
+        if( gameBoard.getGameOver() == false ){
+            switch (keyCode) {
+                case KeyEvent.VK_UP :
+                    move.up();
+                    if( move.getCheck() ) gameBoard.createBlocks();
+                    break;
+                case KeyEvent.VK_DOWN :
+                    move.down();
+                    if( move.getCheck() ) gameBoard.createBlocks();
+                    break;
+                case KeyEvent.VK_LEFT :
+                    move.left();
+                    if( move.getCheck() ) gameBoard.createBlocks();
+                    break;
+                case KeyEvent.VK_RIGHT :
+                    move.right();
+                    if( move.getCheck() ) gameBoard.createBlocks();
+                    break;
+                default:
+                    break;
+            }
+            gameBoard.repaint();
         }
-        gameBoard.repaint();
-        scoreBoard.setScore(gameBoard.getScore());
-        scoreBoard.repaint();
-        
     }
 
 }
 
 class Player1KeyBoard extends KeyBoard {
     
-    Player1KeyBoard( Move move , GameBoard gameBoard , ScoreBoard scoreBoard ){
-        super(move, gameBoard, scoreBoard);
+    Player1KeyBoard( Move move , GameBoard gameBoard ){
+        super(move, gameBoard);
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
-        switch (keyCode) {
-            case KeyEvent.VK_W :
-                move.up();
-                if( move.getCheck() ) gameBoard.createBlocks();
-                break;
-            case KeyEvent.VK_S :
-                move.down();
-                if( move.getCheck() ) gameBoard.createBlocks();
-                break;
-            case KeyEvent.VK_A :
-                move.left();
-                if( move.getCheck() ) gameBoard.createBlocks();
-                break;
-            case KeyEvent.VK_D :
-                move.right();
-                if( move.getCheck() ) gameBoard.createBlocks();
-                break;
-            default:
-                break;
+        if( gameBoard.getGameOver() == false ){
+            switch (keyCode) {
+                case KeyEvent.VK_W :
+                    move.up();
+                    if( move.getCheck() ) gameBoard.createBlocks();
+                    break;
+                case KeyEvent.VK_S :
+                    move.down();
+                    if( move.getCheck() ) gameBoard.createBlocks();
+                    break;
+                case KeyEvent.VK_A :
+                    move.left();
+                    if( move.getCheck() ) gameBoard.createBlocks();
+                    break;
+                case KeyEvent.VK_D :
+                    move.right();
+                    if( move.getCheck() ) gameBoard.createBlocks();
+                    break;
+                default:
+                    break;
+            }
+            gameBoard.repaint();
         }
-        gameBoard.repaint();
-        scoreBoard.repaint();
     }
 }
