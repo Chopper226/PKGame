@@ -189,7 +189,7 @@
 - 時間內，讓繩結碰到自己那側的螢幕邊緣者獲勝
 - 時間到時，繩節最靠近哪側就該側玩家獲勝
 
-![mine](image\tow.png)
+![mine](image/tow.png)
 
 
 ### Papper Scissors Stone
@@ -208,4 +208,4 @@
 
 - 玩五次後，分數高者獲勝
 
-![mine](image\pss.png)
+![mine](image/pss.png)
