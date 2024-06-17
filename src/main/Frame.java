@@ -49,7 +49,7 @@ public class Frame extends JFrame implements GameOverListener{
         setTitle("PKGame");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        backgroundMusic = new Music("res\\music\\POL-chubby-cat-short.wav"); 
+        backgroundMusic = new Music("/music/POL-chubby-cat-short.wav"); 
         backgroundMusic.play();
 
         interfacePanel = new Interface(this);
