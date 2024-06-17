@@ -1,12 +1,21 @@
 package game.paper_scissors_stone;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+
+import javax.swing.Timer;
+
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
 import main.GameOverListener;
 import main.Panel;
 
 public class GamePanel extends Panel {
-    private static final int WIDTH = 1280, HEIGHT = 720;
     private TimeBoard timeBoard;
     private JLabel player1ChoiceLabel;
     private JLabel player2ChoiceLabel;
@@ -35,7 +44,6 @@ public class GamePanel extends Panel {
     }
 
     private void init(){
-        setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(new Color(255, 244, 228));
         setLayout(null);
     

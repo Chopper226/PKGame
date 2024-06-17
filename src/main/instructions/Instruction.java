@@ -19,6 +19,7 @@ public class Instruction extends Panel{
     private Instruction_ballGame ballGame;
     private Instruction_greedySnake greedySnake;
     private Instruction_minesweeper minesweeper;
+    private Instruction_paper_scissors_stone paper_scissors_stone;
     private Instruction_speedyArrows speedyArrows;
     private Instruction_tug_of_war tug_of_war;
     private Instruction_whackAMole whackAMole;
@@ -34,6 +35,7 @@ public class Instruction extends Panel{
         ballGame = new Instruction_ballGame();
         greedySnake = new Instruction_greedySnake();
         minesweeper = new Instruction_minesweeper();
+        paper_scissors_stone = new Instruction_paper_scissors_stone();
         speedyArrows = new Instruction_speedyArrows();
         tug_of_war = new Instruction_tug_of_war();
         whackAMole = new Instruction_whackAMole();
@@ -43,6 +45,7 @@ public class Instruction extends Panel{
         ballGame.setBounds(0,0,1280,720);
         greedySnake.setBounds(0, 0 , 1280, 720);
         minesweeper.setBounds(0, 0 , 1280, 720);
+        paper_scissors_stone.setBounds(0, 0 , 1280, 720);
         speedyArrows.setBounds(0, 0 , 1280, 720);
         tug_of_war.setBounds(0,0, 1280, 720);
         whackAMole.setBounds(0, 0 , 1280, 720);
@@ -92,7 +95,7 @@ public class Instruction extends Panel{
                 this.add(minesweeper);
                 break;
             case "6":
-                //this.add(speedyArrows);
+                this.add(paper_scissors_stone);
                 break;
             case "7":
                 this.add(speedyArrows);

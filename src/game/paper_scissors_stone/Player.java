@@ -1,7 +1,9 @@
 package game.paper_scissors_stone;
 
-import javax.swing.*;
+
 import java.awt.event.KeyEvent;
+
+import javax.swing.ImageIcon;
 
 public class Player {
     private String player1Choice;
