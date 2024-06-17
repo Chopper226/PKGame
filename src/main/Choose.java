@@ -147,25 +147,14 @@ public class Choose extends Panel {
             g.drawImage(chooseBackground, 0, 0, getWidth(), getHeight(), this);
         }
 
-        for( int i = 0 ; i<version ; i++ ){
-            drawLine(g, i);
-        }
-
         g.dispose();
 	}
 
-    private void drawLine(Graphics2D g , int x ){
-        g.setColor(Color.decode("#8B7D7B"));
-        g.setStroke( new BasicStroke(5) );
-        if( version == 3 ) g.drawLine(315 + x*250, 650, 465+x*250, 650);
-        else if( version == 5 ) g.drawLine(65 + x*250, 650, 215+x*250, 650);
-    }
-
     private void drawText(Graphics g , int x , String text ){
-        g.setColor(Color.DARK_GRAY);
-        g.setFont(new Font("Arial" , Font.BOLD , 100));
-        if( version == 3 )  g.drawString(text , 390 + 250*x - (int)(g.getFontMetrics().stringWidth(text)/2)  , 630);
-        else if( version == 5 )  g.drawString(text , 140 + 250*x - (int)(g.getFontMetrics().stringWidth(text)/2)  , 630);
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial" , Font.BOLD , 80));
+        if( version == 3 )  g.drawString(text , 710 + 70*x - (int)(g.getFontMetrics().stringWidth(text)/2)  , 590);
+        else if( version == 5 )  g.drawString(text , 710+ 70*x - (int)(g.getFontMetrics().stringWidth(text)/2)  , 590);
     }
 
     @Override
@@ -180,10 +169,6 @@ public class Choose extends Panel {
             g.drawImage(chooseBackground, 0, 0, getWidth(), getHeight(), this);
         }
         
-        for( int i = 0 ; i<version ; i++ ){
-            drawLine(g, i);
-        }
-
         for( int i = 0 ; i<level.size() ; i++ ){
             drawText(g, i, level.get(i) );
         }
