@@ -15,8 +15,7 @@ public class Music {
 
     private void loadMusic(String filePath) {
         try {
-            File audioFile = new File(filePath);
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(Music.class.getResource(filePath));
 
             clip = AudioSystem.getClip();
             clip.open(audioStream);
