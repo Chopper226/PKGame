@@ -5,8 +5,6 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import java.awt.Font;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -19,7 +17,6 @@ import java.io.IOException;
 
 
 public class GameOver extends Panel {
-    private Font font = new Font("Arial" , Font.BOLD , 40);
     private JButton switchExitButton;
     private JButton restartButton;
     private String winner;
@@ -31,6 +28,17 @@ public class GameOver extends Panel {
     GameOver(Frame frame){
         initExitButton(frame);
         initRestartButton(frame);
+        loadImages();
+    }
+
+     private void loadImages() {
+        try {
+            player1Background = ImageIO.read(new File("res\\gameOver\\player1win.png"));
+            player2Background = ImageIO.read(new File("res\\gameOver\\player2win.png"));
+            tieBackground = ImageIO.read(new File("res\\gameOver\\tied.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setWinner( String winner ){
@@ -39,11 +47,9 @@ public class GameOver extends Panel {
     }
 
     private void initExitButton(Frame frame){
-        switchExitButton = new JButton("Exit");
-        switchExitButton.setFont( new Font("Arial" , Font.BOLD , 25) );
-        switchExitButton.setForeground(Color.WHITE);
-        switchExitButton.setBackground(Color.GRAY);
-        switchExitButton.setBounds(490, 300, 300, 120);
+        ImageIcon exitcon = new ImageIcon("res\\gameOver\\exit.png");
+        switchExitButton = new JButton(exitcon);
+        switchExitButton.setBounds(505, 500, 326, 98);
         switchExitButton.setFocusPainted(false);
         switchExitButton.setBorder(BorderFactory.createEmptyBorder());
         switchExitButton.setOpaque(true);
@@ -58,11 +64,9 @@ public class GameOver extends Panel {
     }
 
     private void initRestartButton(Frame frame){
-        restartButton = new JButton("Restart");
-        restartButton.setFont( new Font("Arial" , Font.BOLD , 25) );
-        restartButton.setForeground(Color.WHITE);
-        restartButton.setBackground(Color.GRAY);
-        restartButton.setBounds(490, 500, 300, 120);
+        ImageIcon restartcon = new ImageIcon("res\\gameOver\\restart.png");
+        restartButton = new JButton(restartcon);
+        restartButton.setBounds(498, 360, 339, 102);
         restartButton.setFocusPainted(false);
         restartButton.setBorder(BorderFactory.createEmptyBorder());
         restartButton.setOpaque(true);

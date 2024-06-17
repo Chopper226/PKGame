@@ -5,6 +5,8 @@ import main.Frame;
 
 import javax.swing.JButton;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -56,11 +58,9 @@ public class Instruction extends Panel{
     }
     
     private void initStartButton(Frame frame){
-        startButton = new JButton("start");
-        startButton.setFont( new Font("Arial" , Font.BOLD , 25) );
-        startButton.setForeground(Color.WHITE);
-        startButton.setBackground(Color.GRAY);
-        startButton.setBounds(490, 500, 300, 120);
+        ImageIcon starticon = new ImageIcon("res\\instructions\\start.png");
+        startButton = new JButton(starticon);
+        startButton.setBounds(1080, 280, 77, 181);
         startButton.setFocusPainted(false);
         startButton.setBorder(BorderFactory.createEmptyBorder());
         startButton.setOpaque(true);

@@ -1,12 +1,14 @@
 package main;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,12 +19,17 @@ public class ScoreBoard extends Panel{
     private JButton nextButton;
     private int player1;
     private int player2;
+    private Image backgroundImage;
 
     final private int player1X = 200;
     final private int player2X = 840;
 
     ScoreBoard(Frame frame){
         super();
+
+        this.backgroundImage = new ImageIcon("res\\scoreboard\\background.png").getImage();
+
+
         initNextButton(frame);
     }
 
@@ -49,11 +56,9 @@ public class ScoreBoard extends Panel{
     }
 
     private void initNextButton(Frame frame){
-        nextButton = new JButton("next");
-        nextButton.setFont( new Font("Arial" , Font.BOLD , 25) );
-        nextButton.setForeground(Color.WHITE);
-        nextButton.setBackground(Color.GRAY);
-        nextButton.setBounds(490, 500, 300, 120);
+        ImageIcon nexticon = new ImageIcon("res\\scoreboard\\next.png");
+        nextButton = new JButton(nexticon);
+        nextButton.setBounds(610, 470, 266, 150);
         nextButton.setFocusPainted(false);
         nextButton.setBorder(BorderFactory.createEmptyBorder());
         nextButton.setOpaque(true);
@@ -85,41 +90,28 @@ public class ScoreBoard extends Panel{
 		g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         g.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_NORMALIZE);
 
-        drawPlayer1Text(g);
-        drawPlayer1Score(g);
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this); 
+        }
 
-        drawPlayer2Text(g);
+        drawPlayer1Score(g);
         drawPlayer2Score(g);
 
         g.dispose();
 	}
     
-    private void drawPlayer1Text(Graphics g){
-        String text = "Player 1   Score" ;
-        g.setFont(font);
-        g.setColor(Color.BLACK);
-        g.drawString(text , player1X + 350/2 - (int)(g.getFontMetrics().stringWidth(text)/2) , 300 );
-    }
-
     private void drawPlayer1Score(Graphics g){
         String text = String.valueOf(player1);
         g.setFont(numFont);
         g.setColor(Color.BLACK);
-        g.drawString(text , player1X + 350/2 - (int)(g.getFontMetrics().stringWidth(text)/2) , 400 );
-    }
-    
-    private void drawPlayer2Text(Graphics g){
-        String text = "Player 2   Score" ;
-        g.setFont(font);
-        g.setColor(Color.BLACK);
-        g.drawString(text , player2X + 350/2 - (int)(g.getFontMetrics().stringWidth(text)/2) , 300 );
+        g.drawString(text ,500, 400 );
     }
 
     private void drawPlayer2Score(Graphics g){
         String text = String.valueOf(player2);
         g.setFont(numFont);
         g.setColor(Color.BLACK);
-        g.drawString(text , player2X + 350/2 - (int)(g.getFontMetrics().stringWidth(text)/2) , 400 );
+        g.drawString(text , 900, 400 );
     }
 
     @Override
