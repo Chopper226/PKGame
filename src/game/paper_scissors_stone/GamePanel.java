@@ -2,8 +2,10 @@ package game.paper_scissors_stone;
 
 import javax.swing.*;
 import java.awt.*;
+import main.GameOverListener;
+import main.Panel;
 
-public class GamePanel extends JPanel {
+public class GamePanel extends Panel {
     private static final int WIDTH = 1280, HEIGHT = 720;
     private TimeBoard timeBoard;
     private JLabel player1ChoiceLabel;
@@ -13,8 +15,26 @@ public class GamePanel extends JPanel {
     private Timer imageTimer;
     private int roundCount = 0;
     private final int totalRounds = 5;
+    private GameOverListener gameOverListener;
+    private boolean start;
+    private String winner;
 
     public GamePanel() {
+        super();
+        
+        this.start = false;
+    }
+
+    public void setStart( boolean start ){
+        this.start = start;
+        if( start ) init();
+    }
+
+    public void setGameOverListener(GameOverListener listener) {
+        this.gameOverListener = listener;
+    }
+
+    private void init(){
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(new Color(255, 244, 228));
         setLayout(null);
@@ -47,7 +67,7 @@ public class GamePanel extends JPanel {
         imageTimer.setRepeats(false);
     
         startNewRound();
-    }
+        }
     
     @Override
     protected void paintComponent(Graphics g) {
@@ -83,7 +103,6 @@ public class GamePanel extends JPanel {
     }
     
     public void displayResult(String result, String player1, String player2) {
-        System.out.println(result);
         scoreBoard.updateScores(result);
         repaint();
     }
@@ -94,5 +113,6 @@ public class GamePanel extends JPanel {
     }
     
     public void endGame() {
+        gameOverListener.GameOver(winner);
     }
 }    

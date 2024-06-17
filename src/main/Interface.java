@@ -17,11 +17,7 @@ public class Interface extends Panel {
     public Interface(Frame frame) {
         super();
 
-<<<<<<< HEAD
         this.backgroundImage = new ImageIcon(Interface.class.getResource("/interface/StartBackground.png")).getImage();
-=======
-        this.backgroundImage = new ImageIcon(Interface.class.getResource("/interface/ss.png")).getImage();
->>>>>>> 4582a215209e425aa9c44722194c9bc5dc1f77e2
         this.frame = frame;
 
         init2v3Button();

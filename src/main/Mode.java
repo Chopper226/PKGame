@@ -33,7 +33,7 @@ public class Mode extends Panel {
     private void initRandomButton(Frame frame){
         ImageIcon randomIcon = new ImageIcon("res\\mode\\JButton_Random.png");
         randomButton= new JButton(randomIcon);
-        randomButton.setBounds(450, 380, 200, 83);
+        randomButton.setBounds(750, 324, 339, 159);
         randomButton.setFocusPainted(false);
         randomButton.setBorder(BorderFactory.createEmptyBorder());
         randomButton.setOpaque(true);
@@ -51,7 +51,7 @@ public class Mode extends Panel {
     private void initChooseButton(Frame frame){
         ImageIcon customizeIcon = new ImageIcon("res\\mode\\JButton_Customize.png");
         chooseButton= new JButton(customizeIcon);
-        chooseButton.setBounds(640, 380, 190, 83);
+        chooseButton.setBounds(370, 330, 338, 147);
         chooseButton.setFocusPainted(false);
         chooseButton.setBorder(BorderFactory.createEmptyBorder());
         chooseButton.setOpaque(true);
@@ -69,7 +69,7 @@ public class Mode extends Panel {
     private void initBackButton(Frame frame){
         ImageIcon backIcon = new ImageIcon("res\\mode\\JButton_Back.png");
         backButton= new JButton(backIcon);
-        backButton.setBounds(10, 416, 221, 216);
+        backButton.setBounds(640, 520, 188, 92);
         backButton.setFocusPainted(false);
         backButton.setBorder(BorderFactory.createEmptyBorder());
         backButton.setOpaque(true);
