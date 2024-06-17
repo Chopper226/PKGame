@@ -52,7 +52,7 @@ public class Interface extends Panel {
     }
 
     private void init3v5Button(Frame frame){
-        ImageIcon icon3v5 = new ImageIcon("res\\interface\\JButton_BestTwoOutOfThree.png");
+        ImageIcon icon3v5 = new ImageIcon("res\\interface\\JButton_BestThreeOutOfFive.png");
         switch3v5Button = new JButton(icon3v5);
         switch3v5Button.setBounds(590, 330, 558, 84);
         switch3v5Button.setFocusPainted(false);

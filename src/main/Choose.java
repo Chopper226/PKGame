@@ -66,11 +66,9 @@ public class Choose extends Panel {
     }
 
     private void initBackButton(Frame frame){
-        backButton = new JButton("Back");
-        backButton.setFont( new Font("Arial" , Font.BOLD , 25) );
-        backButton.setForeground(Color.WHITE);
-        backButton.setBackground(Color.GRAY);
-        backButton.setBounds(20, 500, 200, 100);
+        ImageIcon backicon = new ImageIcon("res\\choose\\back.png");
+        backButton = new JButton(backicon);
+        backButton.setBounds(195, 380, 153, 98);
         backButton.setFocusPainted(false);
         backButton.setBorder(BorderFactory.createEmptyBorder());
         backButton.setOpaque(true);
