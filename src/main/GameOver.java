@@ -1,5 +1,6 @@
 package main;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
@@ -7,24 +8,40 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 
 
 public class GameOver extends Panel {
-    private Font font = new Font("Arial" , Font.BOLD , 40);
     private Frame frame;
     private JButton switchExitButton;
     private JButton restartButton;
     private String winner;
 
+    private Image player1Background;
+    private Image player2Background;
+    private Image tieBackground;
 
     GameOver(Frame frame){
         this.frame = frame;
         initExitButton();
         initRestartButton();
+        loadImages();
+    }
+
+    private void loadImages() {
+        try {
+            player1Background = ImageIO.read(new File("res\\gameOver\\player1win.png"));
+            player2Background = ImageIO.read(new File("res\\gameOver\\player1win.png"));
+            tieBackground = ImageIO.read(new File("res\\gameOver\\player1win.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setWinner( String winner ){
@@ -80,23 +97,26 @@ public class GameOver extends Panel {
 		g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         g.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_NORMALIZE);
 
-        g.dispose();
+        if (winner != null) {
+            switch (winner) {
+                case "Player 1":
+                    g.drawImage(player1Background, 0, 0, getWidth(), getHeight(), this);
+                    break;
+                case "Player 2":
+                    g.drawImage(player2Background, 0, 0, getWidth(), getHeight(), this);
+                    break;
+                case "Tie":
+                    g.drawImage(tieBackground, 0, 0, getWidth(), getHeight(), this);
+                    break;
+                default:
+                    g.drawImage(tieBackground, 0, 0, getWidth(), getHeight(), this);
+                    break;
+            }
+        }
+        drawWinner(g);
 	}
 
     private void drawWinner(Graphics g){
-        g.setFont(font);
-        g.setColor(Color.BLACK);
-        g.drawString(winner ,640 , 200 );
-    }
-
-
-    @Override
-    public void paint(Graphics g){
-        super.paint(g);
-
-        drawWinner(g);
-        switchExitButton.repaint();
-        restartButton.repaint();
     }
 }
 

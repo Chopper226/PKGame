@@ -28,8 +28,7 @@ public class Setting extends Panel {
     public Setting(Frame frame, Music backgroundMusic) {
         super();
         this.backgroundMusic = backgroundMusic;
-        this.backgroundImage = new ImageIcon("res\\SettingPanel\\SettingBackground.png").getImage(); 
-        setLayout(null);
+        this.backgroundImage = new ImageIcon(Setting.class.getResource("/SettingPanel/SettingBackground.png")).getImage(); 
 
         initBackButton(frame);
         initVolumeSlider();
@@ -43,9 +42,9 @@ public class Setting extends Panel {
 
 
     private void initBackButton(Frame frame) {
-        ImageIcon backIcon = new ImageIcon("res\\SettingPanel\\JButton_Back.png");
+        ImageIcon backIcon = new ImageIcon(Setting.class.getResource("/SettingPanel/JButton_Back.png"));
         backButton= new JButton(backIcon);
-        backButton.setBounds(548, 510, 185,78);
+        backButton.setBounds(415, 380, 320,131);
         backButton.setFocusPainted(false);
         backButton.setBorder(BorderFactory.createEmptyBorder());
         backButton.setOpaque(true);
@@ -59,9 +58,9 @@ public class Setting extends Panel {
         });
     }
     private void initGitHubButton() {
-    ImageIcon GitHubIcon = new ImageIcon("res\\SettingPanel\\JButton _Github.png");
+    ImageIcon GitHubIcon = new ImageIcon(Setting.class.getResource("/SettingPanel/JButton_Github.png"));
     githubButton = new JButton(GitHubIcon);
-    githubButton.setBounds(555, 420, 171, 81);
+    githubButton.setBounds(750, 380, 318, 132);
     githubButton.setFocusPainted(false);
     githubButton.setBorder(BorderFactory.createEmptyBorder());
     githubButton.setOpaque(true);
@@ -87,14 +86,14 @@ public class Setting extends Panel {
 
     private void initVolumeSlider() {
         volumeSlider = new JSlider(JSlider.HORIZONTAL, 0, 100, 50);
-        volumeSlider.setBounds(350, 300, 580, 60);
+        volumeSlider.setBounds(450, 280, 580, 60);
         volumeSlider.setMajorTickSpacing(10);
         volumeSlider.setMinorTickSpacing(1);
         volumeSlider.setPaintTicks(true);
         volumeSlider.setPaintLabels(true);
-        volumeSlider.setFont(new Font("Arial", Font.PLAIN, 15));
-        volumeSlider.setForeground(Color.BLACK); 
-        volumeSlider.setBackground(new Color(225, 213, 253));
+        volumeSlider.setFont(new Font("Arial", Font.PLAIN, 18));
+        volumeSlider.setForeground(new Color(32, 94, 148)); 
+        volumeSlider.setBackground(new Color(236, 215, 197 ));
         this.add(volumeSlider);
     
         volumeSlider.addChangeListener(new ChangeListener() {

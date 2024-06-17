@@ -14,7 +14,7 @@ public class CountDown2 extends Panel{
     private Image backgroundImage;
 
     public CountDown2() {
-        this.backgroundImage = new ImageIcon("res\\countdown\\two.png").getImage(); 
+        this.backgroundImage = new ImageIcon(CountDown2.class.getResource("/countdown/two.png")).getImage(); 
     }
 
     public void paintComponent(Graphics g2) {

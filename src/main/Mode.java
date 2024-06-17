@@ -3,10 +3,8 @@ package main;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,9 +17,8 @@ public class Mode extends Panel {
     Mode( Frame frame ){
         super();
 
-        this.backgroundImage = new ImageIcon("res\\mode\\ModeBackground.png").getImage();
-        setLayout(null);
-
+        this.backgroundImage = new ImageIcon(Mode.class.getResource("/mode/ModeBackground.png")).getImage();
+        
         initRandomButton(frame);
         initChooseButton(frame);
         initBackButton(frame);  

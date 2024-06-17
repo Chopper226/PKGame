@@ -17,10 +17,8 @@ public class Interface extends Panel {
     public Interface(Frame frame) {
         super();
 
-        this.backgroundImage = new ImageIcon(Interface.class.getResource("/interface/ss.png")).getImage();
+        this.backgroundImage = new ImageIcon(Interface.class.getResource("/interface/StartBackground.png")).getImage();
         this.frame = frame;
-
-        setLayout(null);
 
         init2v3Button();
         init3v5Button();
@@ -36,9 +34,9 @@ public class Interface extends Panel {
     }
 
     private void init2v3Button(){
-        ImageIcon icon2v3 = new ImageIcon("res\\interface\\JButton_BestTwoOutOfThree.png");
+        ImageIcon icon2v3 = new ImageIcon(Interface.class.getResource("/interface/JButton_BestTwoOutOfThree.png"));
         switch2v3Button = new JButton(icon2v3);
-        switch2v3Button.setBounds(400, 310, 480, 91);
+        switch2v3Button.setBounds(590, 230, 558, 83);
         switch2v3Button.setFocusPainted(false);
         switch2v3Button.setBorder(BorderFactory.createEmptyBorder());
         switch2v3Button.setOpaque(true);
@@ -54,9 +52,9 @@ public class Interface extends Panel {
     }
 
     private void init3v5Button(){
-        ImageIcon icon3v5 = new ImageIcon("res\\interface\\JButton_BestTwoOutOfThree.png");
+        ImageIcon icon3v5 = new ImageIcon(Interface.class.getResource("/interface/JButton_BestThreeOutOfFive.png"));
         switch3v5Button = new JButton(icon3v5);
-        switch3v5Button.setBounds(409, 410, 462, 81);
+        switch3v5Button.setBounds(590, 330, 558, 84);
         switch3v5Button.setFocusPainted(false);
         switch3v5Button.setBorder(BorderFactory.createEmptyBorder());
         switch3v5Button.setOpaque(true);
@@ -72,9 +70,9 @@ public class Interface extends Panel {
     }
 
     private void initSettingButton(){
-        ImageIcon settingIcon = new ImageIcon("res\\interface\\JButton_Setting.png");
+        ImageIcon settingIcon = new ImageIcon(Interface.class.getResource("/interface/JButton_Setting.png"));
         settingButton = new JButton(settingIcon);
-        settingButton.setBounds(400, 510, 472, 78);
+        settingButton.setBounds(590, 430, 558, 84);
         settingButton.setFocusPainted(false);
         settingButton.setBorder(BorderFactory.createEmptyBorder());
         settingButton.setOpaque(true);

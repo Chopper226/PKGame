@@ -13,7 +13,7 @@ public class CountDown3 extends Panel{
     private Image backgroundImage;
 
     public CountDown3() {
-        this.backgroundImage = new ImageIcon("res\\countdown\\three.png").getImage(); 
+        this.backgroundImage = new ImageIcon(CountDown3.class.getResource("/countdown/three.png")).getImage(); 
     }
     
     public void paintComponent(Graphics g2) {
