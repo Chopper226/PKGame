@@ -127,7 +127,7 @@ public class Choose extends Panel {
     }
 
     private void inputDeleteNum(){
-        if( level.size() >0 ) level.remove(level.size()-1);
+        if( mode.equals("Choose") && level.size() >0 ) level.remove(level.size()-1);
     }
 
     public void paintComponent(Graphics g2) {
