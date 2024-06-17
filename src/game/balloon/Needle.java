@@ -1,3 +1,5 @@
+package game.balloon;
+
 import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.Timer;
@@ -32,7 +34,7 @@ public class Needle {
 
     private void resetPosition() {
         y = originalY;
-        timer.stop(); // °±¤î©w?¾¹
+        timer.stop();
     }
 
     public void draw(Graphics2D g2d) {
