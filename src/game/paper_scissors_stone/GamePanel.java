@@ -24,6 +24,7 @@ public class GamePanel extends Panel {
     private Timer imageTimer;
     private int roundCount = 0;
     private final int totalRounds = 5;
+    private boolean gameRunning = true;
     private GameOverListener gameOverListener;
     private boolean start;
     private String winner;
@@ -86,6 +87,10 @@ public class GamePanel extends Panel {
         g2d.setColor(new Color(111, 94, 75));
         g2d.setStroke(new BasicStroke(3));
         g2d.drawLine(639, 230, 639, 690);
+
+        if(!gameRunning) {
+            drawGameOver(g2d);
+        }
     
         g2d.dispose();
     }
@@ -120,7 +125,27 @@ public class GamePanel extends Panel {
         timeBoard.startCountdown();
     }
     
+    private void drawGameOver(Graphics g) {
+        String text = "Game Over!";
+        int width = getWidth();
+        int height = getHeight();
+    
+        g.setColor(new Color(255, 255, 255, 120));
+        g.fillRect(0, 0, width, height);
+        
+        g.setColor(Color.decode("#EE6A50"));
+        g.setFont(new Font("Arial", Font.BOLD, 50));
+        
+        int textWidth = g.getFontMetrics().stringWidth(text);
+        int x = (width - textWidth) / 2;
+        int y = height / 2;
+    
+        g.drawString(text, x, y);
+    }
+
     public void endGame() {
+        gameRunning = false;
+        repaint();
         gameOverListener.GameOver(winner);
     }
 }    

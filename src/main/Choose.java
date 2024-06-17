@@ -1,6 +1,7 @@
 package main;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.Timer;
 
@@ -9,6 +10,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +27,8 @@ public class Choose extends Panel {
     private int index;
     private KeyBoard keyBoard;
     private JButton backButton;
+    private Image randomBackground;
+    private Image chooseBackground;
 
     Choose( Frame frame ){
         super();
@@ -33,6 +37,13 @@ public class Choose extends Panel {
         this.addKeyListener(keyBoard);
         this.setFocusable(true);
         initBackButton(frame);
+        loadBackgroundImages();
+    }
+
+    private void loadBackgroundImages() {
+        randomBackground = new ImageIcon("res\\choose\\random.png").getImage();
+        chooseBackground = new ImageIcon("res\\choose\\custom.png").getImage();
+ 
     }
 
     public void resetSetting(){
@@ -130,6 +141,12 @@ public class Choose extends Panel {
 		g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         g.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_NORMALIZE);
 
+        if (mode.equals("Random")) {
+            g.drawImage(randomBackground, 0, 0, getWidth(), getHeight(), this);
+        } else if (mode.equals("Choose")) {
+            g.drawImage(chooseBackground, 0, 0, getWidth(), getHeight(), this);
+        }
+
         for( int i = 0 ; i<version ; i++ ){
             drawLine(g, i);
         }
@@ -157,6 +174,12 @@ public class Choose extends Panel {
 
         super.paint(g);
 
+        if (mode.equals("Random")) {
+            g.drawImage(randomBackground, 0, 0, getWidth(), getHeight(), this);
+        } else if (mode.equals("Choose")) {
+            g.drawImage(chooseBackground, 0, 0, getWidth(), getHeight(), this);
+        }
+        
         for( int i = 0 ; i<version ; i++ ){
             drawLine(g, i);
         }
