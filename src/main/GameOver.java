@@ -15,16 +15,14 @@ import java.awt.event.ActionListener;
 
 public class GameOver extends Panel {
     private Font font = new Font("Arial" , Font.BOLD , 40);
-    private Frame frame;
     private JButton switchExitButton;
     private JButton restartButton;
     private String winner;
 
 
     GameOver(Frame frame){
-        this.frame = frame;
-        initExitButton();
-        initRestartButton();
+        initExitButton(frame);
+        initRestartButton(frame);
     }
 
     public void setWinner( String winner ){
@@ -32,7 +30,7 @@ public class GameOver extends Panel {
         repaint();
     }
 
-    private void initExitButton(){
+    private void initExitButton(Frame frame){
         switchExitButton = new JButton("Exit");
         switchExitButton.setFont( new Font("Arial" , Font.BOLD , 25) );
         switchExitButton.setForeground(Color.WHITE);
@@ -51,7 +49,7 @@ public class GameOver extends Panel {
         });
     }
 
-    private void initRestartButton(){
+    private void initRestartButton(Frame frame){
         restartButton = new JButton("Restart");
         restartButton.setFont( new Font("Arial" , Font.BOLD , 25) );
         restartButton.setForeground(Color.WHITE);

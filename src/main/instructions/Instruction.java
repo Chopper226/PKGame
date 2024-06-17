@@ -11,7 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Instruction extends Panel{
-    private Frame frame;
     private JButton startButton;
 
     private Instruction_1A2B _1A2B;
@@ -26,8 +25,7 @@ public class Instruction extends Panel{
     
 
     public Instruction(Frame frame){
-        this.frame = frame;
-        initStartButton();
+        initStartButton(frame);
 
         _1A2B = new Instruction_1A2B();
         _2048 = new Instruction_2048();
@@ -54,7 +52,7 @@ public class Instruction extends Panel{
         startButton.repaint();
     }
     
-    private void initStartButton(){
+    private void initStartButton(Frame frame){
         startButton = new JButton("start");
         startButton.setFont( new Font("Arial" , Font.BOLD , 25) );
         startButton.setForeground(Color.WHITE);
