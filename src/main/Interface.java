@@ -17,7 +17,7 @@ public class Interface extends Panel {
     public Interface(Frame frame) {
         super();
 
-        this.backgroundImage = new ImageIcon("res\\interface\\ss.png").getImage();
+        this.backgroundImage = new ImageIcon(Interface.class.getResource("/interface/ss.png")).getImage();
         this.frame = frame;
 
         setLayout(null);

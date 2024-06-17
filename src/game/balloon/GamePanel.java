@@ -1,3 +1,4 @@
+package game.balloon;
 import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -44,7 +45,7 @@ public class GamePanel extends JPanel {
             e.printStackTrace();
         }
         
-        balloon = new Balloon(); // ªì©l¤ÆÉa²y?¶H
+        balloon = new Balloon(); // ï¿½ï¿½lï¿½ï¿½ï¿½aï¿½y?ï¿½H
         addKeyListener(new KeyHandler(needles, this));
     }
 
@@ -60,9 +61,9 @@ public class GamePanel extends JPanel {
             needle.draw(g2d);
         }
 
-        balloon.drawPink(g2d, 100, 100); // ?¨î¯»¦âÉa²y
-        balloon.drawYellow(g2d, 300, 100); // ?¨î?¦âÉa²y
-        balloon.drawGreen(g2d, 500, 100); // ?¨î?¦âÉa²y
+        balloon.drawPink(g2d, 100, 100); // ?ï¿½î¯»ï¿½ï¿½ï¿½aï¿½y
+        balloon.drawYellow(g2d, 300, 100); // ?ï¿½ï¿½?ï¿½ï¿½ï¿½aï¿½y
+        balloon.drawGreen(g2d, 500, 100); // ?ï¿½ï¿½?ï¿½ï¿½ï¿½aï¿½y
 
         
     }
