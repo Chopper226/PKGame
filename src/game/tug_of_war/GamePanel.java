@@ -120,7 +120,7 @@ public class GamePanel extends Panel {
     } else {
         timeboard.paintComponent(g2d); 
     }
-}
+    }
 
 
     private void drawGameOver(Graphics g) {

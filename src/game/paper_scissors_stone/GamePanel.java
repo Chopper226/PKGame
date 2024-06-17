@@ -145,7 +145,13 @@ public class GamePanel extends Panel {
 
     public void endGame() {
         gameRunning = false;
-        repaint();
+        if(scoreBoard.player1Score>scoreBoard.player2Score){
+            winner="Player1";
+        }else if(scoreBoard.player2Score>scoreBoard.player1Score){
+            winner="Player2";
+        }else if(scoreBoard.player2Score==scoreBoard.player1Score){
+            winner="Tie";
+        }
         gameOverListener.GameOver(winner);
     }
 }    

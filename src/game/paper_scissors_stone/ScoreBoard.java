@@ -9,8 +9,8 @@ import java.awt.RenderingHints;
 import javax.swing.JPanel;
 
 public class ScoreBoard extends JPanel {
-    private double player1Score = 0;
-    private double player2Score = 0;
+    public double player1Score = 0;
+    public double player2Score = 0;
 
     public ScoreBoard() {
         setOpaque(false);

@@ -38,7 +38,7 @@ public class Player {
             case "scissors":
                 return new ImageIcon("res\\paper_scissors_stone\\scissors.png");
             case "stone":
-                return new ImageIcon("res\\paper_scissors_stone\\scissors.png");
+                return new ImageIcon("res\\paper_scissors_stone\\stone.png");
             case "paper":
                 return new ImageIcon("res\\paper_scissors_stone\\paper.png");
             default:
@@ -75,7 +75,7 @@ public class Player {
             case "scissors":
                 return new ImageIcon("res\\paper_scissors_stone\\scissors.png");
             case "stone":
-                return new ImageIcon("res\\paper_scissors_stone\\scissors.png");
+                return new ImageIcon("res\\paper_scissors_stone\\stone.png");
             case "paper":
                 return new ImageIcon("res\\paper_scissors_stone\\paper.png");
             default:
