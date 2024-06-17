@@ -5,6 +5,8 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import java.awt.Font;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -17,7 +19,7 @@ import java.io.IOException;
 
 
 public class GameOver extends Panel {
-    private Frame frame;
+    private Font font = new Font("Arial" , Font.BOLD , 40);
     private JButton switchExitButton;
     private JButton restartButton;
     private String winner;
@@ -27,20 +29,8 @@ public class GameOver extends Panel {
     private Image tieBackground;
 
     GameOver(Frame frame){
-        this.frame = frame;
-        initExitButton();
-        initRestartButton();
-        loadImages();
-    }
-
-    private void loadImages() {
-        try {
-            player1Background = ImageIO.read(new File("res\\gameOver\\player1win.png"));
-            player2Background = ImageIO.read(new File("res\\gameOver\\player2win.png"));
-            tieBackground = ImageIO.read(new File("res\\gameOver\\tied.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        initExitButton(frame);
+        initRestartButton(frame);
     }
 
     public void setWinner( String winner ){
@@ -48,10 +38,12 @@ public class GameOver extends Panel {
         repaint();
     }
 
-    private void initExitButton(){
-        ImageIcon exiticon = new ImageIcon(Interface.class.getResource("/gameOver/exit.png"));
-        switchExitButton = new JButton(exiticon);
-        switchExitButton.setBounds(520, 500, 326, 98);
+    private void initExitButton(Frame frame){
+        switchExitButton = new JButton("Exit");
+        switchExitButton.setFont( new Font("Arial" , Font.BOLD , 25) );
+        switchExitButton.setForeground(Color.WHITE);
+        switchExitButton.setBackground(Color.GRAY);
+        switchExitButton.setBounds(490, 300, 300, 120);
         switchExitButton.setFocusPainted(false);
         switchExitButton.setBorder(BorderFactory.createEmptyBorder());
         switchExitButton.setOpaque(true);
@@ -65,10 +57,12 @@ public class GameOver extends Panel {
         });
     }
 
-    private void initRestartButton(){
-        ImageIcon restarticon = new ImageIcon(Interface.class.getResource("/gameOver/restart.png"));
-        restartButton = new JButton(restarticon);
-        restartButton.setBounds(510, 360, 339, 102);
+    private void initRestartButton(Frame frame){
+        restartButton = new JButton("Restart");
+        restartButton.setFont( new Font("Arial" , Font.BOLD , 25) );
+        restartButton.setForeground(Color.WHITE);
+        restartButton.setBackground(Color.GRAY);
+        restartButton.setBounds(490, 500, 300, 120);
         restartButton.setFocusPainted(false);
         restartButton.setBorder(BorderFactory.createEmptyBorder());
         restartButton.setOpaque(true);

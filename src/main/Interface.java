@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Interface extends Panel {
-    private Frame frame;
     private JButton switch2v3Button;
     private JButton switch3v5Button;
     private JButton settingButton;
@@ -17,12 +16,13 @@ public class Interface extends Panel {
     public Interface(Frame frame) {
         super();
 
-        this.backgroundImage = new ImageIcon(Interface.class.getResource("/interface/StartBackground.png")).getImage();
-        this.frame = frame;
+        this.backgroundImage = new ImageIcon("res\\interface\\ss.png").getImage();
 
-        init2v3Button();
-        init3v5Button();
-        initSettingButton();  
+        setLayout(null);
+
+        init2v3Button(frame);
+        init3v5Button(frame);
+        initSettingButton(frame);  
 
     }
 
@@ -33,8 +33,8 @@ public class Interface extends Panel {
         }
     }
 
-    private void init2v3Button(){
-        ImageIcon icon2v3 = new ImageIcon(Interface.class.getResource("/interface/JButton_BestTwoOutOfThree.png"));
+    private void init2v3Button(Frame frame){
+        ImageIcon icon2v3 = new ImageIcon("res\\interface\\JButton_BestTwoOutOfThree.png");
         switch2v3Button = new JButton(icon2v3);
         switch2v3Button.setBounds(590, 230, 558, 83);
         switch2v3Button.setFocusPainted(false);
@@ -51,8 +51,8 @@ public class Interface extends Panel {
         });
     }
 
-    private void init3v5Button(){
-        ImageIcon icon3v5 = new ImageIcon(Interface.class.getResource("/interface/JButton_BestThreeOutOfFive.png"));
+    private void init3v5Button(Frame frame){
+        ImageIcon icon3v5 = new ImageIcon("res\\interface\\JButton_BestTwoOutOfThree.png");
         switch3v5Button = new JButton(icon3v5);
         switch3v5Button.setBounds(590, 330, 558, 84);
         switch3v5Button.setFocusPainted(false);
@@ -69,8 +69,8 @@ public class Interface extends Panel {
         });
     }
 
-    private void initSettingButton(){
-        ImageIcon settingIcon = new ImageIcon(Interface.class.getResource("/interface/JButton_Setting.png"));
+    private void initSettingButton(Frame frame){
+        ImageIcon settingIcon = new ImageIcon("res\\interface\\JButton_Setting.png");
         settingButton = new JButton(settingIcon);
         settingButton.setBounds(590, 430, 558, 84);
         settingButton.setFocusPainted(false);
