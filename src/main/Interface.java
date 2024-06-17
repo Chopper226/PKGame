@@ -18,8 +18,6 @@ public class Interface extends Panel {
 
         this.backgroundImage = new ImageIcon("res\\interface\\ss.png").getImage();
 
-        setLayout(null);
-
         init2v3Button(frame);
         init3v5Button(frame);
         initSettingButton(frame);  
