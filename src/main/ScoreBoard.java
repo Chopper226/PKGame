@@ -12,7 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ScoreBoard extends Panel{
-    private Frame frame;
     private Font font = new Font("Arial" , Font.BOLD , 40);
     private Font numFont = new Font("Arial" , Font.BOLD , 55);
     private JButton nextButton;
@@ -24,8 +23,7 @@ public class ScoreBoard extends Panel{
 
     ScoreBoard(Frame frame){
         super();
-        this.frame = frame;
-        initNextButton();
+        initNextButton(frame);
     }
 
     public void setPlayer1( int player1 ){
@@ -50,7 +48,7 @@ public class ScoreBoard extends Panel{
         repaint();
     }
 
-    private void initNextButton(){
+    private void initNextButton(Frame frame){
         nextButton = new JButton("next");
         nextButton.setFont( new Font("Arial" , Font.BOLD , 25) );
         nextButton.setForeground(Color.WHITE);
