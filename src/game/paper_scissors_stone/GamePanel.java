@@ -152,6 +152,8 @@ public class GamePanel extends Panel {
         }else if(scoreBoard.player2Score==scoreBoard.player1Score){
             winner="Tie";
         }
+        start = false;
+        removeAll();
         gameOverListener.GameOver(winner);
     }
 }    
