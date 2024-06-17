@@ -9,10 +9,10 @@ import java.awt.event.KeyListener;
 
 public class BallGame extends JPanel implements ActionListener, KeyListener {
     private final int WIDTH = 1280, HEIGHT = 720; 
-    private final int PLAYER_WIDTH = 25, PLAYER_HEIGHT = 85;  //ªO¤lªº¤j¤p
-    private final int BALL_SIZE = 25;  //²yªº¤j¤p
-    private int player1X = 50, player1Y = HEIGHT / 2 - PLAYER_HEIGHT / 2;  //¥ªÃäªO¤l¦ì¸m
-    private int player2X = WIDTH - 50-PLAYER_WIDTH, player2Y = HEIGHT / 2 - PLAYER_HEIGHT / 2;  //¥kÃäªO¤l¦ì¸m
+    private final int PLAYER_WIDTH = 25, PLAYER_HEIGHT = 85;  //æ¿å­çš„å¤§å°
+    private final int BALL_SIZE = 25;  //çƒçš„å¤§å°
+    private int player1X = 50, player1Y = HEIGHT / 2 - PLAYER_HEIGHT / 2;  //å·¦é‚Šæ¿å­ä½ç½®
+    private int player2X = WIDTH - 50-PLAYER_WIDTH, player2Y = HEIGHT / 2 - PLAYER_HEIGHT / 2;  //å³é‚Šæ¿å­ä½ç½®
     private int ballX = WIDTH / 2 - BALL_SIZE / 2, ballY = HEIGHT / 2 - BALL_SIZE / 2;
     private int ballDX = 3, ballDY = 3;
     private boolean up1 = false, down1 = false, up2 = false, down2 = false;
@@ -21,7 +21,7 @@ public class BallGame extends JPanel implements ActionListener, KeyListener {
     public BallGame() {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(Color.WHITE);
-        setFocusable(true);  //ÅıPanel±µ¨üÁä½L¿é¤J
+        setFocusable(true);  //è®“Panelæ¥å—éµç›¤è¼¸å…¥
         addKeyListener(this);
         timer = new Timer(10, this);
         timer.start();
@@ -31,7 +31,7 @@ public class BallGame extends JPanel implements ActionListener, KeyListener {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);  //®ø°£¿÷¾¦
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);  //æ¶ˆé™¤é‹¸é½’
         g2d.setColor(Color.BLUE);
         g2d.fillRect(player1X, player1Y, PLAYER_WIDTH, PLAYER_HEIGHT);
         g2d.setColor(Color.GREEN);

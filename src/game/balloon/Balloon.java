@@ -1,3 +1,4 @@
+package game.balloon;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -19,7 +20,7 @@ public class Balloon{
             int scaledHeight = (int) (originalHeight * 0.4);
             pink_scaledImage = pink_originalImage.getScaledInstance(scaledWidth, scaledHeight, Image.SCALE_SMOOTH);
             
-            // ?¨ú¨ä¥L?Ïú?¦âªºÉa²y?¤ù¦}?©ñ
+            // ?ï¿½ï¿½ï¿½ï¿½L?ï¿½ï¿½?ï¿½âªºï¿½aï¿½y?ï¿½ï¿½ï¿½}?ï¿½ï¿½
             File yellow_balloon_ImageFile = new File("yellow_balloon.png");
             BufferedImage yellow_originalImage = ImageIO.read(yellow_balloon_ImageFile);
             yellow_scaledImage = yellow_originalImage.getScaledInstance(scaledWidth, scaledHeight, Image.SCALE_SMOOTH);
