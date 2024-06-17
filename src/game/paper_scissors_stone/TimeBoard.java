@@ -1,9 +1,15 @@
 package game.paper_scissors_stone;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.Timer;
+
+import javax.swing.JPanel;
 
 public class TimeBoard extends JPanel {
     private int circlesRemaining = 3;
