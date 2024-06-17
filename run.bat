@@ -9,12 +9,12 @@ if not exist out (
 
 REM Compile all Java files in the src directory
 echo Compiling Java files...
+setlocal enabledelayedexpansion
+set sources=
 for /r src %%f in (*.java) do (
-    if not exist "out\%%~p" (
-        mkdir "out\%%~p"
-    )
-    javac -d out "%%f"
+    set sources=!sources! "%%f"
 )
+javac -d out !sources!
 
 REM Copy the resources to the output directory
 echo Copying resources...
