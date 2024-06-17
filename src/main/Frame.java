@@ -255,28 +255,28 @@ public class Frame extends JFrame implements GameOverListener{
                 _1A2B();
                 break;
             case "2":
-                _2048();
-                break;
-            case "3":
                 ballGame();
                 break;
+            case "3":
+                _2048();
+                break;
             case "4":
-                greedySnake();
+                tug_of_war();
                 break;
             case "5":
-                minesweeper();
+                greedySnake();
                 break;
             case "6":
-                paper_scissors_stone();
+                whackAMole();
                 break;
             case "7":
                 speedyArrows();
                 break;
             case "8":
-                tug_of_war();
+                minesweeper();
                 break; 
             case "9":
-                whackAMole();
+                paper_scissors_stone();
                 break;  
             default:
                 break;
@@ -324,9 +324,9 @@ public class Frame extends JFrame implements GameOverListener{
     }
 
     private void paper_scissors_stone() {
-        //gamePanel_paper_scissors_stone.setStart(true);
+        gamePanel_paper_scissors_stone.setStart(true);
         cardLayout.show(getContentPane(), "paper_scissors_stone");
-        //gamePanel_paper_scissors_stone.setGameOverListener(this);
+        gamePanel_paper_scissors_stone.setGameOverListener(this);
         gamePanel_paper_scissors_stone.setFocusable(true);
         gamePanel_paper_scissors_stone.requestFocusInWindow();
     }

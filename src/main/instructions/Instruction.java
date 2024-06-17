@@ -83,33 +83,31 @@ public class Instruction extends Panel{
                 this.add(_1A2B);
                 break;
             case "2":
-                this.add(_2048);
-                break;
-            case "3":
                 this.add(ballGame);
                 break;
+            case "3":
+                this.add(_2048);
+                break;
             case "4":
-                this.add(greedySnake);
+                this.add(tug_of_war);
                 break;
             case "5":
-                this.add(minesweeper);
+                this.add(greedySnake);
                 break;
             case "6":
-                this.add(paper_scissors_stone);
+                this.add(whackAMole);
                 break;
             case "7":
                 this.add(speedyArrows);
                 break;
             case "8":
-                this.add(tug_of_war);
+                this.add(minesweeper);
                 break;
             case "9":
-                this.add(whackAMole);
+                this.add(paper_scissors_stone);
                 break;   
             default:
                 break;
         }  
     }
-
-
 }
