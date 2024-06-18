@@ -25,6 +25,14 @@
 
     ![關卡](image/level.png)
 
+### 遊戲開始
+#### 在每個遊戲開始前會先有該遊戲的說明，按下 start 後開始
+![intro](image/intro.png)
+#### 遊戲結束後會顯示當前比分
+![score](image/score.png)
+#### 當所有選擇遊戲都比完時，會顯示最後贏家
+![gameover](image/gameover.png)
+
 ## 遊戲說明
 ### 1A2B
 
